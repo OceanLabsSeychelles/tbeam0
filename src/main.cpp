@@ -9,6 +9,15 @@ typedef struct{
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 
+typedef struct{
+  GPS_DATA info;
+  double last_time;
+} PARTNER_DATA;
+
+PARTNER_DATA partner_fix;
+
+double distance = 0.0;
+
 double deg2rad(double deg) {
   return (deg * PI / 180);
 }
@@ -25,6 +34,11 @@ double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
   v = sin((lon2r - lon1r)/2);
   return (2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v)))*1000.0;
 }
+
+long last_scan = millis();
+long last_send = millis();
+long last_screen = millis();
+int interval = random(500);
 
 void setup()
 {
@@ -55,6 +69,7 @@ void setup()
   display.println("Buddy");
   display.println("Tracker");
   display.display();
+  delay(2000);
 
   GPS.begin(9600, SERIAL_8N1, 34, 12);   //17-TX 18-RX
 
@@ -68,52 +83,116 @@ void setup()
   display.clearDisplay();
   display.println("Init Ok.");
   display.display();
+  delay(1000);
+  display.clearDisplay();
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.println("GPS");
+  display.println("Acquiring");
+  display.display();  
 
-}
-
-
-long last_scan = millis();
-long last_send = millis();
-void loop(){
-  while(GPS.available()){
-     gps.encode(GPS.read());
+  while(gps.satellites.value() < 3){
+    gps.encode(GPS.read());
   }
-  if(gps.location.isUpdated()){
+  gps_fix.lat = gps.location.lat();
+  gps_fix.lng = gps.location.lng();
+  gps_fix.sats = gps.satellites.value();
 
-    gps_fix.lat = gps.location.lat();
-    gps_fix.lng = gps.location.lng();
-    gps_fix.sats = gps.satellites.value();
-    if (millis() - last_send>1000){
-      LoRa.beginPacket();
-      LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-      LoRa.endPacket();
-      last_send = millis();
-    }
-  }
-    if(millis() - last_scan > 20){
-    int packetSize = LoRa.parsePacket();
+  display.clearDisplay();
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.println("Fix");
+  display.println("Acquired");
+  display.display();
+  delay(1000);
+
+  display.clearDisplay();
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.println("Waiting");
+  display.println("For");
+  display.println("Partner");
+  display.display();
+
+  int packetSize = 0;
+  while(packetSize == 0){
+    packetSize = LoRa.parsePacket();
     if (packetSize) { 
 
       uint8_t packet[packetSize];
       for(int j =0; j< packetSize; j++){
         packet[j] = LoRa.read();
       }
-      
-      GPS_DATA partner_fix;
-      memcpy(&partner_fix, packet, sizeof(GPS_DATA));
-      double d = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.lat, partner_fix.lng);
-      
-      //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
-      //Serial.println(rssi);
-
-      display.clearDisplay();
-      display.setCursor(0, 0);     // Start at top-left corner
-      display.println(partner_fix.sats);
-      display.println(gps_fix.sats);
-      display.println(d, 6);
-      display.display();
-      last_scan = millis();
     }
+    if (millis() - last_send>(1000 + interval)){
+      LoRa.beginPacket();
+      LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+      LoRa.endPacket();
+      last_send = millis();
+      interval = random(500);
+    }
+  }
+  
+  display.clearDisplay();
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.println("Partner");
+  display.println("Acquired");
+  display.display();
+  delay(1000);
+
+}
+
+void loop(){
+  while(GPS.available()){
+     gps.encode(GPS.read());
+  }
+  if(gps.location.isUpdated()){
+    gps_fix.lat = gps.location.lat();
+    gps_fix.lng = gps.location.lng();
+    gps_fix.sats = gps.satellites.value();
+  }
+  if (millis() - last_send>(1000 + interval)){
+    LoRa.beginPacket();
+    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+    LoRa.endPacket();
+    last_send = millis();
+  }
+  
+  if(millis() - last_scan > 20){
+    int packetSize = LoRa.parsePacket();
+      if (packetSize) { 
+
+        uint8_t packet[packetSize];
+        for(int j =0; j< packetSize; j++){
+          packet[j] = LoRa.read();
+        }
+
+        memcpy(&partner_fix.info, packet, sizeof(GPS_DATA));
+        partner_fix.last_time = millis()/1000.0;
+        distance = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
+        last_scan = millis();
+        //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
+        //Serial.println(rssi);
+      }
+  }
+
+  if (millis() - last_screen > 500){
+    display.setCursor(0, 0);     // Start at top-left corner
+    display.clearDisplay();
+
+    display.print("Sats:");
+    display.print(gps_fix.sats);
+    display.print(",");
+    display.println( partner_fix.info.sats);
+
+    display.print("dT(s):");
+    display.println(millis()/1000.0 - partner_fix.last_time,1);
+
+    if(partner_fix.info.sats>3){
+      display.print("D(m):");
+      display.println(distance, 1);
+    }
+
+    display.display();
+    interval = random(500);
+    last_screen = millis();
   }
 }
 
