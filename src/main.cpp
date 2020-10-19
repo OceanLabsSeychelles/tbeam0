@@ -1,40 +1,19 @@
-#include <Arduino.h>
-#include <SPI.h>
-#include <LoRa.h>
-#include <TinyGPS++.h>
-#include <axp20x.h>
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include "main.h"
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+typedef struct{
+  double lat;
+  double lng;
+  int sats;
+} GPS_DATA;
 
-
-#define SCK     5    // GPIO5  -- SX1278's SCK
-#define MISO    19   // GPIO19 -- SX1278's MISnO
-#define MOSI    27   // GPIO27 -- SX1278's MOSI
-#define SS      18   // GPIO18 -- SX1278's CS
-#define RST     14   // GPIO14 -- SX1278's RESET
-#define DI0     26   // GPIO26 -- SX1278's IRQ(Interrupt Request)
-#define BAND  433E6
-
-TinyGPSPlus gps;
-HardwareSerial GPS(1);
-AXP20X_Class axp;
-
-String rssi = "RSSI --";
-String packSize = "--";
-String packet ;
-#define earthRadiusKm 6371.0
+GPS_DATA gps_fix;
+uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 
 double deg2rad(double deg) {
-  return (deg * M_PI / 180);
+  return (deg * PI / 180);
 }
 double rad2deg(double rad) {
-  return (rad * 180 / M_PI);
+  return (rad * 180 / PI);
 }
 double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
   double lat1r, lon1r, lat2r, lon2r, u, v;
@@ -44,18 +23,8 @@ double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
   lon2r = deg2rad(lon2d);
   u = sin((lat2r - lat1r)/2);
   v = sin((lon2r - lon1r)/2);
-  return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v));
+  return (2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v)))*1000.0;
 }
-
-static void smartDelay(unsigned long ms){
-  unsigned long start = millis();
-  do
-  {
-    while (GPS.available())
-      gps.encode(GPS.read());
-  } while (millis() - start < ms);
-}
-
 
 void setup()
 {
@@ -77,6 +46,15 @@ void setup()
     Serial.println(F("SSD1306 allocation failed"));
     //for(;;); // Don't proceed, loop forever
   }
+  display.clearDisplay();
+  display.clearDisplay();
+  display.setTextSize(2);      // Normal 1:1 pixel scale
+  display.setTextColor(SSD1306_WHITE); // Draw white text
+  display.cp437(true);         // Use full 256 char 'Code Page 437' font
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.println("Buddy");
+  display.println("Tracker");
+  display.display();
 
   GPS.begin(9600, SERIAL_8N1, 34, 12);   //17-TX 18-RX
 
@@ -87,115 +65,75 @@ void setup()
     while (1);
   }
   Serial.println("LoRa init ok");
-}
-
-void cbk(int packetSize) {
   display.clearDisplay();
-  display.setTextSize(2);      // Normal 1:1 pixel scale
-  display.setTextColor(SSD1306_WHITE); // Draw white text
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.cp437(true);         // Use full 256 char 'Code Page 437' font
-
-  packet ="";
-  packSize = String(packetSize,DEC);
-  for (int i = 0; i < packetSize; i++) { packet += (char) LoRa.read(); }
-  rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
-
-  //Serial.println(rssi);
-  //display.setCursor(1, 0);     // Start at top-left corner
-  display.println(packet);
-  Serial.println(packet);
+  display.println("Init Ok.");
   display.display();
+
 }
 
 
-bool sender = false;
-
-void loop()
-{
-  if (sender){
-    Serial.print("Latitude  : ");
-    Serial.println(gps.location.lat(), 5);
-    Serial.print("Longitude : ");
-    Serial.println(gps.location.lng(), 4);
-    Serial.print("Satellites: ");
-    Serial.println(gps.satellites.value());
-    Serial.print("Altitude  : ");
-    Serial.print(gps.altitude.feet() / 3.2808);
-    Serial.println("M");
-    Serial.print("Time      : ");
-    Serial.print(gps.time.hour());
-    Serial.print(":");
-    Serial.print(gps.time.minute());
-    Serial.print(":");
-    Serial.println(gps.time.second());// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-    Serial.print("Speed     : ");
-    Serial.println(gps.speed.kmph());
-    Serial.println("**********************");
-
-    smartDelay(1000);
-
-    if (millis() > 5000 && gps.charsProcessed() < 10)
-      Serial.println(F("No GPS data received: check wiring"));
-
-    union gpsUnion{
-      double gpsDouble;
-      unsigned char gpsBytes[8];
-    };
-
-    gpsUnion latUnion;
-    latUnion.gpsDouble = gps.location.lat();
-
-
-
-
-    LoRa.beginPacket();
-    LoRa.print(gps.location.lat(), 5);
-    LoRa.print(",");
-    LoRa.print(gps.location.lng(), 5);
-    LoRa.print(",");
-    LoRa.print(gps.satellites.value());
-    LoRa.endPacket();
-  }else{
-    int packetSize = LoRa.parsePacket();
-    if (packetSize) { cbk(packetSize);  }
-    delay(10);
+long last_scan = millis();
+long last_send = millis();
+void loop(){
+  while(GPS.available()){
+     gps.encode(GPS.read());
   }
+  if(gps.location.isUpdated()){
 
-  /*
-  Serial.print("Latitude  : ");
-  Serial.println(gps.location.lat(), 5);
-  Serial.print("Longitude : ");
-  Serial.println(gps.location.lng(), 4);
-  Serial.print("Satellites: ");
-  Serial.println(gps.satellites.value());
-  Serial.print("Altitude  : ");
-  Serial.print(gps.altitude.feet() / 3.2808);
-  Serial.println("M");
-  Serial.print("Time      : ");
-  Serial.print(gps.time.hour());
-  Serial.print(":");
-  Serial.print(gps.time.minute());
-  Serial.print(":");
-  Serial.println(gps.time.second());// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-  Serial.print("Speed     : ");
-  Serial.println(gps.speed.kmph());
-  Serial.println("**********************");
+    gps_fix.lat = gps.location.lat();
+    gps_fix.lng = gps.location.lng();
+    gps_fix.sats = gps.satellites.value();
+    if (millis() - last_send>1000){
+      LoRa.beginPacket();
+      LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+      LoRa.endPacket();
+      last_send = millis();
+    }
+  }
+    if(millis() - last_scan > 20){
+    int packetSize = LoRa.parsePacket();
+    if (packetSize) { 
 
-  display.clearDisplay();
-  display.setTextSize(2);      // Normal 1:1 pixel scale
-  display.setTextColor(SSD1306_WHITE); // Draw white text
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.cp437(true);         // Use full 256 char 'Code Page 437' font
-  display.print("My Sats: ");
-  display.println(gps.satellites.value());
-  //display.setCursor(1, 0);     // Start at top-left corner
-  display.display();
+      uint8_t packet[packetSize];
+      for(int j =0; j< packetSize; j++){
+        packet[j] = LoRa.read();
+      }
+      
+      GPS_DATA partner_fix;
+      memcpy(&partner_fix, packet, sizeof(GPS_DATA));
+      double d = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.lat, partner_fix.lng);
+      
+      //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
+      //Serial.println(rssi);
 
-  smartDelay(1000);
-
-  if (millis() > 5000 && gps.charsProcessed() < 10)
-    Serial.println(F("No GPS data received: check wiring"));
-  */
-
+      display.clearDisplay();
+      display.setCursor(0, 0);     // Start at top-left corner
+      display.println(partner_fix.sats);
+      display.println(gps_fix.sats);
+      display.println(d, 6);
+      display.display();
+      last_scan = millis();
+    }
+  }
 }
+
+/*
+Serial.print("Latitude  : ");
+Serial.println(gps.location.lat(), 5);
+Serial.print("Longitude : ");
+Serial.println(gps.location.lng(), 4);
+Serial.print("Satellites: ");
+Serial.println(gps.satellites.value());
+Serial.print("Altitude  : ");
+Serial.print(gps.altitude.feet() / 3.2808);
+Serial.println("M");
+Serial.print("Time      : ");
+Serial.print(gps.time.hour());
+Serial.print(":");
+Serial.print(gps.time.minute());
+Serial.print(":");
+Serial.println(gps.time.second());// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+Serial.print("Speed     : ");
+Serial.println(gps.speed.kmph());
+Serial.println("**********************");
+*/
