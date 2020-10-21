@@ -1,9 +1,5 @@
 #include "main.h"
 #include "geometry.h"
-#include <WiFi.h>
-#include <ESPmDNS.h>
-#include <WiFiUdp.h>
-#include <ArduinoOTA.h>
 
 typedef struct{
   double lat;
@@ -25,111 +21,32 @@ long last_scan = millis();
 long last_send = millis();
 long last_screen = millis();
 int interval = random(500);
-double distance = 0.0;
-double bearing = 0.0;
 
-float getBatteryVoltage() {
-  // we've set 10-bit ADC resolution 2^10=1024 and voltage divider makes it half of maximum readable value (which is 3.3V)
-  float sum = 0;
-  for (int j = 0; j< 10; j++){
-    sum += analogRead(BATTERY_PIN);
-  }
-  sum /= 10;
-  sum /= 1024;
-  sum *= 3.3;
-  return (sum); 
-}
-
-void OTAInit(){
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.clearDisplay();
-  display.println("Starting WiFi");
-  display.display();
-  delay(1000);
-
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    Serial.println("Connection Failed! Rebooting...");
-    delay(5000);
-    ESP.restart();
-  }
-   ArduinoOTA
-    .onStart([]() {
-      String type;
-      if (ArduinoOTA.getCommand() == U_FLASH)
-        type = "sketch";
-      else // U_SPIFFS
-        type = "filesystem";
-
-      // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
-      Serial.println("Start updating " + type);
-    })
-    .onEnd([]() {
-      Serial.println("\nEnd");
-    })
-    .onProgress([](unsigned int progress, unsigned int total) {
-      Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-    })
-    .onError([](ota_error_t error) {
-      Serial.printf("Error[%u]: ", error);
-      if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
-      else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
-      else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
-      else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
-      else if (error == OTA_END_ERROR) Serial.println("End Failed");
-    });
-
-  ArduinoOTA.begin();
-
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.clearDisplay();
-  display.println("OTA Update");
-  display.print("IP address: ");
-  display.println(WiFi.localIP());
-  display.display();
-  delay(1000);
-
-  //while(true){
-  //  ArduinoOTA.handle();
-  //}
-}
-
-void IRAM_ATTR ISR() {
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.clearDisplay();
-  display.println("BUTTON!");
-  display.display();
-}
 
 void setup()
 {
-  // set battery measurement pin
+  //tone(BUZZER_PIN, NOTE_C7, 250, BUZZER_CHANNEL);
+  pinMode(BUZZER_PIN, OUTPUT);
+  
   Serial.begin(115200);
   Wire.begin(21, 22);
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
     Serial.println("AXP192 Begin PASS");
   } else {
     Serial.println("AXP192 Begin FAIL");
+    //for(;;); // Don't proceed, loop forever
   }
   axp.setPowerOutPut(AXP192_LDO2, AXP202_ON); // LORA radio
   axp.setPowerOutPut(AXP192_LDO3, AXP202_ON); // GPS main power
   axp.setPowerOutPut(AXP192_DCDC2, AXP202_ON);
   axp.setPowerOutPut(AXP192_EXTEN, AXP202_ON);
-  axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON);
+  axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
   axp.setDCDC1Voltage(3300); // for the OLED power
 
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
     Serial.println(F("SSD1306 allocation failed"));
     //for(;;); // Don't proceed, loop forever
   }
-
-  pinMode(USER_BUTTON, INPUT);
-  attachInterrupt(USER_BUTTON, ISR, FALLING);
-
-  adcAttachPin(BATTERY_PIN);
-  adcStart(BATTERY_PIN);
-  analogReadResolution(10); // Default of 12 is not very linear. Recommended to use 10 or 11 depending on needed resolution.
 
   display.clearDisplay();
   display.setTextSize(2);      // Normal 1:1 pixel scale
@@ -140,9 +57,6 @@ void setup()
   display.println("Tracker");
   display.display();
   delay(2000);
-  
-  OTAInit();
-
 
   GPS.begin(9600, SERIAL_8N1, 34, 12);   //17-TX 18-RX
   SPI.begin(SCK,MISO,MOSI,SS);
@@ -151,6 +65,28 @@ void setup()
     Serial.println("Starting LoRa failed!");
     while (1);
   }
+  
+  if(!bno.begin())
+  {
+    /* There was a problem detecting the BNO055 ... check your connections */
+    Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+    while(1);
+  }
+  while(1){
+	  sensors_event_t event; 
+	  bno.getEvent(&event);
+	  
+	  display.setCursor(0, 0);     // Start at top-left corner
+	  display.clearDisplay();
+	  display.print("\tX: ");
+	  display.println(event.orientation.x, 2);
+	  display.print("\tY: ");
+	  display.println(event.orientation.y, 2);
+	  display.print("\tZ: ");
+	  display.println(event.orientation.z, 2);
+	  display.display();
+  }
+  
   
   display.setCursor(0, 0);     // Start at top-left corner
   display.clearDisplay();

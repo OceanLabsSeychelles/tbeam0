@@ -1,3 +1,6 @@
+#define earthRadiusKm 6371.0
+double bearing, distance;
+
 double deg2rad(double deg) {
   return (deg * PI / 180);
 }
