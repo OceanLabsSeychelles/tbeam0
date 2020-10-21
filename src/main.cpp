@@ -1,4 +1,9 @@
 #include "main.h"
+#include "geometry.h"
+#include <WiFi.h>
+#include <ESPmDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 typedef struct{
   double lat;
@@ -16,32 +21,90 @@ typedef struct{
 
 PARTNER_DATA partner_fix;
 
-double distance = 0.0;
-
-double deg2rad(double deg) {
-  return (deg * PI / 180);
-}
-double rad2deg(double rad) {
-  return (rad * 180 / PI);
-}
-double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
-  double lat1r, lon1r, lat2r, lon2r, u, v;
-  lat1r = deg2rad(lat1d);
-  lon1r = deg2rad(lon1d);
-  lat2r = deg2rad(lat2d);
-  lon2r = deg2rad(lon2d);
-  u = sin((lat2r - lat1r)/2);
-  v = sin((lon2r - lon1r)/2);
-  return (2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v)))*1000.0;
-}
-
 long last_scan = millis();
 long last_send = millis();
 long last_screen = millis();
 int interval = random(500);
+double distance = 0.0;
+double bearing = 0.0;
+
+float getBatteryVoltage() {
+  // we've set 10-bit ADC resolution 2^10=1024 and voltage divider makes it half of maximum readable value (which is 3.3V)
+  float sum = 0;
+  for (int j = 0; j< 10; j++){
+    sum += analogRead(BATTERY_PIN);
+  }
+  sum /= 10;
+  sum /= 1024;
+  sum *= 3.3;
+  return (sum); 
+}
+
+void OTAInit(){
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("Starting WiFi");
+  display.display();
+  delay(1000);
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    Serial.println("Connection Failed! Rebooting...");
+    delay(5000);
+    ESP.restart();
+  }
+   ArduinoOTA
+    .onStart([]() {
+      String type;
+      if (ArduinoOTA.getCommand() == U_FLASH)
+        type = "sketch";
+      else // U_SPIFFS
+        type = "filesystem";
+
+      // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+      Serial.println("Start updating " + type);
+    })
+    .onEnd([]() {
+      Serial.println("\nEnd");
+    })
+    .onProgress([](unsigned int progress, unsigned int total) {
+      Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+    })
+    .onError([](ota_error_t error) {
+      Serial.printf("Error[%u]: ", error);
+      if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+      else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
+      else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+      else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+      else if (error == OTA_END_ERROR) Serial.println("End Failed");
+    });
+
+  ArduinoOTA.begin();
+
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("OTA Update");
+  display.print("IP address: ");
+  display.println(WiFi.localIP());
+  display.display();
+  delay(1000);
+
+  //while(true){
+  //  ArduinoOTA.handle();
+  //}
+}
+
+void IRAM_ATTR ISR() {
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("BUTTON!");
+  display.display();
+}
 
 void setup()
 {
+  // set battery measurement pin
   Serial.begin(115200);
   Wire.begin(21, 22);
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
@@ -60,7 +123,14 @@ void setup()
     Serial.println(F("SSD1306 allocation failed"));
     //for(;;); // Don't proceed, loop forever
   }
-  display.clearDisplay();
+
+  pinMode(USER_BUTTON, INPUT);
+  attachInterrupt(USER_BUTTON, ISR, FALLING);
+
+  adcAttachPin(BATTERY_PIN);
+  adcStart(BATTERY_PIN);
+  analogReadResolution(10); // Default of 12 is not very linear. Recommended to use 10 or 11 depending on needed resolution.
+
   display.clearDisplay();
   display.setTextSize(2);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
@@ -70,18 +140,23 @@ void setup()
   display.println("Tracker");
   display.display();
   delay(2000);
+  
+  OTAInit();
+
 
   GPS.begin(9600, SERIAL_8N1, 34, 12);   //17-TX 18-RX
-
   SPI.begin(SCK,MISO,MOSI,SS);
   LoRa.setPins(SS,RST,DI0);
   if (!LoRa.begin(BAND)) {
     Serial.println("Starting LoRa failed!");
     while (1);
   }
-  Serial.println("LoRa init ok");
+  
+  display.setCursor(0, 0);     // Start at top-left corner
   display.clearDisplay();
   display.println("Init Ok.");
+  display.print("VBat: ");
+  display.println(getBatteryVoltage());
   display.display();
   delay(1000);
   display.clearDisplay();
@@ -167,6 +242,7 @@ void loop(){
         memcpy(&partner_fix.info, packet, sizeof(GPS_DATA));
         partner_fix.last_time = millis()/1000.0;
         distance = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
+        bearing = getBearing(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
         last_scan = millis();
         //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
         //Serial.println(rssi);
@@ -185,7 +261,7 @@ void loop(){
     display.print("dT(s):");
     display.println(millis()/1000.0 - partner_fix.last_time,1);
 
-    if(partner_fix.info.sats>3){
+    if(partner_fix.info.sats>2){
       display.print("D(m):");
       display.println(distance, 1);
     }
