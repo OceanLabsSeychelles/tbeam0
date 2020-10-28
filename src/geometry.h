@@ -22,7 +22,7 @@ double getBearing(double lat,double lon,double lat2,double lon2){
 
     double teta1 = deg2rad(lat);
     double teta2 = deg2rad(lat2);
-    double delta1 = deg2rad(lat2-lat);
+    //double delta1 = deg2rad(lat2-lat); 
     double delta2 = deg2rad(lon2-lon);
 
     //==================Heading Formula Calculation================//

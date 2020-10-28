@@ -1,4 +1,5 @@
 #include "main.h"
+#include "html.h"
 #include "geometry.h"
 
 typedef struct{
@@ -25,38 +26,25 @@ int interval = random(500);
 
 void setup()
 {
-  //tone(BUZZER_PIN, NOTE_C7, 250, BUZZER_CHANNEL);
   pinMode(BUZZER_PIN, OUTPUT);
+  tone(BUZZER_PIN, NOTE_A6, 125, BUZZER_CHANNEL);
   
   Serial.begin(115200);
   Wire.begin(21, 22);
-  if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
-    Serial.println("AXP192 Begin PASS");
-  } else {
+  
+  if(!powerOn()){
     Serial.println("AXP192 Begin FAIL");
-    //for(;;); // Don't proceed, loop forever
+    for(;;); // Don't proceed, loop forever
+  }else{
+    Serial.println("Power Ok.");
   }
-  axp.setPowerOutPut(AXP192_LDO2, AXP202_ON); // LORA radio
-  axp.setPowerOutPut(AXP192_LDO3, AXP202_ON); // GPS main power
-  axp.setPowerOutPut(AXP192_DCDC2, AXP202_ON);
-  axp.setPowerOutPut(AXP192_EXTEN, AXP202_ON);
-  axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
-  axp.setDCDC1Voltage(3300); // for the OLED power
 
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
+  if(!displayInit()){
     Serial.println(F("SSD1306 allocation failed"));
-    //for(;;); // Don't proceed, loop forever
+  }else{
+    Serial.println("OLED Ok.");
+    delay(1000);
   }
-
-  display.clearDisplay();
-  display.setTextSize(2);      // Normal 1:1 pixel scale
-  display.setTextColor(SSD1306_WHITE); // Draw white text
-  display.cp437(true);         // Use full 256 char 'Code Page 437' font
-  display.setCursor(0, 0);     // Start at top-left corner
-  display.println("Buddy");
-  display.println("Tracker");
-  display.display();
-  delay(2000);
 
   GPS.begin(9600, SERIAL_8N1, 34, 12);   //17-TX 18-RX
   SPI.begin(SCK,MISO,MOSI,SS);
@@ -65,10 +53,41 @@ void setup()
     Serial.println("Starting LoRa failed!");
     while (1);
   }
-  
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("Hardware");
+  display.print("Init OK.");
+  display.display();
+  delay(1000);
+
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("Starting");
+  display.print("WiFi");
+  display.display();
+
+  if(!serverInit()){
+    Serial.println("Error starting server, likely SPIFFS");
+  }else{
+    Serial.println("Webserver Ok");
+    tone(BUZZER_PIN, NOTE_C7, 250, BUZZER_CHANNEL);
+  }
+
+  display.setCursor(0, 0);     // Start at top-left corner
+  display.clearDisplay();
+  display.println("WiFi OK");
+  display.setTextSize(1);      // Normal 1:1 pixel scale
+  display.println(WiFi.localIP());
+  display.setTextSize(2);      // Normal 1:1 pixel scale
+  display.display();
+  delay(2000);
+
+
+
+
+  /*
   if(!bno.begin())
   {
-    /* There was a problem detecting the BNO055 ... check your connections */
     Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
     while(1);
   }
@@ -86,7 +105,7 @@ void setup()
 	  display.println(event.orientation.z, 2);
 	  display.display();
   }
-  
+  */
   
   display.setCursor(0, 0);     // Start at top-left corner
   display.clearDisplay();
@@ -127,9 +146,8 @@ void setup()
     packetSize = LoRa.parsePacket();
     if (packetSize) { 
 
-      uint8_t packet[packetSize];
       for(int j =0; j< packetSize; j++){
-        packet[j] = LoRa.read();
+        LoRa.read();
       }
     }
     if (millis() - last_send>(1000 + interval)){

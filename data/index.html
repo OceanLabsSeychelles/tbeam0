@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Buddy Tracker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <h1>Your Safety Limits</h1>
+        <div id="label-values">
+          <b>Max Seperation Distance (m): </b>%distmax%<br>
+          <b>Max Down Time (s): </b>%downmax%<br>
+          <b>One-Up One-Down: </b>%buddylock%<br>
+        </div><br>
+        <div style="text-align:center;">
+        <button onclick="window.location.href='/config';">
+            Change Limits
+        </button><br><br>
+
+        <button onclick="window.location.href='/power-off';">
+            Turn Off Web Server
+        </button>
+
+        <div>
+    </body>
+</html>
