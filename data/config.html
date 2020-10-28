@@ -1,34 +1,47 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <title>Buddy Tracker</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="data:,">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-
-    <body>
-        <h1>Set Your Safety Limits</h1>
-
-        <form action="/get">
-        <label for="distmax">Max seperation distance (10m - 100m):</label><br>
-        <input type="number" id="distmax" name="distmax" value=%distmax% min="10" max="100"><br><br>
-
-        <label for="downmax">Max down time (30s - 300s): </label><br>
-        <input type="number" id="downmax" name="downmax" value=%downmax% min="30" max="300"><br><br>
-        
-        <label for="allow_dual">One-Up One-Down Lock: </label><br>
-        <div style="text-align:center;">
-            <label class="switch">
-                <input type="checkbox" name="buddylock" checked=checked>
-                <span class="slider round"></span>
-            </label><br><br>
-        </div>
-
-        <div style="text-align:center;">
-            <input type="submit">
-        </div>
-        </form>
-
-    </body>
+   <head>
+      <title>Buddy Tracker</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="data:,">
+      <link rel="stylesheet" type="text/css" href="style.css">
+   </head>
+   <body>
+      <div class="header">
+         <h1>Safety Settings</h1>
+      </div>
+      <div class="row">
+         <div class="col-6 col-s-9">
+            <div style="text-align:center;">
+               <form action="/get">
+                  <label for="distmax">
+                     <h4>Max partner distance (10m - 100m):</h4>
+                  </label>
+                  <input type="number" id="distmax" name="distmax" value=%distmax% min="10" max="100"><br><br>
+                  <label for="downmax">
+                     <h4>Your max down time (30s - 300s): </h4>
+                  </label>
+                  <input type="number" id="downmax" name="downmax" value=%downmax% min="30" max="300"><br><br>
+                  <label for="allow_dual">
+                     <h4>Buddy Lock: </h4>
+                  </label>
+                  <label class="switch">
+                  <input type="checkbox" name="buddylock" checked=checked>
+                  <span class="slider round"></span>
+                  </label><br><br>
+                  <input type="submit">
+            </div>
+            </form>
+         </div>
+         <div class="col-6 col-s-12">
+            <div class="aside">
+               <h2>Max Partner Distance:</h2>
+               <p>When you and your partner exceed this distance, an alarm will sound on your and your partners device.</p>
+               <h2>Max Down Time:</h2>
+               <p>If you are underwater for more than this time, an alarm will sound on your and your partners device.</p>
+               <h2>Buddy Lock:</h2>
+               <p>If you start a dive while your buddy is already submerged, an alarm will sound.</p>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>
