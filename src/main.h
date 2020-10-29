@@ -26,7 +26,7 @@
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define BAND  868E6
+#define BAND  433E6
 
 TinyGPSPlus gps;
 HardwareSerial GPS(1);
@@ -54,6 +54,7 @@ typedef struct{
     int distmax;
     int downmax;
     int buddylock;
+    bool ready;
 } PAIRING_DATA;
 
 PAIRING_DATA local_config;
@@ -64,9 +65,15 @@ PAIRING_DATA partner_config;
 volatile bool server_on = true;
 volatile bool lora_scan = false;
 volatile bool buddy_found = false;
+volatile bool ready = false;
+volatile bool buddy_ready = false;
 volatile int distmax;
 volatile int downmax;
 volatile int buddylock;
+
+volatile int divedist;
+volatile int divedown;
+volatile int divelock;
 
 bool displayInit(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
@@ -83,6 +90,13 @@ bool displayInit(){
     return true;
   }
 };
+int getmin(int a, int b){
+  if(a<b){
+    return a;
+  }else{
+    return b;
+  }
+}
 
 bool powerOn(){
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {

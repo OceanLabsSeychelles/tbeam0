@@ -19,33 +19,16 @@
   
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <div class="card shadow-sm p-3 mb-5 rounded">
         <h3 style="text-align:center" class="text-danger">Your Safety Limits</h3>
         <h4 style="text-align:center" class="text-info">%deviceid%</h4>
         <b>Max Seperation Distance: </b>%distmax% meters<br>
         <b>Max Down Time: </b>%downmax% seconds<br>
-        <b>One-Up One-Down: </b>%buddylock%<br>
-        <button type="button" class="btn btn-danger" onclick=" goToConfig()">Change Safety Limits</button>
+        <b>One-Up One-Down: </b>%buddylock%<br><br>
+        <button type="button" class="btn btn-danger" onclick=" goToConfig()">Change Safety Limits</button><br>
+        <button type="button" class="btn btn-info" onclick=" goToBuddy()">Scan For Buddies</button>
       </div>
-
-    </div>
-    <div class="col-sm-6">
-      <div class="card shadow-sm p-3 mb-5 rounded">
-        <h3 style="text-align:center" class="text-danger">Your Dive Buddy</h3>
-        <h4 style="text-align:center" class="text-info">%buddyid%</h4>
-        <b>Max Seperation Distance: </b>%bd-distmax% (m)<br>
-        <b>Max Down Time: </b>%bd-downmax% (sec)<br>
-        <b>One-Up One-Down: </b>%bd-buddylock%<br>
-        <button type="button" class="btn btn-info" onclick=" goToScanning()">Scan For Buddies</button>
-      </div>
-      <button type="button" class="btn btn-info" onclick=" goToDive()">Ready to Dive!</button>
-      <script>
-        function goToDive()
-        {
-          location.href = "/diveplan";
-        }
-      </script>
     </div>
   </div>
 </div>

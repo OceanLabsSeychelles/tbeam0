@@ -31,6 +31,7 @@ bool serverInit(){
     display.println(WiFi.localIP());
     display.display();
 
+    checkFirstRun();
 
     if(!SPIFFS.begin()){
         return false;
@@ -56,19 +57,19 @@ bool serverInit(){
         }
         });
 
-    /*
+
     server.on("/foundbuddy", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/foundbuddy.html", String(), false, processor);
     });
-    */
+
 
     server.on("/diveplan", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/diveplan.html", String(), false, processor);
     });
 
-    server.on("/poweroff", HTTP_GET, [](AsyncWebServerRequest *request){
-        server_on = false;
-        request->send(SPIFFS, "/poweroff.html", String(), false, processor);
+    server.on("/ready", HTTP_GET, [](AsyncWebServerRequest *request){
+        ready = true;
+        request->send(SPIFFS, "/ready.html", String(), false, processor);
     });
 
     server.on("/app.js", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -160,10 +161,12 @@ String processor(const String& var){
         ESPFlash<int> espFlashInteger("/distmax");
         return String(espFlashInteger.get(), DEC);
     }
+
     if(var == "downmax"){
         ESPFlash<int> espFlashInteger("/downmax");
         return String(espFlashInteger.get(), DEC);
     }
+
     if(var == "buddylock"){
         ESPFlash<int> espFlashInteger("/buddylock");
         int buddylock = espFlashInteger.get();
@@ -173,6 +176,47 @@ String processor(const String& var){
             return(String("True"));
         }
     }
+
+    if(var == "deviceid"){
+        return(String(local_config.id));
+    }
+
+    if(var == "buddyid"){
+        return(String(partner_config.id));
+    }
+
+    if(var == "bd-downmax"){
+        return(String(partner_config.downmax));
+    }
+
+    if(var == "bd-distmax"){
+        return(String(partner_config.distmax));
+    }
+
+    if(var == "bd-buddylock"){
+        if (partner_config.buddylock == 0){
+            return(String("False"));
+        }else{
+            return(String("True"));
+        }
+    }
+
+    if(var == "divedist"){
+        return(String(divedist));
+    }
+
+    if(var == "divedown"){
+        return(String(divedown));
+    }
+
+    if(var == "divelock"){
+        if (divelock == 0){
+            return(String("False"));
+        }else{
+            return(String("True"));
+        }
+    }
+
     return String();
 }
 /*

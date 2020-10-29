@@ -10,10 +10,25 @@ function goToConfig()
 
 function goToHome()
 {
-    location.href = "/config";
+    location.href = "/";
 }
 
 function goToPowerOff()
 {
     location.href = "/poweroff"
+}
+
+function goToDive()
+{
+    location.href = "/diveplan";
+}
+
+function goToBuddy()
+{
+    location.href= "/foundbuddy";
+}
+
+function goToReady()
+{
+    location.href = "/ready";
 }

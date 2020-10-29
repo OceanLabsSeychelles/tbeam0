@@ -1,7 +1,5 @@
 #include "main.h"
-
 #include "webserver.h"
-
 #include "geometry.h"
 
 long last_scan = millis();
@@ -50,12 +48,18 @@ void setup() {
         tone(BUZZER_PIN, NOTE_C7, 125, BUZZER_CHANNEL);
     }
 
-    while (server_on) {
+    display.clearDisplay();
+    display.setTextSize(2);      // Normal 1:1 pixel scale
+    display.setCursor(0, 0);     // Start at top-left corner
+    display.println("Pairing");
+    display.display();
+    while ((!ready) && (!buddy_ready)) {
         if (millis() - last_send > (1000 + interval)) {
             local_config.distmax = distmax;
             local_config.downmax = downmax;
             local_config.buddylock = buddylock;
-            strcpy(local_config.id, "uhuHunter");
+            local_config.ready = ready;
+            strcpy(local_config.id, "zero2spearo");
 
             LoRa.beginPacket();
             LoRa.write(local_config_ptr, sizeof(PAIRING_DATA));
@@ -63,25 +67,43 @@ void setup() {
 
             last_send = millis();
             interval = random(500);
+            Serial.println("Sent packet.");
         }
         if (millis() - last_scan > 20) {
+
             int packetSize = LoRa.parsePacket();
-            if (packetSize == sizeof(PAIRING_DATA)) {
+            Serial.println(packetSize);
+            if (packetSize) {
 
                 uint8_t packet[packetSize];
                 for (int j = 0; j < packetSize; j++) {
                     packet[j] = LoRa.read();
                 }
                 memcpy( & partner_config, packet, sizeof(PAIRING_DATA));
-                buddy_found = true;
-                Serial.println(partner_config.id);
+                //buddy_found = true;
+                display.clearDisplay();
+                display.setCursor(0, 0);     // Start at top-left corner
+                display.println(partner_config.ready);
+                display.println(partner_config.distmax);
+                display.println(partner_config.downmax);
+                divedist = getmin(distmax, partner_config.distmax);
+                divedown = partner_config.downmax;
+                divelock = buddylock || partner_config.buddylock;
+                display.display();
             }
             last_scan = millis();
         }
     }
-    delay(2000); //give webserver time to send last page
+    display.clearDisplay();
+    display.setCursor(0, 0);     // Start at top-left corner
+    display.println("START!");
+    display.display();
+    delay(2000);
+    server.end();
+    btStop();
 
 }
+
 
 void loop() {
     while (GPS.available()) {

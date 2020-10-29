@@ -24,12 +24,13 @@
             <div class="card shadow-sm p-3 mb-5 rounded">
                 <h3 style="text-align:center" class="text-danger">During This Dive</h3>
                 <h4 style="text-align:center" class="text-info">%deviceid% & %buddyid%</h4>
-                <b>Max Separation Distance: </b>%dive_distmax% meters<br>
-                <b>One-Up One-Down: </b>%dive_buddylock%<br><br>
+                <b>Max Separation Distance: </b>%divedist% meters<br>
+                <b>Buddy Recovery Time: </b>%divedown% sec<br>
+                <b>One-Up One-Down: </b>%divelock%<br><br>
                 <div class="alert alert-warning">
                     <strong>Warning!</strong> Starting the dive will disable web app until next device power cycle</a>.
                 </div>
-                <button type="button" class="btn btn-danger" onclick=" goToPowerOff()"><strong>Start Dive!</strong></strong></button><br>
+                <button type="button" class="btn btn-danger" onclick=" goToReady()"><strong>Start Dive!</strong></strong></button><br>
             </div>
     </div>
 </div>
