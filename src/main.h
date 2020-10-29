@@ -34,6 +34,40 @@ AXP20X_Class axp;
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+typedef struct{
+    double lat;
+    double lng;
+    int sats;
+} GPS_DATA;
+GPS_DATA gps_fix;
+uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
+
+typedef struct{
+    GPS_DATA info;
+    double last_time;
+} PARTNER_DATA;
+
+PARTNER_DATA partner_fix;
+
+typedef struct{
+    char id[40];
+    int distmax;
+    int downmax;
+    int buddylock;
+} PAIRING_DATA;
+
+PAIRING_DATA local_config;
+uint8_t* local_config_ptr = (uint8_t*)&local_config;
+
+PAIRING_DATA partner_config;
+
+volatile bool server_on = true;
+volatile bool lora_scan = false;
+volatile bool buddy_found = false;
+volatile int distmax;
+volatile int downmax;
+volatile int buddylock;
+
 bool displayInit(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
     return false;

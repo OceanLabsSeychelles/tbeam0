@@ -1,0 +1,1 @@
+MinGW not found at: C:\Users\brett\Documents\PlatformIO\tbeam0 Configure

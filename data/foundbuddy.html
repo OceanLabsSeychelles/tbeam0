@@ -13,15 +13,24 @@
 <body>
 
 <div class="jumbotron text-center">
-    <h1 class="display-5"><b>Buddy</b>Tracker</h1>
+    <h1 class="display-5"><b>Buddy</b>Scanner</h1>
 </div>
 
 <div class="container">
 
     <div class="row">
-        <h2>Powering Off Webserver</h2>
+        <div class="col-sm-6">
+            <div class="card shadow-sm p-3 mb-5 rounded">
+                <h3 style="text-align:center" class="text-danger">Scan Result</h3>
+                <h4 style="text-align:center" class="text-info">%buddyid%</h4>
+                <b>Max Seperation Distance: </b>%bd-distmax% (m)<br>
+                <b>Max Down Time: </b>%bd-downmax% (sec)<br>
+                <b>One-Up One-Down: </b>%bd-buddylock%<br>
+                <button type="button" onclick=" goToHome()" class="btn btn-danger">Select Buddy</button>
+            </div>
+            </div>
+        </div>
     </div>
-
 </div>
 </body>
 </html>

@@ -1,31 +1,54 @@
-<html>
-    <head>
-        <title>Buddy Tracker</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="data:,">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
+<html lang="en">
+<head>
+  <title>Buddy Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <script src="app.js"></script>
+</head>
+<body>
 
-    <body>
-      <div class="header">
-        <h1>Buddy Tracker</h1>
+<div class="jumbotron text-center">
+  <h1 class="display-5"><b>Buddy</b>Tracker</h1>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card shadow-sm p-3 mb-5 rounded">
+        <h3 style="text-align:center" class="text-danger">Your Safety Limits</h3>
+        <h4 style="text-align:center" class="text-info">%deviceid%</h4>
+        <b>Max Seperation Distance: </b>%distmax% meters<br>
+        <b>Max Down Time: </b>%downmax% seconds<br>
+        <b>One-Up One-Down: </b>%buddylock%<br>
+        <button type="button" class="btn btn-danger" onclick=" goToConfig()">Change Safety Limits</button>
       </div>
-      <div class="row">
-        <div class="col-3 col-s-3 menu">
-          <ul>
-            <li><a href='/config'>Change Limits</a></li>
-            <li>Select Buddy</li>
-            <li>Boot Log</li>
-          </ul>
-        </div>
-        <div class="col-6 col-s-9">
-          <div class="settings">
-          <h1>Your Safety Limits</h1>
-          <b>Max Seperation Distance: </b>%distmax% meters<br>
-          <b>Max Down Time: </b>%downmax% seconds<br>
-          <b>One-Up One-Down: </b>%buddylock%<br>
-          </div>
-        </div><br><br>
-        <div>
-    </body>
+
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow-sm p-3 mb-5 rounded">
+        <h3 style="text-align:center" class="text-danger">Your Dive Buddy</h3>
+        <h4 style="text-align:center" class="text-info">%buddyid%</h4>
+        <b>Max Seperation Distance: </b>%bd-distmax% (m)<br>
+        <b>Max Down Time: </b>%bd-downmax% (sec)<br>
+        <b>One-Up One-Down: </b>%bd-buddylock%<br>
+        <button type="button" class="btn btn-info" onclick=" goToScanning()">Scan For Buddies</button>
+      </div>
+      <button type="button" class="btn btn-info" onclick=" goToDive()">Ready to Dive!</button>
+      <script>
+        function goToDive()
+        {
+          location.href = "/diveplan";
+        }
+      </script>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>

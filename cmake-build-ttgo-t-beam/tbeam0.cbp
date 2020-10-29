@@ -1,0 +1,1892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="tbeam0"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Production">
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 Production"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Debug">
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 Debug"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Z_DUMMY_TARGET">
+				<Option output="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Z_DUMMY_TARGET" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/include"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/asio"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/bootloader_support"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/bt"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/coap"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/console"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/driver"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp-tls"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp32"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_adc_cal"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_event"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_http_client"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_http_server"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_https_ota"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_ringbuf"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/ethernet"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/expat"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fatfs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freemodbus"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freertos"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/heap"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/idf_test"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/jsmn"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/json"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/libsodium"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/log"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/lwip"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mbedtls"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mdns"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/micro-ecc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mqtt"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/newlib"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/nghttp"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/nvs_flash"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/openssl"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/protobuf-c"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/protocomm"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/pthread"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/sdmmc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/smartconfig_ack"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/soc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/spi_flash"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/spiffs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/tcp_transport"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/tcpip_adapter"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/ulp"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/vfs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wear_levelling"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wifi_provisioning"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wpa_supplicant"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/xtensa-debug-module"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp-face"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp32-camera"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fb_gfx"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/variants/t-beam"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include"/>
+					<Add directory="C:/Users/brett/.platformio/packages/tool-unity"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 Z_DUMMY_TARGET"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Z_DUMMY_TARGET/fast">
+				<Option output="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Z_DUMMY_TARGET" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/include"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/asio"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/bootloader_support"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/bt"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/coap"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/console"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/driver"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp-tls"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp32"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_adc_cal"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_event"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_http_client"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_http_server"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_https_ota"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp_ringbuf"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/ethernet"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/expat"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fatfs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freemodbus"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freertos"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/heap"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/idf_test"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/jsmn"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/json"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/libsodium"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/log"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/lwip"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mbedtls"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mdns"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/micro-ecc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/mqtt"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/newlib"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/nghttp"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/nvs_flash"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/openssl"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/protobuf-c"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/protocomm"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/pthread"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/sdmmc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/smartconfig_ack"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/soc"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/spi_flash"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/spiffs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/tcp_transport"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/tcpip_adapter"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/ulp"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/vfs"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wear_levelling"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wifi_provisioning"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/wpa_supplicant"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/xtensa-debug-module"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp-face"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/esp32-camera"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fb_gfx"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/variants/t-beam"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed"/>
+					<Add directory="C:/Users/brett/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include"/>
+					<Add directory="C:/Users/brett/.platformio/packages/tool-unity"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 Z_DUMMY_TARGET/fast"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/brett/Documents/PlatformIO/MinGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/axp202_gpio_input/axp202_gpio_input.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/axp202_gpio_output/axp202_gpio_output.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/axp202_timer/axp202_timer.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/axp_charge_cur/axp_charge_cur.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/axp_sleep_mode/axp_sleep_mode.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/examples/base/base.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/src/axp20x.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AXP202X_Library/src/axp20x.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/.github/ISSUE_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/.github/PULL_REQUEST_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/.github/workflows/githubci.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/Adafruit_BNO055.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/Adafruit_BNO055.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/OBJLoader/OBJLoader.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/OBJLoader/OBJLoader.zip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/assets/board.jpg">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/code-of-conduct.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/bunny/bunny.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/position/position.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/rawdata/rawdata.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/read_all_data/read_all_data.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/.due.test.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/.m4.test.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/.metro_m4.test.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/.nrf52840.test.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/.zero.test.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/restore_offsets/restore_offsets.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/sensorapi/sensorapi.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples/webserial_3d/webserial_3d.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples_processing/cuberotate/cuberotate.pde">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples_processing/cuberotate/data/bunny.mtl">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples_processing/cuberotate/data/bunny.obj">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/examples_processing/cuberotate/serialconfig.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility/imumaths.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility/matrix.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility/quaternion.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BNO055/utility/vector.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/.github/ISSUE_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/.github/PULL_REQUEST_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/.github/workflows/githubci.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_BusIO_Register.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_BusIO_Register.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_I2CDevice.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_I2CDevice.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_I2CRegister.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_SPIDevice.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/Adafruit_SPIDevice.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/i2c_address_detect/i2c_address_detect.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/i2c_readwrite/i2c_readwrite.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/i2c_registers/i2c_registers.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/i2corspi_register/i2corspi_register.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/spi_modetest/spi_modetest.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/spi_readwrite/spi_readwrite.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/spi_register_bits/spi_register_bits.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/examples/spi_registers/spi_registers.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit BusIO/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/.github/ISSUE_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/.github/PULL_REQUEST_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/.github/workflows/githubci.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_GFX.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_GFX.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_GrayOLED.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_GrayOLED.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_SPITFT.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_SPITFT.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Adafruit_SPITFT_Macros.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMono12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMono18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMono24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMono9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBold12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBold18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBold24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBold9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBoldOblique12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBoldOblique18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBoldOblique24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoBoldOblique9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoOblique12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoOblique18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoOblique24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeMonoOblique9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSans12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSans18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSans24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSans9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBold12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBold18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBold24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBold9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBoldOblique12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBoldOblique18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBoldOblique24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansBoldOblique9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansOblique12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansOblique18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansOblique24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSansOblique9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerif12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerif18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerif24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerif9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBold12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBold18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBold24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBold9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBoldItalic12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBoldItalic18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBoldItalic24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifBoldItalic9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifItalic12pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifItalic18pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifItalic24pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/FreeSerifItalic9pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/Org_01.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/Picopixel.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/Tiny3x3a2pt7b.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/Fonts/TomThumb.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/examples/GFXcanvas/GFXcanvas.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/examples/mock_ili9341/mock_ili9341.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/fontconvert/fontconvert.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/fontconvert/fontconvert_win.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/fontconvert/makefonts.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/gfxfont.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/glcdfont.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit GFX Library/license.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/.github/ISSUE_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/.github/PULL_REQUEST_TEMPLATE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/.github/workflows/githubci.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/Adafruit_SSD1306.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/Adafruit_SSD1306.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/examples/OLED_featherwing/OLED_featherwing.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/examples/ssd1306_128x32_i2c/ssd1306_128x32_i2c.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/examples/ssd1306_128x32_spi/ssd1306_128x32_spi.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/examples/ssd1306_128x64_i2c/ssd1306_128x64_i2c.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/examples/ssd1306_128x64_spi/ssd1306_128x64_spi.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/license.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/scripts/make_splash.py">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/scripts/splash1.png">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/scripts/splash2.png">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit SSD1306/splash.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/.github/workflows/githubci.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/Adafruit_Sensor.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/Adafruit_Sensor.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/LICENSE.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/examples/sensortest/sensortest.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Adafruit Unified Sensor/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.clang-format">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.gitattributes">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.mbedignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/.travis.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/ArduinoJson.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/CHANGELOG.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/CMakeLists.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/CONTRIBUTING.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/LICENSE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/SUPPORT.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/appveyor.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/banner.svg">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/component.mk">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonConfigFile/JsonConfigFile.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonFilterExample/JsonFilterExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonGeneratorExample/JsonGeneratorExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonHttpClient/JsonHttpClient.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonParserExample/JsonParserExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonServer/JsonServer.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/JsonUdpBeacon/JsonUdpBeacon.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/MsgPackParser/MsgPackParser.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/ProgmemExample/ProgmemExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/examples/StringExample/StringExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ArrayFunctions.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ArrayImpl.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ArrayIterator.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ArrayRef.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ArrayShortcuts.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/ElementProxy.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Array/Utilities.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Collection/CollectionData.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Collection/CollectionImpl.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Configuration.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/DeserializationError.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Filter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/NestingLimit.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Reader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/ArduinoStreamReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/ArduinoStringReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/FlashReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/IteratorReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/RamReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/StdStreamReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/Readers/VariantReader.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Deserialization/deserialize.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Document/BasicJsonDocument.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Document/DynamicJsonDocument.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Document/JsonDocument.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Document/StaticJsonDocument.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/EscapeSequence.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/JsonDeserializer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/JsonSerializer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/Latch.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/PrettyJsonSerializer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/TextFormatter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/Utf16.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Json/Utf8.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Memory/Alignment.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Memory/MemoryPool.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Misc/SerializedValue.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Misc/Visitable.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackDeserializer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackSerializer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/MsgPack/endianess.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/MsgPack/ieee754.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Namespace.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/Float.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/FloatParts.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/FloatTraits.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/Integer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/arithmeticCompare.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/convertNumber.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Numbers/parseNumber.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/MemberProxy.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/ObjectFunctions.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/ObjectImpl.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/ObjectIterator.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/ObjectRef.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/ObjectShortcuts.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Object/Pair.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/alias_cast.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/assert.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/attributes.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/ctype.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/limits.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/math.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/mpl/max.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/pgmspace.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/pgmspace_generic.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/preprocessor.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/safe_strcmp.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/static_array.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/conditional.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/declval.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/enable_if.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/integral_constant.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_array.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_base_of.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_class.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_const.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_convertible.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_enum.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_floating_point.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_integral.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_pointer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_same.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_signed.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_unsigned.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/make_unsigned.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/remove_const.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/remove_reference.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/type_identity.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Polyfills/utility.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/CountingDecorator.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writer.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/ArduinoStringWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/DummyWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/PrintWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/StaticStringWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/StdStreamWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/Writers/StdStringWriter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/measure.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Serialization/serialize.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/StringStorage/StringCopier.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/StringStorage/StringMover.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/StringStorage/StringStorage.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/ArduinoStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/ConstRamStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/FlashStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/FlashStringIterator.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/IsString.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/IsWriteableString.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/RamStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/SizedFlashStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/SizedRamStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/StdStringAdapter.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/StoragePolicy.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/String.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Strings/StringAdapters.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/SlotFunctions.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantAs.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantAsImpl.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantCompare.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantContent.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantData.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantFunctions.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantImpl.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantOperators.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantRef.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantShortcuts.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantSlot.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/Variant/VariantTo.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/compatibility.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/ArduinoJson/version.hpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src/CMakeLists.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/scripts/install-arduino-core-esp32.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/scripts/install-arduino-ide.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/scripts/install-platformio.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/scripts/on-push.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/stale.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.github/workflows/push.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/.travis.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/CMakeLists.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/Kconfig.projbuild">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/component.mk">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src/AsyncTCP.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src/AsyncTCP.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/scripts/install-arduino-core-esp32.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/scripts/install-arduino-core-esp8266.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/scripts/install-arduino-ide.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/scripts/install-platformio.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/scripts/on-push.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/stale.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.github/workflows/push.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/.travis.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/CMakeLists.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/_config.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/component.mk">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/CaptivePortal/CaptivePortal.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/ESP_AsyncFSBrowser.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/.exclude.files">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/ace.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/ext-searchbox.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/favicon.ico">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/index.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/mode-css.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/mode-html.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/mode-javascript.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/ESP_AsyncFSBrowser/data/worker-html.js.gz">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/regex_patterns/regex_patterns.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/examples/simple_server/simple_server.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncEventSource.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncEventSource.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncJson.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncWebSocket.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncWebSocket.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncWebSynchronization.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/ESPAsyncWebServer.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/SPIFFSEditor.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/SPIFFSEditor.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/StringArray.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebAuthentication.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebAuthentication.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebHandlerImpl.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebHandlers.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebRequest.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebResponseImpl.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebResponses.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/WebServer.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/edit.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/scripts/install-arduino-core-esp8266.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/scripts/install-arduino-ide.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/scripts/install-platformio.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/scripts/on-push.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/stale.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.github/workflows/push.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.gitignore">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/.travis.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/LICENSE.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/ClientServer/Client/Client.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/ClientServer/Client/config.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/ClientServer/Server/Server.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/ClientServer/Server/config.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/SyncClient/.esp31b.skip">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/examples/SyncClient/SyncClient.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/AsyncPrinter.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/AsyncPrinter.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/DebugPrintMacros.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/ESPAsyncTCP.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/ESPAsyncTCP.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/ESPAsyncTCPbuffer.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/ESPAsyncTCPbuffer.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/SyncClient.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/SyncClient.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/async_config.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/tcp_axtls.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/tcp_axtls.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/ssl/gen_server_cert.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/ssl/server.cer">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/ssl/server.key">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnect/AutoConnect.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithFSParameters/AutoConnectWithFSParameters.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithFSParametersAndCustomIP/AutoConnectWithFSParametersAndCustomIP.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithFeedback/AutoConnectWithFeedback.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithFeedbackLED/AutoConnectWithFeedbackLED.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithReset/AutoConnectWithReset.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithStaticIP/AutoConnectWithStaticIP.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/AutoConnectWithTimeout/AutoConnectWithTimeout.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/ModelessConnect/ModelessConnect.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/ModelessWithInterrupts/ModelessWithInterrupts.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/examples/OnDemandConfigPortal/OnDemandConfigPortal.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/examples/millisArray/millisArray.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/examples/powerCycleCounter/powerCycleCounter.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/examples/ssidStorage/ssidStorage.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/examples/test/multipleElementTest/multipleElementTest.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/examples/test/singleElementTest/singleElementTest.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src/ESPFlash.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src/ESPFlashCounter.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src/ESPFlashString.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/.travis.yml">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/API.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaDumpRegisters/LoRaDumpRegisters.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaDuplex/LoRaDuplex.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaDuplexCallback/LoRaDuplexCallback.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaReceiver/LoRaReceiver.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaReceiverCallback/LoRaReceiverCallback.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSender/LoRaSender.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSenderNonBlocking/LoRaSenderNonBlocking.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSenderNonBlockingCallback/LoRaSenderNonBlockingCallback.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSetSpread/LoRaSetSpread.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSetSyncWord/LoRaSetSyncWord.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSimpleGateway/LoRaSimpleGateway.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/examples/LoRaSimpleNode/LoRaSimpleNode.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/issue_template.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TBeamPower/readme.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/BasicExample/BasicExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/DeviceExample/DeviceExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/FullExample/FullExample.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/KitchenSink/KitchenSink.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/SatElevTracker/SatElevTracker.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/SatElevTracker/sample_satellite_elevation_log.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/SatelliteTracker/SatelliteTracker.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/examples/UsingCustomFields/UsingCustomFields.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/LICENSE.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/examples/Simple_Tone.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/pitches.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/geometry.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/lorapackets.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/main.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/main.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/webserver.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/CMakeListsPrivate.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

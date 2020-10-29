@@ -1,0 +1,5 @@
+C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/CMakeFiles/Production.dir
+C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/CMakeFiles/edit_cache.dir
+C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/CMakeFiles/Debug.dir
+C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/CMakeFiles/Z_DUMMY_TARGET.dir
+C:/Users/brett/Documents/PlatformIO/tbeam0/cmake-build-ttgo-t-beam/CMakeFiles/rebuild_cache.dir
