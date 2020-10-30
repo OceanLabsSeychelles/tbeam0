@@ -4,6 +4,7 @@
 #include <SPIFFS.h>
 #include <ESPFlash.h>
 #include <ESPFlashString.h>
+#include <ESPmDNS.h>
 #include <map>
 
 volatile const int DEFAULT_DISTANCE = 30; //meters
@@ -17,6 +18,16 @@ String DEFAULT_ID = "uhuHunter";
 
 const char* ssid = "sunsetvilla";
 const char* password = "deptspecialboys";
+
+//For device as AP
+const char* host_ssid = "zero2spearo";
+const char* host_password = "testpassword";
+IPAddress local_ip(192,168,1,1);
+IPAddress gateway(192,168,1,1);
+IPAddress subnet(255,255,255,0);
+// DNS server
+const byte DNS_PORT = 53;
+DNSServer dnsServer;
 
 
 class HtmlVar{
@@ -110,16 +121,26 @@ bool serverInit(){
     HtmlVarMap.insert(std::make_pair("divelock", new HtmlVar("divelock", "", "bool")));
 
     // Connect to Wi-Fi
+    /* Setup the DNS server redirecting all the domains to the apIP */
+    WiFi.softAP(host_ssid);
+    dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
+    dnsServer.start(DNS_PORT, "*", local_ip);    Serial.println("WiFi ok.");
+    display.setTextSize(2);      // Normal 1:1 pixel scale
+    display.println(WiFi.softAPIP());
+    display.display();
+    delay(1000);
+    /*
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
     }
 
+
     Serial.println("WiFi ok.");
     display.setTextSize(1);      // Normal 1:1 pixel scale
     display.println(WiFi.localIP());
     display.display();
-
+    */
     for (it = HtmlVarMap.begin(); it != HtmlVarMap.end(); it ++){
         it -> second -> checkExists();
     }
@@ -153,6 +174,9 @@ bool serverInit(){
         btStop();
     });
     server.begin();
+    while(1){
+
+    }
     return true;
 }
 
@@ -162,6 +186,12 @@ String processor(const String& var){
 }
 
 void serverRoute(){
+
+    server.on("/wifi", handleWifi);
+    server.on("/wifisave", handleWifiSave);
+    server.on("/generate_204", handleRoot);  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
+    server.on("/fwlink", handleRoot);  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
+    server.onNotFound ( handleNotFound );
 
     server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/style.css", "text/css");
@@ -186,7 +216,6 @@ void serverRoute(){
     server.on("/foundbuddy", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/foundbuddy.html", String(), false, processor);
     });
-
 
     server.on("/diveplan", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/diveplan.html", String(), false, processor);

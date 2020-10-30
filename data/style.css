@@ -22,3 +22,8 @@ body {background-color: var(--page-background)}
   width: 150px;
   height: 150px;
 }
+
+#mapid {
+  height: 400px;
+  width: 300px;
+}

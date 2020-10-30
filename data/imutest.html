@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <title>Buddy Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1 class="display-5"><b>Page</b>Heading</h1>
+</div>
+
+<div class="container">
+    <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
+    </canvas>
+    <script>
+    function deviceOrientationListener(event) {
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.fillStyle = "#FF7777";
+        ctx.font = "14px Verdana";
+        ctx.fillText("Alpha: " + Math.Round(event.alpha), 10, 20);
+        ctx.beginPath();
+        ctx.moveTo(180, 75);
+        ctx.lineTo(210, 75);
+        ctx.arc(180, 75, 60, 0, event.alpha * Math.PI / 180);
+        ctx.fill();
+
+        ctx.fillStyle = "#FF6600";
+        ctx.fillText("Beta: " + Math.round(event.beta), 10, 140);
+        ctx.beginPath();
+        ctx.fillRect(180, 150, event.beta, 90);
+
+        ctx.fillStyle = "#FF0000";
+        ctx.fillText("Gamma: " + Math.round(event.gamma), 10, 270);
+        ctx.beginPath();
+        ctx.fillRect(90, 340, 180, event.gamma);
+    }
+
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", deviceOrientationListener);
+    } else {
+        alert("Sorry, your browser doesn't support Device Orientation");
+    }
+</script>
+
+
+
+</div>
+</body>
+</html>

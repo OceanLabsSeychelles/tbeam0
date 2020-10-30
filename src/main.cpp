@@ -1,7 +1,6 @@
 #include "main.h"
 #include "webserver.h"
 #include "geometry.h"
-#include <string>
 
 long last_scan = millis();
 long last_send = millis();
