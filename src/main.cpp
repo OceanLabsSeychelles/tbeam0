@@ -1,6 +1,7 @@
 #include "main.h"
 #include "webserver.h"
 #include "geometry.h"
+#include <string>
 
 long last_scan = millis();
 long last_send = millis();
@@ -55,9 +56,9 @@ void setup() {
     display.display();
     while ((!ready) && (!buddy_ready)) {
         if (millis() - last_send > (1000 + interval)) {
-            local_config.distmax = distmax;
-            local_config.downmax = downmax;
-            local_config.buddylock = buddylock;
+            local_config.distmax = HtmlVarMap["distmax"]->value.toInt();
+            local_config.downmax = HtmlVarMap["downmax"]->value.toInt();
+            local_config.buddylock = HtmlVarMap["buddylock"]->value.toInt();
             local_config.ready = ready;
             strcpy(local_config.id, "zero2spearo");
 
@@ -67,12 +68,10 @@ void setup() {
 
             last_send = millis();
             interval = random(500);
-            Serial.println("Sent packet.");
         }
         if (millis() - last_scan > 20) {
 
             int packetSize = LoRa.parsePacket();
-            Serial.println(packetSize);
             if (packetSize) {
 
                 uint8_t packet[packetSize];
