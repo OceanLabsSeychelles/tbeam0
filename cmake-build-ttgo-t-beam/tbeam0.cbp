@@ -1867,6 +1867,9 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/pitches.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/HtmlVar/HtmlVar.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/geometry.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>

@@ -122,6 +122,7 @@ bool serverInit(){
 
     // Connect to Wi-Fi
     /* Setup the DNS server redirecting all the domains to the apIP */
+    /*
     WiFi.softAP(host_ssid);
     dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
     dnsServer.start(DNS_PORT, "*", local_ip);    Serial.println("WiFi ok.");
@@ -129,18 +130,17 @@ bool serverInit(){
     display.println(WiFi.softAPIP());
     display.display();
     delay(1000);
-    /*
+     */
+
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
     }
-
-
     Serial.println("WiFi ok.");
     display.setTextSize(1);      // Normal 1:1 pixel scale
     display.println(WiFi.localIP());
     display.display();
-    */
+
     for (it = HtmlVarMap.begin(); it != HtmlVarMap.end(); it ++){
         it -> second -> checkExists();
     }
@@ -186,12 +186,6 @@ String processor(const String& var){
 }
 
 void serverRoute(){
-
-    server.on("/wifi", handleWifi);
-    server.on("/wifisave", handleWifiSave);
-    server.on("/generate_204", handleRoot);  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
-    server.on("/fwlink", handleRoot);  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
-    server.onNotFound ( handleNotFound );
 
     server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/style.css", "text/css");
