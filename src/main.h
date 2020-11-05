@@ -29,6 +29,9 @@
 #define BATTERY_PIN 35 // battery level measurement pin, here is the voltage divider connected
 #define BUZZER_PIN  13
 #define BUZZER_CHANNEL 0
+#define BUZZER_RESOLUTION 10
+#define BUZZER_BITS 1024
+#define BUZZER_FREQ 800
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define BAND  433E6
@@ -124,7 +127,8 @@ void LoRaScan(){
         HtmlVarMap["bd-sats"] -> value = String(partner_fix.info.sats, GPS_SIG_FIGS);
         partner_fix.last_time = millis() / 1000.0;
         distance = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
-        bearing = getBearing(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
+        HtmlVarMap["bd-bearing"]-> value = String(getBearing(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng),4);
+
         //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
         //Serial.println(rssi);
     }
@@ -138,7 +142,7 @@ void LoRaSend(){
 }
 FunctionTimer tx_handler(& LoRaSend, 1000);
 
-void ScreenUpdate(){
+void GPSScreenUpdate(){
     display.setCursor(0, 0); // Start at top-left corner
     display.clearDisplay();
 
@@ -153,27 +157,88 @@ void ScreenUpdate(){
     if (partner_fix.info.sats > 2) {
         display.print("D(m):");
         display.println(distance, 1);
-    }else{
-        display.print("Accel:");
-        display.println(HtmlVarMap["lin-accel"]->value);
     }
 
     display.display();
 }
-FunctionTimer screen_handler(& ScreenUpdate, 500);
+void IMUScreenUpdate(){
+    display.setCursor(0, 0); // Start at top-left corner
+    display.clearDisplay();
+
+    display.print("MAG:");
+    display.print(HtmlVarMap["mag-cal"]->value);
+    display.print(",");
+    display.print(HtmlVarMap["accel-cal"]->value);
+    display.print(",");
+    display.println(HtmlVarMap["gyro-cal"]->value);
+
+    display.print("Yaw:");
+    float yaw = HtmlVarMap["imu-heading"]-> value.toFloat();
+    display.println(yaw);
+
+    display.print("Bdy:");
+    float bearing = HtmlVarMap["bd-bearing"]-> value.toFloat();
+    display.println(bearing);
+
+    display.print("Dif: ");
+    float difference = yaw-bearing;
+    display.println(difference);
+
+    display.display();
+
+}
+void ScreenUpdate(){
+    static int last;
+    static bool gps = false;
+    if(gps){
+        GPSScreenUpdate();
+    }else{
+        IMUScreenUpdate();
+    }
+    if((millis() - last) > 5000){
+        gps = !gps;
+        last = millis();
+    }
+
+}
+FunctionTimer screen_handler(&ScreenUpdate, 100);
+
+void IMUCal(){
+    uint8_t system, gyro, accel, mag;
+    system = gyro = accel = mag = 0;
+    bno.getCalibration(&system, &gyro, &accel, &mag);
+
+    HtmlVarMap["mag-cal"]->value = String(mag);
+    HtmlVarMap["accel-cal"]->value = String(accel);
+    HtmlVarMap["gyro-cal"]->value = String(gyro);
+}
+FunctionTimer imu_cal_handler(&IMUCal, 500);
+
 
 void IMUUpdate(){
 
-    imu::Vector<3> event = bno.getVector(Adafruit_BNO055::VECTOR_LINEARACCEL );
-    float x,y,z,mag;
-    x = event.x();
-    y = event.y();
-    z = event.z();
+    sensors_event_t event;
+    bno.getEvent(&event);
 
-    mag = sqrt(x*x + y*y + z*z);
-    HtmlVarMap["lin-accel"]-> value = mag;
+    HtmlVarMap["imu-heading"]-> value = String(event.orientation.x, 2);
+    HtmlVarMap["imu-pitch"]-> value = String(event.orientation.z, 2);
+    HtmlVarMap["imu-roll"]-> value = String(event.orientation.y, 2);
+
 }
-FunctionTimer imu_handler(&IMUUpdate, 10);
+FunctionTimer imu_handler(&IMUUpdate, 100);
+
+void BuzzerTone(){
+    int cal = HtmlVarMap["mag-cal"] -> value.toInt();
+    if (cal > 0){
+        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
+        float error = abs(heading-180);
+
+        int dutyCycle =  1024 - int(error*2.844);
+        Serial.println(dutyCycle);
+        ledcWrite(BUZZER_CHANNEL, dutyCycle);
+    }
+}
+FunctionTimer buzzer_handler(&BuzzerTone, 10);
 
 void BuddyTX(){
     local_config.distmax = HtmlVarMap["distmax"]->value.toInt();

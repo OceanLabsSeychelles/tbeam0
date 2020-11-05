@@ -32,7 +32,7 @@ HtmlVar::HtmlVar(const String &_varname, const String &_value, const String &_ty
 void HtmlVar::flashWrite(const String &_value) {
     if (persistent) {
         ESPFlashString flashString(filename.c_str());
-        flashString.set(_value);
+        flashString.set(_value.c_str());
         value = _value;
     }
 }

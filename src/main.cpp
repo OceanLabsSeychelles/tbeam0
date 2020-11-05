@@ -7,15 +7,8 @@ int interval = random(500);
 
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
-    FlashInit();
-
-    pinMode(BUZZER_PIN, OUTPUT);
-    tone(BUZZER_PIN, NOTE_A6, 125, BUZZER_CHANNEL);
-
     Serial.begin(115200);
     Wire.begin(21, 22);
-
-
     if (!powerInit()) {
         Serial.println("AXP192 Begin FAIL");
         while (1);
@@ -23,29 +16,34 @@ void setup() {
         Serial.println("Power Ok.");
     }
 
+    FlashInit();
+
     if (!displayInit()) {
-        Serial.println(F("SSD1306 allocation failed"));
+        log("SSD1306 allocation failed");
     } else {
-        Serial.println("OLED Ok.");
+        log("OLED Ok.");
     }
 
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
     LoRa.setPins(SS, RST, DI0);
     if (!LoRa.begin(BAND)) {
-        Serial.println("Starting LoRa failed!");
+        log("Starting LoRa failed!");
         while (1);
+    }else{
+        log("LoRa Ok.");
     }
 
     if (!bno.begin()) {
-        Serial.println("BNO055 not detected!");
+       log("BNO055 not detected!");
     } else {
-        Serial.println("IMU Ok.");
+        log("IMU Ok.");
         bno.setMode(bno.OPERATION_MODE_NDOF);
         bno.setExtCrystalUse(false);
     }
 
 
     fillHtmlMap();
+
     WiFiInit();
     display.setTextSize(1);      // Normal 1:1 pixel scale
     display.println(WiFi.localIP());
@@ -53,11 +51,12 @@ void setup() {
     display.setTextSize(2);
 
     if (!serverInit()) {
-        Serial.println("Error starting server, likely SPIFFS");
+        log("Error starting server, likely SPIFFS");
     } else {
-        Serial.println("Webserver Ok");
-        tone(BUZZER_PIN, NOTE_C7, 125, BUZZER_CHANNEL);
+        log("Webserver Ok.");
     }
+    ledcSetup(BUZZER_CHANNEL, BUZZER_FREQ, BUZZER_RESOLUTION);
+    ledcAttachPin(BUZZER_PIN, BUZZER_CHANNEL);
     /*
     display.clearDisplay();
     display.setTextSize(2);      // Normal 1:1 pixel scale
@@ -96,14 +95,17 @@ void loop() {
         HtmlVarMap["lng"] -> value = String(gps_fix.lng, GPS_SIG_FIGS);
         HtmlVarMap["lat"] -> value = String(gps_fix.lat, GPS_SIG_FIGS);
         HtmlVarMap["sats"] -> value = String(gps_fix.sats, GPS_SIG_FIGS);
-        HtmlVarMap["elev"] -> value = String(gps.altitude.meters(), GPS_SIG_FIGS);
+        HtmlVarMap["alt"] -> value = String(gps.altitude.meters(), GPS_SIG_FIGS);
     }
     if (millis() - last_send > interval) {
         tx_handler.service();
         interval = random(500);
+        last_send = millis();
     }
 
     rx_handler.service();
     screen_handler.service();
     imu_handler.service();
+    imu_cal_handler.service();
+    //buzzer_handler.service();
 }

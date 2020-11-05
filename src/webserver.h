@@ -1,16 +1,25 @@
 #ifndef TTBEAM0_WEBSERVER_H
 #define TTBEAM0_WEBSERVER_H
 
+#include "FS.h"
+//#include "SPIFFS.h"
+#include "LITTLEFS.h"
+#define SPIFFS LITTLEFS
+
+
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <ESPAsyncWebServer.h>
-#include <SPIFFS.h>
 #include <ESPFlash.h>
 #include <ESPFlashString.h>
 #include <ESPmDNS.h>
 #include <HtmlVar.h>
 #include <main.h>
 #include <map>
+#include <ArduinoJson.h>
+#include <AsyncJson.h>
+
+StaticJsonDocument<200> doc;
 
 volatile const int DEFAULT_DISTANCE = 30; //meters
 #define MAX_DISTANCE 100
@@ -63,13 +72,18 @@ bool WiFiInit(bool host=false){
     return true;
 }
 
+void log(const String &line){
+    File logfile = SPIFFS.open("/logfile.txt", FILE_APPEND);
+    Serial.println(line);
+    logfile.println(line);
+    logfile.close();
+}
 
 bool FlashInit(){
 
     if(!SPIFFS.begin()){
         return false;
     }
-    //logFileInit();
 
     File root = SPIFFS.open("/");
     File file = root.openNextFile();
@@ -84,23 +98,41 @@ bool FlashInit(){
         file.close();
     }
 
+    if(SPIFFS.exists("/logfile.txt")){
+        SPIFFS.remove("/logfile.txt");
+    }
+
     for (html_it = HtmlVarMap.begin(); html_it != HtmlVarMap.end(); html_it ++){
         html_it -> second -> checkExists();
     }
 
-    Serial.print("Used Memory: ");
-    Serial.print(SPIFFS.usedBytes()/1000);
-    Serial.println(" kbytes");
+    File logfile = SPIFFS.open("/logfile.txt", FILE_WRITE);
+    logfile.println("Log file init ok.");
+    logfile.close();
 
-    Serial.print("Free Memory : ");
-    Serial.print((SPIFFS.totalBytes()-SPIFFS.usedBytes())/1000);
-    Serial.println(" kbytes");
+    String used = String(SPIFFS.usedBytes()/1000);
+    log(String("Used Memory (kB): "+used));
+
+    String free = String((SPIFFS.totalBytes()-SPIFFS.usedBytes())/1000);
+    log(String("Free Memory (kB): "+free));
 
     return true;
 }
 
 
 bool serverInit(){
+
+    server.on("/var/json", HTTP_GET, [](AsyncWebServerRequest *request) {
+        doc["key1"] = "value1";
+        doc["key2"] = "value2";
+        JsonArray data = doc.createNestedArray("data");
+        data.add(48.756080);
+        data.add(2.302038);
+        String response;
+        serializeJson(doc, response);
+        request->send(200, "application/json", response);
+    });
+
     serverRoute();
 
     server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
@@ -124,6 +156,7 @@ bool serverInit(){
         }
         request->send(SPIFFS, "/index.html", String(), false, processor);
     });
+
     server.on("/var/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
         //List all parameters (Compatibility)
         String response_text;
@@ -171,9 +204,10 @@ void fillHtmlMap(){
     HtmlVarMap.insert(std::make_pair("lat", new HtmlVar("lat", "", "double")));
     HtmlVarMap.insert(std::make_pair("sats", new HtmlVar("sats", "", "int")));
     HtmlVarMap.insert(std::make_pair("alt", new HtmlVar("alt", "", "float")));
-    HtmlVarMap.insert(std::make_pair("bd-lng", new HtmlVar("bd-lng", "", "double")));
-    HtmlVarMap.insert(std::make_pair("bd-lat", new HtmlVar("bd-lat", "", "double")));
+    HtmlVarMap.insert(std::make_pair("bd-lng", new HtmlVar("bd-lng", "55.431476", "double")));
+    HtmlVarMap.insert(std::make_pair("bd-lat", new HtmlVar("bd-lat", "-4.561342", "double")));
     HtmlVarMap.insert(std::make_pair("bd-sats", new HtmlVar("bd-sats", "", "int")));
+    HtmlVarMap.insert(std::make_pair("bd-bearing", new HtmlVar("bd-bearing", "", "float")));
 
     HtmlVarMap.insert(std::make_pair("buddyid", new HtmlVar("buddyid", "", "string")));
     HtmlVarMap.insert(std::make_pair("bd-downmax", new HtmlVar("bd-downmax", "", "int")));
@@ -183,6 +217,13 @@ void fillHtmlMap(){
     HtmlVarMap.insert(std::make_pair("divedist", new HtmlVar("divedist", "", "int")));
     HtmlVarMap.insert(std::make_pair("divedown", new HtmlVar("divedown", "", "int")));
     HtmlVarMap.insert(std::make_pair("divelock", new HtmlVar("divelock", "", "bool")));
+    
+    HtmlVarMap.insert(std::make_pair("mag-cal", new HtmlVar("mag-cal", "", "int")));
+    HtmlVarMap.insert(std::make_pair("accel-cal", new HtmlVar("accel-cal", "", "int")));
+    HtmlVarMap.insert(std::make_pair("gyro-cal", new HtmlVar("gyro-cal", "", "int")));
+    HtmlVarMap.insert(std::make_pair("imu-heading", new HtmlVar("imu-heading", "", "float")));
+    HtmlVarMap.insert(std::make_pair("imu-roll", new HtmlVar("imu-roll", "", "float")));
+    HtmlVarMap.insert(std::make_pair("imu-pitch", new HtmlVar("imu-pitch", "", "float")));
 
 }
 
@@ -230,6 +271,10 @@ void serverRoute(){
 
     server.on("/app.js", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/app.js", "text/javascript");
+    });
+
+    server.on("/log", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/logfile.txt", "text/plain");
     });
 }
 
