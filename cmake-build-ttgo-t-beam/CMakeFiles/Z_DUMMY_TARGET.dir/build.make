@@ -453,9 +453,74 @@ CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAs
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.s"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\ESPAsyncWiFiManager\ESPAsyncWiFiManager.cpp -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\ESPAsyncWiFiManager\ESPAsyncWiFiManager.cpp.s
 
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj: ../.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp > CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp.i
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\LITTLEFS.cpp.s
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj: ../.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c.obj   -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c > CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c.i
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\esp_littlefs.c.s
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj: ../.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c.obj   -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c > CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c.i
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs.c.s
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj: ../.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c.obj   -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c > CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c.i
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\lfs_util.c.s
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj: ../.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c.obj   -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c > CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c.i
+
+CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s"
+	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LittleFS_esp32\src\littlefs_api.c.s
+
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj: ../.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\LoRa\src\LoRa.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\LoRa\src\LoRa.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.i: cmake_force
@@ -468,7 +533,7 @@ CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.s: cmak
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj: ../.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\TBeamPower\TBeamPower.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\TBeamPower\TBeamPower.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.i: cmake_force
@@ -481,7 +546,7 @@ CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj: ../.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\TBeamPower\example\deepsleep.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\TBeamPower\example\deepsleep.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.i: cmake_force
@@ -494,7 +559,7 @@ CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsl
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp.obj: ../.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp.obj"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\TinyGPSPlus\src\TinyGPS++.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\TinyGPSPlus\src\TinyGPS++.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++.cpp.i: cmake_force
@@ -507,7 +572,7 @@ CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TinyGPSPlus/src/TinyGPS++
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp.obj: CMakeFiles/Z_DUMMY_TARGET.dir/flags.make
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp.obj: ../.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp.obj"
 	C:\Users\brett\.platformio\packages\toolchain-xtensa32\bin\xtensa-esp32-elf-g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Z_DUMMY_TARGET.dir\.pio\libdeps\ttgo-t-beam\Tone32\src\Tone32.cpp.obj -c C:\Users\brett\Documents\PlatformIO\tbeam0\.pio\libdeps\ttgo-t-beam\Tone32\src\Tone32.cpp
 
 CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/src/Tone32.cpp.i: cmake_force
@@ -549,6 +614,11 @@ Z_DUMMY_TARGET_OBJECTS = \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/SyncClient.cpp.obj" \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/tcp_axtls.c.obj" \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.obj" \
+"CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj" \
+"CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj" \
+"CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj" \
+"CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj" \
+"CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj" \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj" \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj" \
 "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj" \
@@ -588,6 +658,11 @@ Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncT
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/SyncClient.cpp.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/tcp_axtls.c.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.obj
+Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj
+Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj
+Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj
+Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj
+Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/TBeamPower.cpp.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/TBeamPower/example/deepsleep.cpp.obj
@@ -596,7 +671,7 @@ Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/Tone32/sr
 Z_DUMMY_TARGET: ../.pio/libdeps/ttgo-t-beam/Adafruit\ BNO055/examples_processing/cuberotate/data/bunny.obj
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/build.make
 Z_DUMMY_TARGET: CMakeFiles/Z_DUMMY_TARGET.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX executable Z_DUMMY_TARGET"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brett\Documents\PlatformIO\tbeam0\cmake-build-ttgo-t-beam\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Linking CXX executable Z_DUMMY_TARGET"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Z_DUMMY_TARGET.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

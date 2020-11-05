@@ -1,3 +1,6 @@
+#ifndef TBEAM0_GEOMETRY_H
+#define TBEAM0_GEOMETRY_H
+
 #define earthRadiusKm 6371.0
 double bearing, distance;
 
@@ -39,3 +42,5 @@ double getBearing(double lat,double lon,double lat2,double lon2){
     return brng;
 
   }
+
+#endif

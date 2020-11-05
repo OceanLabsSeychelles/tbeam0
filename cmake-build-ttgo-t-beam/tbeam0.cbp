@@ -1711,6 +1711,54 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src/ESPFlashString.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/examples/LITTLEFS_time/LITTLEFS_time.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/examples/LittleFS_test/LittleFS_test.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LoRa/.piopm">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
@@ -1867,13 +1915,16 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/pitches.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/FunctionTimer/FunctionTimer.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/HtmlVar/HtmlVar.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/geometry.h">
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/HtmlVar.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/lorapackets.h">
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/geometry.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/main.cpp">

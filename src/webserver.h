@@ -1,3 +1,6 @@
+#ifndef TTBEAM0_WEBSERVER_H
+#define TTBEAM0_WEBSERVER_H
+
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <ESPAsyncWebServer.h>
@@ -5,6 +8,8 @@
 #include <ESPFlash.h>
 #include <ESPFlashString.h>
 #include <ESPmDNS.h>
+#include <HtmlVar.h>
+#include <main.h>
 #include <map>
 
 volatile const int DEFAULT_DISTANCE = 30; //meters
@@ -22,6 +27,8 @@ const char* password = "deptspecialboys";
 //For device as AP
 const char* host_ssid = "zero2spearo";
 const char* host_password = "testpassword";
+const char* dns = "buddytracker";
+
 IPAddress local_ip(192,168,1,1);
 IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
@@ -29,78 +36,123 @@ IPAddress subnet(255,255,255,0);
 const byte DNS_PORT = 53;
 DNSServer dnsServer;
 
-
-class HtmlVar{
-public:
-    HtmlVar(const String &_varname, const String &_value, const String &_type);
-    void flashWrite(const String &_value);
-    void flashRead();
-    void setLimits(const String &_min,const String &_max);
-    void checkExists();
-    String name;
-    String value;
-    String filename;
-    String type;
-    bool minmax = false;
-    bool persistent = false;
-    String min = "0";
-    String max = "0";
-};
-
-HtmlVar::HtmlVar(const String &_varname, const String &_value, const String &_type){
-    name=_varname;
-    filename ="/"+_varname;
-    type= _type;
-    value= _value;
-}
-
-void HtmlVar::flashWrite(const String &_value) {
-    if (persistent) {
-        ESPFlashString flashString(filename.c_str());
-        flashString.set(_value);
-        value = _value;
-    }
-}
-
-void HtmlVar::flashRead() {
-    if (persistent) {
-        ESPFlashString flashString(filename.c_str());
-        value = flashString.get();
-    }
-}
-
-void HtmlVar::setLimits(const String &_min,const String &_max){
-    minmax = true;
-    min = _min;
-    max = _max;
-}
-
-void HtmlVar::checkExists() {
-    if (persistent) {
-        if (!SPIFFS.exists(filename)) {
-            Serial.print(filename);
-            Serial.println(" not found!");
-            ESPFlashString flashManager(filename.c_str());
-            flashManager.set(value);
-        }else{
-            Serial.print(filename);
-            Serial.println(" found!");
-            flashRead();
-        }
-    }
-}
+AsyncWebServer server(80);
+String processor(const String&);
 
 std::map<std::string, HtmlVar*> HtmlVarMap;
-std::map<std::string, HtmlVar*>:: iterator it;
+std::map<std::string, HtmlVar*>:: iterator html_it;
 
-
-AsyncWebServer server(80);
 void checkFirstRun();
 void serverRoute();
-String processor(const String&);
+void fillHtmlMap();
+
+bool WiFiInit(bool host=false){
+    if(!host){
+        WiFi.begin(ssid, password);
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+        }
+        Serial.println("WiFi ok.");
+
+    }else{
+        WiFi.softAP(host_ssid);
+        dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
+        dnsServer.start(DNS_PORT, "*", local_ip);    Serial.println("WiFi ok.");
+    }
+    delay(1000);
+    return true;
+}
+
+
+bool FlashInit(){
+
+    if(!SPIFFS.begin()){
+        return false;
+    }
+    //logFileInit();
+
+    File root = SPIFFS.open("/");
+    File file = root.openNextFile();
+
+    while(file){
+        Serial.print("FILE: ");
+        Serial.println(file.name());
+        file = root.openNextFile();
+    }
+
+    if(file){
+        file.close();
+    }
+
+    for (html_it = HtmlVarMap.begin(); html_it != HtmlVarMap.end(); html_it ++){
+        html_it -> second -> checkExists();
+    }
+
+    Serial.print("Used Memory: ");
+    Serial.print(SPIFFS.usedBytes()/1000);
+    Serial.println(" kbytes");
+
+    Serial.print("Free Memory : ");
+    Serial.print((SPIFFS.totalBytes()-SPIFFS.usedBytes())/1000);
+    Serial.println(" kbytes");
+
+    return true;
+}
 
 
 bool serverInit(){
+    serverRoute();
+
+    server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
+        //List all parameters (Compatibility)
+        int args = request->args();
+        for(int i=0;i<args;i++){
+
+            String argName = request -> argName(i).c_str();
+            String arg = request -> arg(i).c_str();
+            if(HtmlVarMap[argName.c_str()] -> persistent){
+                HtmlVarMap[argName.c_str()] -> flashWrite(arg.c_str());
+            }else{
+                HtmlVarMap[argName.c_str()] -> value = arg.c_str();
+            }
+
+
+            Serial.printf("ARG[%s]: %s\n", request->argName(i).c_str(), request->arg(i).c_str());
+        }
+        if(! request->hasParam("buddylock")){
+            HtmlVarMap["buddylock"]->flashWrite("0");
+        }
+        request->send(SPIFFS, "/index.html", String(), false, processor);
+    });
+    server.on("/var/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
+        //List all parameters (Compatibility)
+        String response_text;
+        int args = request->args();
+        for(int i=0;i<args;i++) {
+
+            String argName = request->argName(i).c_str();
+            //String arg = request->arg(i).c_str();
+            response_text += argName.c_str();
+            response_text += "=";
+            response_text += HtmlVarMap[argName.c_str()]-> value.c_str();
+            if (i<args-1) {
+                response_text += "&";
+            }
+        }
+        request->send(200, "text/plain", response_text);
+    });
+
+    server.on("/power-off", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/index.html", String(), false, processor);
+        server.end();
+        WiFi.mode(WIFI_OFF);
+        btStop();
+    });
+    server.begin();
+    return true;
+}
+
+void fillHtmlMap(){
     /* Values that are persistent MUST have a default value!! */
     HtmlVarMap.insert(std::make_pair("distmax", new HtmlVar("distmax", String(DEFAULT_DISTANCE), "int")));
     HtmlVarMap["distmax"]-> persistent = true;
@@ -110,6 +162,18 @@ bool serverInit(){
     HtmlVarMap["buddylock"]-> persistent = true;
     HtmlVarMap.insert(std::make_pair("deviceid", new HtmlVar("deviceid", "uhuHunter", "string")));
     HtmlVarMap["deviceid"]-> persistent = true;
+    HtmlVarMap.insert(std::make_pair("logcount", new HtmlVar("logcount", "0", "int")));
+    HtmlVarMap["logcount"]-> persistent = true;
+
+    HtmlVarMap.insert(std::make_pair("lin-accel", new HtmlVar("lin-accel", "", "float")));
+    
+    HtmlVarMap.insert(std::make_pair("lng", new HtmlVar("lng", "", "double")));
+    HtmlVarMap.insert(std::make_pair("lat", new HtmlVar("lat", "", "double")));
+    HtmlVarMap.insert(std::make_pair("sats", new HtmlVar("sats", "", "int")));
+    HtmlVarMap.insert(std::make_pair("alt", new HtmlVar("alt", "", "float")));
+    HtmlVarMap.insert(std::make_pair("bd-lng", new HtmlVar("bd-lng", "", "double")));
+    HtmlVarMap.insert(std::make_pair("bd-lat", new HtmlVar("bd-lat", "", "double")));
+    HtmlVarMap.insert(std::make_pair("bd-sats", new HtmlVar("bd-sats", "", "int")));
 
     HtmlVarMap.insert(std::make_pair("buddyid", new HtmlVar("buddyid", "", "string")));
     HtmlVarMap.insert(std::make_pair("bd-downmax", new HtmlVar("bd-downmax", "", "int")));
@@ -120,64 +184,6 @@ bool serverInit(){
     HtmlVarMap.insert(std::make_pair("divedown", new HtmlVar("divedown", "", "int")));
     HtmlVarMap.insert(std::make_pair("divelock", new HtmlVar("divelock", "", "bool")));
 
-    // Connect to Wi-Fi
-    /* Setup the DNS server redirecting all the domains to the apIP */
-    /*
-    WiFi.softAP(host_ssid);
-    dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
-    dnsServer.start(DNS_PORT, "*", local_ip);    Serial.println("WiFi ok.");
-    display.setTextSize(2);      // Normal 1:1 pixel scale
-    display.println(WiFi.softAPIP());
-    display.display();
-    delay(1000);
-     */
-
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(1000);
-    }
-    Serial.println("WiFi ok.");
-    display.setTextSize(1);      // Normal 1:1 pixel scale
-    display.println(WiFi.localIP());
-    display.display();
-
-    for (it = HtmlVarMap.begin(); it != HtmlVarMap.end(); it ++){
-        it -> second -> checkExists();
-    }
-
-    if(!SPIFFS.begin()){
-        return false;
-    }
-    serverRoute();
-
-    server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
-        //List all parameters (Compatibility)
-        int args = request->args();
-        for(int i=0;i<args;i++){
-
-            String argName = request -> argName(i).c_str();
-            String arg = request -> arg(i).c_str();
-            HtmlVarMap[argName.c_str()] -> flashWrite(arg.c_str());
-
-            Serial.printf("ARG[%s]: %s\n", request->argName(i).c_str(), request->arg(i).c_str());
-        }
-        if(! request->hasParam("buddylock")){
-            HtmlVarMap["buddylock"]->flashWrite("0");
-        }
-        request->send(SPIFFS, "/index.html", String(), false, processor);
-    });
-
-    server.on("/power-off", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(SPIFFS, "/index.html", String(), false, processor);
-        server.end();
-        WiFi.mode(WIFI_OFF);
-        btStop();
-    });
-    server.begin();
-    while(1){
-
-    }
-    return true;
 }
 
 String processor(const String& var){
@@ -199,6 +205,7 @@ void serverRoute(){
         request->send(SPIFFS, "/config.html", String(), false, processor);
     });
 
+    /*
     server.on("/scanning", HTTP_GET, [](AsyncWebServerRequest *request){
         if(buddy_found) {
             request->send(SPIFFS, "/foundbuddy.html", String(), false, processor);
@@ -206,6 +213,7 @@ void serverRoute(){
             request->send(SPIFFS, "/index.html", String(), false, processor);
         }
     });
+     */
 
     server.on("/foundbuddy", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/foundbuddy.html", String(), false, processor);
@@ -216,7 +224,7 @@ void serverRoute(){
     });
 
     server.on("/ready", HTTP_GET, [](AsyncWebServerRequest *request){
-        ready = true;
+        //ready = true;
         request->send(SPIFFS, "/ready.html", String(), false, processor);
     });
 
@@ -224,3 +232,5 @@ void serverRoute(){
         request->send(SPIFFS, "/app.js", "text/javascript");
     });
 }
+
+#endif

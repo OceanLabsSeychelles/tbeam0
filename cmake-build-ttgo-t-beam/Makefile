@@ -924,6 +924,141 @@ Z_DUMMY_TARGET/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/WebServer.cpp.s
 .PHONY : .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/WebServer.cpp.s
 
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.obj: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.obj
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.i: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.i
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.s: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.cpp.s
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.obj: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.obj
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.i: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.i
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.s: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.c.s
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.obj: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.obj
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.i: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.i
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.s: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.c.s
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.obj: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.obj
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.i: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.i
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.s: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.c.s
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.obj: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.obj
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.i: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.i
+
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.s: .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s
+.PHONY : .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.c.s
+
 .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.obj: .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.cpp.obj
 
 .PHONY : .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.obj
@@ -1181,6 +1316,21 @@ help:
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/WebServer.obj
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/WebServer.i
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/WebServer.s
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.i
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/LITTLEFS.s
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.i
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/esp_littlefs.s
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.i
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs.s
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.i
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/lfs_util.s
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.i
+	@echo ... .pio/libdeps/ttgo-t-beam/LittleFS_esp32/src/littlefs_api.s
 	@echo ... .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.obj
 	@echo ... .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.i
 	@echo ... .pio/libdeps/ttgo-t-beam/LoRa/src/LoRa.s
