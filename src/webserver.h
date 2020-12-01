@@ -6,7 +6,6 @@
 #include "LITTLEFS.h"
 #define SPIFFS LITTLEFS
 
-
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <ESPAsyncWebServer.h>
@@ -55,22 +54,25 @@ void checkFirstRun();
 void serverRoute();
 void fillHtmlMap();
 
-bool WiFiInit(bool host=false){
-    if(!host){
-        WiFi.begin(ssid, password);
-        while (WiFi.status() != WL_CONNECTED) {
-            delay(1000);
+class LogFile{
+public:
+    String path;
+    bool first_write = true;
+    LogFile(const String &_path){
+        path = _path;
+        if(SPIFFS.exists(path)){
+            SPIFFS.remove(path);
         }
-        Serial.println("WiFi ok.");
-
-    }else{
-        WiFi.softAP(host_ssid);
-        dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
-        dnsServer.start(DNS_PORT, "*", local_ip);    Serial.println("WiFi ok.");
     }
-    delay(1000);
-    return true;
-}
+    void log(const String &line){
+        if (first_write){
+            first_write = false;
+            File file = SPIFFS.open(path, FILE_WRITE);
+            file.println(line);
+            file.close();
+        }
+    }
+};
 
 void log(const String &line){
     File logfile = SPIFFS.open("/logfile.txt", FILE_APPEND);
@@ -79,36 +81,62 @@ void log(const String &line){
     logfile.close();
 }
 
+LogFile gpsFile("/gpslog.txt");
+
+bool WiFiInit(bool host=false){
+    if(!host){
+        WiFi.begin(ssid, password);
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+        }
+        log("WiFi STA ok.");
+
+    }else{
+        WiFi.softAP(host_ssid);
+        dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
+        dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
+        log("WiFi AP ok.");
+    }
+    //delay(1000);
+    return true;
+}
+
 bool FlashInit(){
 
     if(!SPIFFS.begin()){
         return false;
     }
-
-    File root = SPIFFS.open("/");
-    File file = root.openNextFile();
-
-    while(file){
-        Serial.print("FILE: ");
-        Serial.println(file.name());
-        file = root.openNextFile();
-    }
-
-    if(file){
-        file.close();
-    }
-
     if(SPIFFS.exists("/logfile.txt")){
         SPIFFS.remove("/logfile.txt");
-    }
-
-    for (html_it = HtmlVarMap.begin(); html_it != HtmlVarMap.end(); html_it ++){
-        html_it -> second -> checkExists();
     }
 
     File logfile = SPIFFS.open("/logfile.txt", FILE_WRITE);
     logfile.println("Log file init ok.");
     logfile.close();
+
+    gpsFile.log("Init Ok.");
+
+    File root = SPIFFS.open("/");
+    File file = root.openNextFile();
+    log("__FILE SYSTEM__");
+
+
+    while(file){
+        const String name = file.name();
+        log(file.name());
+
+        file = root.openNextFile();
+    }
+
+    if(file) {
+        file.close();
+    }
+
+    log("_______________");
+
+    for (html_it = HtmlVarMap.begin(); html_it != HtmlVarMap.end(); html_it ++){
+        html_it -> second -> checkExists();
+    }
 
     String used = String(SPIFFS.usedBytes()/1000);
     log(String("Used Memory (kB): "+used));
@@ -234,6 +262,10 @@ String processor(const String& var){
 
 void serverRoute(){
 
+    server.onNotFound([](AsyncWebServerRequest *request) {
+        request->send(SPIFFS, "/index.html", String(), false, processor);
+    });
+
     server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/style.css", "text/css");
     });
@@ -275,6 +307,14 @@ void serverRoute(){
 
     server.on("/log", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/logfile.txt", "text/plain");
+    });
+
+    server.on("/react.js", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/react.js", "text/javascript");
+    });
+
+    server.on("/react", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/react.html", String(), false, processor);
     });
 }
 

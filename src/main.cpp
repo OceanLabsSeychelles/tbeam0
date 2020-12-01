@@ -34,7 +34,7 @@ void setup() {
     }
 
     if (!bno.begin()) {
-       log("BNO055 not detected!");
+        log("BNO055 not detected!");
     } else {
         log("IMU Ok.");
         bno.setMode(bno.OPERATION_MODE_NDOF);
