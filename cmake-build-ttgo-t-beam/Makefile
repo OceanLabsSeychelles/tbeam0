@@ -708,6 +708,33 @@ Z_DUMMY_TARGET/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.s
 .PHONY : .pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.s
 
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.obj: .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.obj
+
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.obj
+
+# target to build an object file
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.obj
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.obj
+
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.i: .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.i
+
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.i
+
+# target to preprocess a source file
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.i
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.i
+
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.s: .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.s
+
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.s
+
+# target to generate assembly for a file
+.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Z_DUMMY_TARGET.dir\build.make CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.s
+.PHONY : .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.s
+
 .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.obj: .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.cpp.obj
 
 .PHONY : .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.obj
@@ -1292,6 +1319,9 @@ help:
 	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.obj
 	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.i
 	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.s
+	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.obj
+	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.i
+	@echo ... .pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.s
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.obj
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.i
 	@echo ... .pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.s

@@ -10,14 +10,13 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Tone32.h>
-#include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #include "webserver.h"
 #include "geometry.h"
 #include "math.h"
-#include <../lib/FunctionTimer/FunctionTimer.h>
+#include <FunctionTimer.h>
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCK     5    // GPIO5  -- SX1278's SCK

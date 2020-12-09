@@ -19,6 +19,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/SyncClient.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncTCP/src/tcp_axtls.c.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/ESPAsyncWiFiManager.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncEventSource.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/AsyncWebSocket.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/ttgo-t-beam/ESP_Async_WebServer/src/SPIFFSEditor.cpp.obj"

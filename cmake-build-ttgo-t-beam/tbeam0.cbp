@@ -1675,6 +1675,150 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager/library.properties">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/.piopm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/CONTRIBUTING.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_AutoConnect/Async_AutoConnect.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_AutoConnectWithFSParameters/Async_AutoConnectWithFSParameters.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_AutoConnectWithFSParametersAndCustomIP/Async_AutoConnectWithFSParametersAndCustomIP.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_AutoConnectWithFeedback/Async_AutoConnectWithFeedback.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_AutoConnectWithFeedbackLED/Async_AutoConnectWithFeedbackLED.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnDRD_FS_MQTT_Ptr/Async_ConfigOnDRD_FS_MQTT_Ptr.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnDoubleReset/Async_ConfigOnDoubleReset.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnStartup/Async_ConfigOnStartup.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnSwitch/Async_ConfigOnSwitch.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnSwitch/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnSwitchFS/Async_ConfigOnSwitchFS.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigOnSwitchFS_MQTT_Ptr/Async_ConfigOnSwitchFS_MQTT_Ptr.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ConfigPortalParamsOnSwitch/Async_ConfigPortalParamsOnSwitch.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer/Async_ESP32_FSWebServer.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer/data/favicon.ico">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer/data/index.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer_DRD/Async_ESP32_FSWebServer_DRD.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer_DRD/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer_DRD/data/favicon.ico">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP32_FSWebServer_DRD/data/index.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer/Async_ESP_FSWebServer.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer/data/favicon.ico">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer/data/index.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer_DRD/Async_ESP_FSWebServer_DRD.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer_DRD/README.md">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer_DRD/data/favicon.ico">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/Async_ESP_FSWebServer_DRD/data/index.htm">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/ModelessConnect/ModelessConnect.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/examples/ModelessWithInterrupts/ModelessWithInterrupts.ino">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/keywords.txt">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/library.json">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/library.properties">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/platformio/platformio.ini">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src/ESPAsync_WiFiManager-Impl.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src/ESPAsync_WiFiManager.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src/ESPAsync_WiFiManager_Debug.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_cpp/ESPAsync_WiFiManager_Debug.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_h/ESPAsync_WiFiManager-Impl.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_h/ESPAsync_WiFiManager.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src_h/ESPAsync_WiFiManager_Debug.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/travis/common.sh">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/.piopm">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
@@ -1915,16 +2059,13 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/Tone32/src/pitches.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/FunctionTimer/FunctionTimer.h">
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/include/FunctionTimer.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/include/HtmlVar.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/HtmlVar/HtmlVar.h">
-			<Option target="Z_DUMMY_TARGET"/>
-		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/HtmlVar.h">
-			<Option target="Z_DUMMY_TARGET"/>
-		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/geometry.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/main.cpp">
