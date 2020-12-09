@@ -17,6 +17,7 @@
 #include <map>
 #include <ArduinoJson.h>
 #include <AsyncJson.h>
+#include <LogFile.h>
 
 StaticJsonDocument<200> doc;
 
@@ -53,26 +54,6 @@ std::map<std::string, HtmlVar*>:: iterator html_it;
 void checkFirstRun();
 void serverRoute();
 void fillHtmlMap();
-
-class LogFile{
-public:
-    String path;
-    bool first_write = true;
-    LogFile(const String &_path){
-        path = _path;
-        if(SPIFFS.exists(path)){
-            SPIFFS.remove(path);
-        }
-    }
-    void log(const String &line){
-        if (first_write){
-            first_write = false;
-            File file = SPIFFS.open(path, FILE_WRITE);
-            file.println(line);
-            file.close();
-        }
-    }
-};
 
 void log(const String &line){
     File logfile = SPIFFS.open("/logfile.txt", FILE_APPEND);
