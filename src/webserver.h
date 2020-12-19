@@ -19,7 +19,7 @@
 #include <AsyncJson.h>
 #include <LogFile.h>
 
-StaticJsonDocument<200> doc;
+StaticJsonDocument<1024> doc;
 
 volatile const int DEFAULT_DISTANCE = 30; //meters
 #define MAX_DISTANCE 100
@@ -131,13 +131,25 @@ bool FlashInit(){
 
 
 bool serverInit(){
+    //https://github.com/me-no-dev/ESPAsyncWebServer/issues/726
+    server.on("/var/gps", HTTP_GET, [](AsyncWebServerRequest *request) {
+        doc.clear();
+        doc["lng"] = HtmlVarMap["lng"] -> value;
+        doc["lat"] = HtmlVarMap["lat"] -> value;
+        doc["bd-lng"] = HtmlVarMap["bd-lng"] -> value;
+        doc["bd-lat"] = HtmlVarMap["bd-lat"] -> value;
+        
+        //JsonArray data = doc.createNestedArray("data");
+        //data.add(48.756080);
+        //data.add(2.302038);
+        String response;
+        serializeJson(doc, response);
+        request->send(200, "application/json", response);
+    });
 
-    server.on("/var/json", HTTP_GET, [](AsyncWebServerRequest *request) {
-        doc["key1"] = "value1";
-        doc["key2"] = "value2";
-        JsonArray data = doc.createNestedArray("data");
-        data.add(48.756080);
-        data.add(2.302038);
+    server.on("/var/buddy", HTTP_GET, [](AsyncWebServerRequest *request) {
+        doc.clear();
+
         String response;
         serializeJson(doc, response);
         request->send(200, "application/json", response);

@@ -1,4 +1,5 @@
-.pio
+.pio/
+!.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src/AsyncEventSource.cpp
 .clang_complete
 .gcc-flags.json
 cmake*

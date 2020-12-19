@@ -77,6 +77,14 @@ require([
         }
     }
 
+    function httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+
     let lat = -4.62409;
     let lng = 55.38619;
     let center = [lng, lat];
@@ -87,23 +95,7 @@ require([
 
     let graphicsLayer = new GraphicsLayer();
     let diverA = new Diver( 55.38619,-4.62409, graphicsLayer);
-    let diverB = new Diver(55.386,-4.624, graphicsLayer);
     map.add(graphicsLayer);
-
-    setInterval(function () {
-        if(diverB.color=="darkcyan"){
-            diverB.setColor("darkred");
-        }else{
-            diverB.setColor("darkcyan");
-        }
-    }, 2000);
-
-    setInterval(()=>{
-        count += 50/1000;
-        let newLng = 55.386+0.000025*Math.sin(count);
-        let newLat = -4.624+0.000025*Math.cos(count);
-        diverB.setLocation(newLng, newLat);
-    },50)
 
     var view = new SceneView({
         container: "viewDiv",
@@ -121,17 +113,25 @@ require([
     });
 
     setInterval(()=>{
-        heading += .5;
-        view.goTo({
-            position: {
-                x: lng,
-                y: lat,
-                z: 500, // altitude in meters
-            },
-            heading: heading,
-            tilt: 0
-        },)
-        .catch(()=>{});
+        responseText = httpGet("/var/gps");
+        let gpsData = JSON.parse(responseText);
+        console.log(gpsData);
+        if(gpsData.lng !==""){
+            let newLng = parseFloat(gpsData.lng);
+            let newLat = parseFloat(gpsData.lat);
+            diverA.setLocation(newLng, newLat);
+            view.goTo({
+                position: {
+                    x: newLng,
+                    y: newLat,
+                    z: 500, // altitude in meters
+                },
+                heading: heading,
+                tilt: 0
+            },)
+                .catch(()=>{});
+        }
 
-    },1000)
+
+    },2000)
 });

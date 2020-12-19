@@ -2065,9 +2065,6 @@
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/include/HtmlVar.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
-		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/lib/HtmlVar/HtmlVar.h">
-			<Option target="Z_DUMMY_TARGET"/>
-		</Unit>
 		<Unit filename="C:/Users/brett/Documents/PlatformIO/tbeam0/src/main.cpp">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
