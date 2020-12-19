@@ -71,6 +71,7 @@ bool WiFiInit(bool host=false){
             delay(1000);
         }
         log("WiFi STA ok.");
+        log(WiFi.softAPIP());
 
     }else{
         WiFi.softAP(host_ssid);
@@ -292,6 +293,15 @@ void serverRoute(){
 
     server.on("/react.js", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/react.js", "text/javascript");
+    });
+
+    server.on("/navigation.js", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/navigation.js", "text/javascript");
+    });
+
+    server.on("/app", HTTP_GET, [](AsyncWebServerRequest *request){
+        //ready = true;
+        request->send(SPIFFS, "/navigation.html", String(), false, processor);
     });
 
     server.on("/react", HTTP_GET, [](AsyncWebServerRequest *request){

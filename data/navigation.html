@@ -1,29 +1,59 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-   <title>Buddy Tracker</title>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="style.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-   <script src="app.js"></script>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+        Buddy Tracker
+    </title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 95%;
+        }
+
+        #banner{
+            background-color: darkcyan;
+            padding-top: 1rem;
+            padding-bottom: 0;
+        }
+
+        #page{
+            background-color: darkcyan;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var dojoConfig = {
+            packages: [
+                {
+                    name: "geolocate",
+                    location: "//2gis.github.io/mock-geolocation/dist",
+                    main: "geolocate"
+                }
+            ]
+        };
+    </script>
+    <script src="https://js.arcgis.com/4.18/"></script>
+    <script src="navigation.js"></script>
 </head>
-<body>
 
-<div class="jumbotron text-center">
-    <h1 class="display-5"><b>Page</b>Heading</h1>
-</div>
+    <body id='page'>
+        <div class="jumbotron text-center" id="banner">
+            <h1>Diver<b>Tracker</b></h1>
+        </div>
+        <div id="viewDiv"></div>
+    </body>
 
-<div class="container">
-
-    <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-
-</div>
-</body>
 </html>
