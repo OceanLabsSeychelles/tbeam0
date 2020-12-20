@@ -151,7 +151,9 @@ void GPSScreenUpdate(){
     display.println(partner_fix.info.sats);
 
     display.print("dT(s):");
-    display.println(millis() / 1000.0 - partner_fix.last_time, 1);
+    float dt = millis() / 1000.0 - partner_fix.last_time;
+    HtmlVarMap["bdTxTime"]->value = dt;
+    display.println(dt, 1);
 
     if (partner_fix.info.sats > 2) {
         display.print("D(m):");

@@ -136,9 +136,12 @@ bool serverInit(){
         doc.clear();
         doc["lng"] = HtmlVarMap["lng"] -> value;
         doc["lat"] = HtmlVarMap["lat"] -> value;
-        doc["bd-lng"] = HtmlVarMap["bd-lng"] -> value;
-        doc["bd-lat"] = HtmlVarMap["bd-lat"] -> value;
-        
+        doc["bdLng"] = HtmlVarMap["bd-lng"] -> value;
+        doc["bdLat"] = HtmlVarMap["bd-lat"] -> value;
+        doc["bdBearing"] = HtmlVarMap["bd-bearing"] -> value;
+        doc["bdTxTime"] = HtmlVarMap["bdTxTime"] -> value;
+
+
         //JsonArray data = doc.createNestedArray("data");
         //data.add(48.756080);
         //data.add(2.302038);
@@ -235,6 +238,7 @@ void fillHtmlMap(){
     HtmlVarMap.insert(std::make_pair("bd-downmax", new HtmlVar("bd-downmax", "", "int")));
     HtmlVarMap.insert(std::make_pair("bd-distmax", new HtmlVar("bd-distmax", "", "int")));
     HtmlVarMap.insert(std::make_pair("bd-buddylock", new HtmlVar("bd-buddylock", "", "bool")));
+    HtmlVarMap.insert(std::make_pair("bdTxTime", new HtmlVar("bdTxTime", "", "float")));
 
     HtmlVarMap.insert(std::make_pair("divedist", new HtmlVar("divedist", "", "int")));
     HtmlVarMap.insert(std::make_pair("divedown", new HtmlVar("divedown", "", "int")));

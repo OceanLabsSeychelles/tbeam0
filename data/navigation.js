@@ -27,6 +27,15 @@ require([
                 latitude: this.lat
             };
 
+            this.pictureMarker = {
+                type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                url: "https://pixabay.com/vectors/google-map-marker-green-peg-309741/",
+                width: "64px",
+                height: "64px"
+
+            }
+
+
             this.marker = {
                 type: "simple-marker",
                 color: this.color, // orange
@@ -75,6 +84,32 @@ require([
             this.gl.add(this.graphic);
 
         }
+
+        set(lng, lat, color){
+            this.gl.remove(this.graphic);
+            this.lng = lng;
+            this.lat = lat;
+            this.color = color;
+
+            this.point = {
+                type: "point",
+                longitude: this.lng,
+                latitude: this.lat
+            };
+            this.marker = {
+                type: "simple-marker",
+                color: this.color, // orange
+                outline: {
+                    color: [255, 255, 255], // white
+                    width: 1
+                }
+            };
+            this.graphic = new Graphic({
+                geometry: this.point,
+                symbol: this.marker
+            });
+            this.gl.add(this.graphic);
+        }
     }
 
     function httpGet(theUrl)
@@ -94,7 +129,9 @@ require([
     const dt = 50;
 
     let graphicsLayer = new GraphicsLayer();
-    let diverA = new Diver( 55.38619,-4.62409, graphicsLayer);
+    let diverA = new Diver( 55.38629,-4.62409, graphicsLayer);
+    let diverB = new Diver( 55.38619,-4.62409, graphicsLayer);
+    diverB.setColor('darkgreen');
     map.add(graphicsLayer);
 
     var view = new SceneView({
@@ -117,6 +154,16 @@ require([
         let gpsData = JSON.parse(responseText);
         console.log(gpsData);
         if(gpsData.lng !==""){
+            let newColorB;
+            let dt = parseFloat(gpsData.bdTxTime);
+            (dt < 3) ? newColorB = 'darkgreen' : newColorB = 'darkred';
+            let newBdLng = parseFloat(gpsData.bdLng);
+            let newBdLat = parseFloat(gpsData.bdLat);
+            if (newBdLng === 0 || newBdLat === 0) {
+                newBdLng = diverB.lng;
+                newBdLat = diverB.lat;
+            }
+            diverB.set(newBdLng, newBdLat, newColorB);
             let newLng = parseFloat(gpsData.lng);
             let newLat = parseFloat(gpsData.lat);
             diverA.setLocation(newLng, newLat);
