@@ -39,7 +39,7 @@
 TinyGPSPlus gps;
 HardwareSerial GPS(1);
 AXP20X_Class axp;
-Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x29);
+Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 typedef struct{

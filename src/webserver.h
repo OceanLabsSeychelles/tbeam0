@@ -323,6 +323,10 @@ void serverRoute(){
     server.on("/react", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/react.html", String(), false, processor);
     });
+
+    server.on("/red", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/mapMarkers/marker-red.png", "image/png");
+    });
 }
 
 #endif

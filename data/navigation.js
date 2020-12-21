@@ -29,7 +29,7 @@ require([
 
             this.pictureMarker = {
                 type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
-                url: "https://pixabay.com/vectors/google-map-marker-green-peg-309741/",
+                url: "/mapMarkers/marker-green.png",
                 width: "64px",
                 height: "64px"
 
@@ -46,7 +46,7 @@ require([
             };
             this.graphic = new Graphic({
                 geometry: this.point,
-                symbol: this.marker
+                symbol: this.pictureMarker
             });
             this.gl.add(this.graphic);
         }

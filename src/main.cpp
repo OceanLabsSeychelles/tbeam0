@@ -16,6 +16,9 @@ void setup() {
         Serial.println("Power Ok.");
     }
 
+    pinMode(BUZZER_PIN, OUTPUT);
+    tone(BUZZER_PIN, NOTE_C7, 250, BUZZER_CHANNEL);
+
     FlashInit();
 
     if (!displayInit()) {
@@ -38,7 +41,7 @@ void setup() {
     } else {
         log("IMU Ok.");
         bno.setMode(bno.OPERATION_MODE_NDOF);
-        bno.setExtCrystalUse(false);
+        bno.setExtCrystalUse(true);
     }
 
 
@@ -55,8 +58,7 @@ void setup() {
     } else {
         log("Webserver Ok.");
     }
-    ledcSetup(BUZZER_CHANNEL, BUZZER_FREQ, BUZZER_RESOLUTION);
-    ledcAttachPin(BUZZER_PIN, BUZZER_CHANNEL);
+
     /*
     display.clearDisplay();
     display.setTextSize(2);      // Normal 1:1 pixel scale
