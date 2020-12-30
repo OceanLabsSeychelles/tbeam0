@@ -33,8 +33,11 @@ String DEFAULT_ID = "uhuHunter";
 //const char* ssid = "LDN_EXT";
 //const char* password = "blini010702041811";
 
-const char* ssid = "brettsphone";
-const char* password = "whiskeytango";
+//const char* ssid = "brettsphone";
+//const char* password = "whiskeytango";
+
+const char* ssid = "sunsetvilla";
+const char* password = "deptspecialboys";
 
 //For device as AP
 const char* host_ssid = "zero2spearo";
@@ -81,7 +84,6 @@ bool WiFiInit(bool host=false){
         Serial.println("WiFi AP ok.");
     }
     //delay(1000);
-    Serial.println(WiFi.localIP());
     return true;
 }
 
@@ -131,6 +133,7 @@ bool FlashInit(){
     return true;
 }
 
+
 bool serverInit(){
     //https://github.com/me-no-dev/ESPAsyncWebServer/issues/726
     server.on("/var/gps", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -146,6 +149,20 @@ bool serverInit(){
         //JsonArray data = doc.createNestedArray("data");
         //data.add(48.756080);
         //data.add(2.302038);
+        String response;
+        serializeJson(doc, response);
+        request->send(200, "application/json", response);
+    });
+
+    server.on("/var/imu", HTTP_GET, [](AsyncWebServerRequest *request) {
+        doc.clear();
+        doc["imuHeading"] = HtmlVarMap["imu-heading"]-> value;
+        doc["imuPitch"] = HtmlVarMap["imu-pitch"]-> value;
+        doc["imuRoll"] = HtmlVarMap["imu-roll"]-> value;
+        doc["magCal"] = HtmlVarMap["mag-cal"]->value;
+        doc["accelCal"] = HtmlVarMap["accel-cal"]->value;
+        doc["gyroCal"] = HtmlVarMap["gyro-cal"]->value;
+
         String response;
         serializeJson(doc, response);
         request->send(200, "application/json", response);
@@ -322,10 +339,6 @@ void serverRoute(){
         request->send(SPIFFS, "/logfile.txt", "text/plain");
     });
 
-    server.on("/react.js", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(SPIFFS, "/react.js", "text/javascript");
-    });
-
     server.on("/navigation.js", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send(SPIFFS, "/navigation.js", "text/javascript");
     });
@@ -335,12 +348,16 @@ void serverRoute(){
         request->send(SPIFFS, "/navigation.html", String(), false, processor);
     });
 
-    server.on("/react", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(SPIFFS, "/react.html", String(), false, processor);
+    server.on("/marker-red", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/mapMarkers/marker-red.png", "image/png");
     });
 
-    server.on("/red", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(SPIFFS, "/mapMarkers/marker-red.png", "image/png");
+    server.on("/marker-green", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/mapMarkers/marker-green.png", "image/png");
+    });
+
+    server.on("/arrow-blue", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/mapMarkers/arrow-blue.png", "image/png");
     });
 }
 

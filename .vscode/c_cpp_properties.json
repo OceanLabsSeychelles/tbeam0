@@ -1,19 +1,23 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
-            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
-        },
-        {
-            "name": "Win32",
+            "name": "PlatformIO",
             "includePath": [
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/include",
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/src",
-                "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
+                "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
+                "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src",
+                "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src",
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src",
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager",
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src",
-                "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
+                "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src",
                 "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
@@ -95,7 +99,6 @@
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src",
-                "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src",
@@ -103,6 +106,7 @@
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src",
+                "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src",
                 "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
@@ -116,12 +120,14 @@
                 "path": [
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/include",
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/src",
-                    "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
+                    "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
+                    "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsync_WiFiManager/src",
+                    "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/LittleFS_esp32/src",
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPFlash/src",
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESPAsyncWiFiManager",
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ESP Async WebServer/src",
-                    "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
+                    "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/ArduinoJson/src",
                     "c:/Users/brett/Documents/PlatformIO/tbeam0/.pio/libdeps/ttgo-t-beam/AsyncTCP/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
@@ -203,7 +209,6 @@
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src",
-                    "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src",
@@ -211,6 +216,7 @@
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src",
+                    "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src",
                     "C:/Users/brett/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
@@ -221,7 +227,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=50001",
+                "PLATFORMIO=50004",
                 "ARDUINO_T_Beam",
                 "BOARD_HAS_PSRAM",
                 "ESP32",
@@ -235,7 +241,6 @@
                 "ARDUINO_BOARD=\"TTGO T-Beam\"",
                 ""
             ],
-            "intelliSenseMode": "clang-x64",
             "cStandard": "c99",
             "cppStandard": "c++11",
             "compilerPath": "C:/Users/brett/.platformio/packages/toolchain-xtensa32/bin/xtensa-esp32-elf-gcc.exe",

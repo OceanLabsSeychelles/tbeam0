@@ -112,7 +112,7 @@ void loop() {
     imu_handler.service();
     imu_cal_handler.service();
     //buzzer_handler.service();
-    /*
+
     if(millis() - lastBeep > duration && !beepOn){
         float heading = HtmlVarMap["imu-heading"]->value.toFloat();
         float headingRad = deg2rad(heading);
@@ -126,11 +126,13 @@ void loop() {
 
 
     if(millis() - lastBeep > duration && beepOn) {
-        duration = 250;
+        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
+        float headingRad = deg2rad(heading);
+        duration = 75*(sin(headingRad)+1);
         beepOn = false;
         ledcWrite(BUZZER_CHANNEL, 0);
         lastBeep = millis();
     }
-    */
+
 
 }
