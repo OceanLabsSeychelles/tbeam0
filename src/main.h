@@ -30,7 +30,7 @@
 #define BUZZER_CHANNEL 0
 #define BUZZER_RESOLUTION 10
 #define BUZZER_BITS 1024
-#define BUZZER_FREQ 800
+#define BUZZER_FREQ 2700
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define BAND  433E6
@@ -184,9 +184,6 @@ void IMUScreenUpdate(){
     display.print("Dif: ");
     float difference = yaw-bearing;
     display.println(difference);
-
-    display.display();
-
 }
 void ScreenUpdate(){
     static int last;
@@ -231,15 +228,30 @@ FunctionTimer imu_handler(&IMUUpdate, 100);
 void BuzzerTone(){
     int cal = HtmlVarMap["mag-cal"] -> value.toInt();
     if (cal > 0){
-        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
-        float error = abs(heading-180);
 
+        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
+        float headingRad = deg2rad(heading);
+        int freq = int(1024*(sin(headingRad)));
+        ledcWriteTone(BUZZER_CHANNEL,  2700+freq);
+        ledcWrite(BUZZER_CHANNEL, 35);
+
+        /*
+        int dutyCycle = int(256*(sin(headingRad)+1));
+        ledcWrite(BUZZER_CHANNEL, dutyCycle);
+        Serial.print(headingRad);
+        Serial.print(",");
+        Serial.println(dutyCycle);
+         */
+        /*
+        float error = abs(heading-180);
         int dutyCycle =  1024 - int(error*2.844);
         Serial.println(dutyCycle);
         ledcWrite(BUZZER_CHANNEL, dutyCycle);
+        */
     }
 }
-FunctionTimer buzzer_handler(&BuzzerTone, 10);
+FunctionTimer buzzer_handler(&BuzzerTone, 30);
+
 
 void BuddyTX(){
     local_config.distmax = HtmlVarMap["distmax"]->value.toInt();
@@ -253,6 +265,7 @@ void BuddyTX(){
     LoRa.endPacket();
 }
 FunctionTimer buddy_tx_handler(&BuddyTX, 1000);
+
 
 void BuddyRX() {
     int packetSize = LoRa.parsePacket();

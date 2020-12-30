@@ -30,8 +30,11 @@ volatile const int DEFAULT_DOWN = 100; //seconds
 volatile const int DEFAULT_BUDDYLOCK = 1;
 String DEFAULT_ID = "uhuHunter";
 
-const char* ssid = "sunsetvilla";
-const char* password = "deptspecialboys";
+//const char* ssid = "LDN_EXT";
+//const char* password = "blini010702041811";
+
+const char* ssid = "brettsphone";
+const char* password = "whiskeytango";
 
 //For device as AP
 const char* host_ssid = "zero2spearo";
@@ -70,16 +73,15 @@ bool WiFiInit(bool host=false){
         while (WiFi.status() != WL_CONNECTED) {
             delay(1000);
         }
-        log("WiFi STA ok.");
-        log(WiFi.softAPIP());
-
+        Serial.println(WiFi.localIP());
     }else{
         WiFi.softAP(host_ssid);
         dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
         dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
-        log("WiFi AP ok.");
+        Serial.println("WiFi AP ok.");
     }
     //delay(1000);
+    Serial.println(WiFi.localIP());
     return true;
 }
 
@@ -129,7 +131,6 @@ bool FlashInit(){
     return true;
 }
 
-
 bool serverInit(){
     //https://github.com/me-no-dev/ESPAsyncWebServer/issues/726
     server.on("/var/gps", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -145,6 +146,20 @@ bool serverInit(){
         //JsonArray data = doc.createNestedArray("data");
         //data.add(48.756080);
         //data.add(2.302038);
+        String response;
+        serializeJson(doc, response);
+        request->send(200, "application/json", response);
+    });
+
+    server.on("/var/config", HTTP_GET, [](AsyncWebServerRequest *request) {
+        doc.clear();
+        doc["lng"] = HtmlVarMap["lng"] -> value;
+        doc["lat"] = HtmlVarMap["lat"] -> value;
+        doc["bdLng"] = HtmlVarMap["bd-lng"] -> value;
+        doc["bdLat"] = HtmlVarMap["bd-lat"] -> value;
+        doc["bdBearing"] = HtmlVarMap["bd-bearing"] -> value;
+        doc["bdTxTime"] = HtmlVarMap["bdTxTime"] -> value;
+
         String response;
         serializeJson(doc, response);
         request->send(200, "application/json", response);

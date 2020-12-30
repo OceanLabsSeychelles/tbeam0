@@ -16,8 +16,8 @@ void setup() {
         Serial.println("Power Ok.");
     }
 
-    pinMode(BUZZER_PIN, OUTPUT);
-    tone(BUZZER_PIN, NOTE_C7, 250, BUZZER_CHANNEL);
+    ledcSetup(BUZZER_CHANNEL, BUZZER_FREQ, BUZZER_RESOLUTION);
+    ledcAttachPin(BUZZER_PIN, BUZZER_CHANNEL);
 
     FlashInit();
 
@@ -58,7 +58,6 @@ void setup() {
     } else {
         log("Webserver Ok.");
     }
-
     /*
     display.clearDisplay();
     display.setTextSize(2);      // Normal 1:1 pixel scale
@@ -85,6 +84,9 @@ void setup() {
 
 }
 
+long lastBeep = 0;
+long duration = 50;
+bool beepOn = false;
 
 void loop() {
     while (GPS.available()) {
@@ -110,4 +112,25 @@ void loop() {
     imu_handler.service();
     imu_cal_handler.service();
     //buzzer_handler.service();
+    /*
+    if(millis() - lastBeep > duration && !beepOn){
+        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
+        float headingRad = deg2rad(heading);
+        int freq = int(1024*pow(2.7, sin(headingRad)));
+        ledcWriteTone(BUZZER_CHANNEL,  150+freq);
+        ledcWrite(BUZZER_CHANNEL, 35);
+        beepOn = true;
+        duration = 50;
+        lastBeep= millis();
+    }
+
+
+    if(millis() - lastBeep > duration && beepOn) {
+        duration = 250;
+        beepOn = false;
+        ledcWrite(BUZZER_CHANNEL, 0);
+        lastBeep = millis();
+    }
+    */
+
 }
