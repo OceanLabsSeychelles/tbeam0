@@ -33,7 +33,7 @@
 #define BUZZER_FREQ 2700
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define BAND  433E6
+#define BAND  868E6
 #define GPS_SIG_FIGS 7
 
 TinyGPSPlus gps;
