@@ -12,20 +12,10 @@
 #include <LogFile.h>
 
 DynamicJsonDocument doc(1024);
-
-volatile const int DEFAULT_DISTANCE = 30; //meters
-#define MAX_DISTANCE 100
-#define MIN_DISTANCE 10
-volatile const int DEFAULT_DOWN = 100; //seconds
-#define MAX_DOWN 500
-#define MIN_DOWN 30
-volatile const int DEFAULT_BUDDYLOCK = 1;
-String DEFAULT_ID = "uhuHunter";
+DynamicJsonDocument imuDoc(1024);
 
 //const char* ssid = "LDN_EXT";
 //const char* password = "blini010702041811";
-
-
 
 const char* ssid = "sunsetvilla";
 const char* password = "deptspecialboys";
@@ -35,10 +25,8 @@ LogFile gpsFile("/gpslog.txt");
 void PostTest(){
     HTTPClient http;
 
+    Serial.print("RestDB GPS data POST test...");
 
-    Serial.println("RestDB POST test...");
-
-    String key = "b525dd66d6a36e9394f23bd1a2d48ec702833";
     String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
     String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
 
@@ -46,7 +34,10 @@ void PostTest(){
     doc["longitude"] = 2.0;
     doc["satellites"] = 3.0;
     doc["elevation"] = 4.0;
-
+    doc["temperature"] = 5.0;
+    doc["battery"] = 6.0;
+    doc["imucalibration"] = "anastystringhere";
+    doc["time"] = "how is datetime handled in c?";
     String jsonData;
     serializeJson(doc, jsonData);
 
@@ -54,8 +45,28 @@ void PostTest(){
     http.addHeader("content-type", "application/json");
     http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
     http.addHeader("cache-control" , "no-cache");
-
     int httpResponseCode = http.POST(jsonData);
+    http.end();
+    Serial.println(httpResponseCode);
+
+    Serial.print("RestDB IMU data POST test...");
+    imuDoc["accelx"] = 1.0;
+    imuDoc["accely"] = 2.0;
+    imuDoc["accelz"] = 3.0;
+    imuDoc["pitch"] = 4.0;
+    imuDoc["roll"] = 5.0;
+    imuDoc["yaw"] = 6.0;
+    imuDoc["start"] = "how is datetime handled in c?";
+    imuDoc["dt"] = 7;
+    String imuData;
+    serializeJson(imuDoc, imuData);
+
+    http.begin(imuUrl);
+    http.addHeader("content-type", "application/json");
+    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    http.addHeader("cache-control" , "no-cache");
+    httpResponseCode = http.POST(imuData);
+    http.end();
     Serial.println(httpResponseCode);
 
 }
