@@ -43,10 +43,17 @@ Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 typedef struct{
-    double lat;
-    double lng;
-    int sats;
+    float lat;
+    float lng;
+    float sats;
 } GPS_DATA;
+
+typedef struct{
+    int num1;
+    int num2;
+    int num3;
+    float float1;
+} SOME_DATA;
 
 typedef struct{
     GPS_DATA info;
@@ -61,12 +68,23 @@ typedef struct{
     bool ready;
 } PAIRING_DATA;
 
+SOME_DATA bouy_fix;
+
+uint8_t* bouy_fix_ptr =  (uint8_t*)&bouy_fix;
+
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 PARTNER_DATA partner_fix;
 PAIRING_DATA local_config;
 uint8_t* local_config_ptr = (uint8_t*)&local_config;
 PAIRING_DATA partner_config;
+
+  union sensorBytes{
+  	SOME_DATA data;
+  	byte rawBytes[sizeof(SOME_DATA)];
+  };
+  sensorBytes frame;
+
 
 volatile bool server_on = true;
 volatile bool lora_scan = false;
@@ -135,8 +153,13 @@ void LoRaScan(){
 FunctionTimer rx_handler(& LoRaScan, 20);
 
 void LoRaSend(){
+
+    frame.data.num1=170;
+    frame.data.num2=4;
+    frame.data.num3=255;
+    Serial.printf("Sent: %d\n", bouy_fix.num1);
     LoRa.beginPacket();
-    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+    LoRa.write(frame.rawBytes, sizeof(frame.rawBytes));
     LoRa.endPacket();
 }
 FunctionTimer tx_handler(& LoRaSend, 1000);

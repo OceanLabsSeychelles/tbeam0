@@ -27,6 +27,8 @@ void setup() {
 
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
     LoRa.setPins(SS, RST, DI0);
+    LoRa.enableCrc();
+    LoRa.setTxPower(23);
     if (!LoRa.begin(BAND)) {
         Serial.println("Starting LoRa failed!");
         while (1);
@@ -66,7 +68,6 @@ void loop() {
     }
     if (millis() - last_send > interval) {
         tx_handler.service();
-        Serial.println("Data sent.");
         interval = random(500);
         last_send = millis();
     }
