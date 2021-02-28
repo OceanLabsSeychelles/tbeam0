@@ -19,16 +19,8 @@ void setup() {
 
     FlashInit();
 
-    if (!displayInit()) {
-        Serial.println("SSD1306 allocation failed");
-    } else {
-        Serial.println("OLED Ok.");
-    }
-
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
     LoRa.setPins(SS, RST, DI0);
-    LoRa.enableCrc();
-    LoRa.setTxPower(23);
     if (!LoRa.begin(BAND)) {
         Serial.println("Starting LoRa failed!");
         while (1);
@@ -43,10 +35,6 @@ void setup() {
         bno.setMode(bno.OPERATION_MODE_NDOF);
         bno.setExtCrystalUse(true);
     }
-
-
-    fillHtmlMap();
-
 }
 
 long lastBeep = 0;
@@ -61,10 +49,7 @@ void loop() {
         gps_fix.lat = gps.location.lat();
         gps_fix.lng = gps.location.lng();
         gps_fix.sats = gps.satellites.value();
-        HtmlVarMap["lng"] -> value = String(gps_fix.lng, GPS_SIG_FIGS);
-        HtmlVarMap["lat"] -> value = String(gps_fix.lat, GPS_SIG_FIGS);
-        HtmlVarMap["sats"] -> value = String(gps_fix.sats, GPS_SIG_FIGS);
-        HtmlVarMap["alt"] -> value = String(gps.altitude.meters(), GPS_SIG_FIGS);
+        gps_fix.alt = gps.altitude.meters();
     }
     if (millis() - last_send > interval) {
         tx_handler.service();
@@ -72,8 +57,6 @@ void loop() {
         last_send = millis();
     }
 
-    rx_handler.service();
-    screen_handler.service();
     if(imuConnected){
         imu_handler.service();
     }

@@ -33,7 +33,7 @@
 #define BUZZER_FREQ 2700
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define BAND  868E6
+#define BAND  433E6
 #define GPS_SIG_FIGS 7
 
 TinyGPSPlus gps;
@@ -46,73 +46,27 @@ typedef struct{
     float lat;
     float lng;
     float sats;
+    float alt;
+    float temp;
+    float batt;
+
 } GPS_DATA;
-
-typedef struct{
-    int num1;
-    int num2;
-    int num3;
-    float float1;
-} SOME_DATA;
-
-typedef struct{
-    GPS_DATA info;
-    double last_time;
-} PARTNER_DATA;
-
-typedef struct{
-    char id[40];
-    int distmax;
-    int downmax;
-    int buddylock;
-    bool ready;
-} PAIRING_DATA;
-
-SOME_DATA bouy_fix;
-
-uint8_t* bouy_fix_ptr =  (uint8_t*)&bouy_fix;
 
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
-PARTNER_DATA partner_fix;
-PAIRING_DATA local_config;
-uint8_t* local_config_ptr = (uint8_t*)&local_config;
-PAIRING_DATA partner_config;
-
-  union sensorBytes{
-  	SOME_DATA data;
-  	byte rawBytes[sizeof(SOME_DATA)];
-  };
-  sensorBytes frame;
 
 
-volatile bool server_on = true;
-volatile bool lora_scan = false;
-volatile bool buddy_found = false;
-volatile bool ready = false;
-volatile bool buddy_ready = false;
-volatile int distmax;
-volatile int downmax;
-volatile int buddylock;
-volatile int divedist;
-volatile int divedown;
-volatile int divelock;
+typedef struct{
+    float accelx;
+    float accely;
+    float accelz;
+    float pitch;
+    float roll;
+    float yaw;
+} IMU_DATA;
 
-bool displayInit(){
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-    return false;
-
-  }else{
-    display.clearDisplay();
-    display.setTextSize(2);      // Normal 1:1 pixel scale
-    display.setTextColor(SSD1306_WHITE); // Draw white text
-    display.cp437(true);         // Use full 256 char 'Code Page 437' font
-    display.setCursor(0, 0);     // Start at top-left corner
-    display.println("Dive-Alive");
-    display.display();
-    return true;
-  }
-};
+IMU_DATA imu_frame;
+uint8_t* imu_frame_ptr = (uint8_t*)&imu_frame;
 
 bool powerInit(){
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
@@ -128,110 +82,22 @@ bool powerInit(){
   }
 }
 
-
-void LoRaScan(){
-    int packetSize = LoRa.parsePacket();
-    if (packetSize) {
-
-        uint8_t packet[packetSize];
-        for (int j = 0; j < packetSize; j++) {
-            packet[j] = LoRa.read();
-        }
-
-        memcpy( & partner_fix.info, packet, sizeof(GPS_DATA));
-        HtmlVarMap["bd-lng"] -> value = String(partner_fix.info.lng, GPS_SIG_FIGS);
-        HtmlVarMap["bd-lat"] -> value = String(partner_fix.info.lat, GPS_SIG_FIGS);
-        HtmlVarMap["bd-sats"] -> value = String(partner_fix.info.sats, GPS_SIG_FIGS);
-        partner_fix.last_time = millis() / 1000.0;
-        distance = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
-        HtmlVarMap["bd-bearing"]-> value = String(getBearing(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng),4);
-
-        //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
-        //Serial.println(rssi);
-    }
-}
-FunctionTimer rx_handler(& LoRaScan, 20);
-
 void LoRaSend(){
 
-    frame.data.num1=170;
-    frame.data.num2=4;
-    frame.data.num3=255;
-    Serial.printf("Sent: %d\n", bouy_fix.num1);
     LoRa.beginPacket();
-    LoRa.write(frame.rawBytes, sizeof(frame.rawBytes));
+    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
     LoRa.endPacket();
 }
 FunctionTimer tx_handler(& LoRaSend, 1000);
-
-void GPSScreenUpdate(){
-    display.setCursor(0, 0); // Start at top-left corner
-    display.clearDisplay();
-
-    display.print("Sats:");
-    display.print(gps_fix.sats);
-    display.print(",");
-    display.println(partner_fix.info.sats);
-
-    display.print("dT(s):");
-    float dt = millis() / 1000.0 - partner_fix.last_time;
-    HtmlVarMap["bdTxTime"]->value = dt;
-    display.println(dt, 1);
-
-    if (partner_fix.info.sats > 2) {
-        display.print("D(m):");
-        display.println(distance, 1);
-    }
-
-    display.display();
-}
-void IMUScreenUpdate(){
-    display.setCursor(0, 0); // Start at top-left corner
-    display.clearDisplay();
-
-    display.print("MAG:");
-    display.print(HtmlVarMap["mag-cal"]->value);
-    display.print(",");
-    display.print(HtmlVarMap["accel-cal"]->value);
-    display.print(",");
-    display.println(HtmlVarMap["gyro-cal"]->value);
-
-    display.print("Yaw:");
-    float yaw = HtmlVarMap["imu-heading"]-> value.toFloat();
-    display.println(yaw);
-
-    display.print("Bdy:");
-    float bearing = HtmlVarMap["bd-bearing"]-> value.toFloat();
-    display.println(bearing);
-
-    display.print("Dif: ");
-    float difference = yaw-bearing;
-    display.println(difference);
-}
-void ScreenUpdate(){
-    static int last;
-    static bool gps = false;
-    if(gps){
-        GPSScreenUpdate();
-    }else{
-        IMUScreenUpdate();
-    }
-    if((millis() - last) > 5000){
-        gps = !gps;
-        last = millis();
-    }
-
-}
-FunctionTimer screen_handler(&ScreenUpdate, 100);
 
 void IMUCal(){
     uint8_t system, gyro, accel, mag;
     system = gyro = accel = mag = 0;
     bno.getCalibration(&system, &gyro, &accel, &mag);
 
-    HtmlVarMap["mag-cal"]->value = String(mag);
-    HtmlVarMap["accel-cal"]->value = String(accel);
-    HtmlVarMap["gyro-cal"]->value = String(gyro);
+    //HtmlVarMap["mag-cal"]->value = String(mag);
+    //HtmlVarMap["accel-cal"]->value = String(accel);
+    //HtmlVarMap["gyro-cal"]->value = String(gyro);
 }
 FunctionTimer imu_cal_handler(&IMUCal, 500);
 
@@ -240,77 +106,11 @@ void IMUUpdate(){
 
     sensors_event_t event;
     bno.getEvent(&event);
-
-    HtmlVarMap["imu-heading"]-> value = String(event.orientation.x, 2);
-    HtmlVarMap["imu-pitch"]-> value = String(event.orientation.z, 2);
-    HtmlVarMap["imu-roll"]-> value = String(event.orientation.y, 2);
+    imu_frame.pitch=event.orientation.z;
+    imu_frame.roll=event.orientation.y;
+    imu_frame.yaw=event.orientation.x;
 
 }
 FunctionTimer imu_handler(&IMUUpdate, 100);
-
-void BuzzerTone(){
-    int cal = HtmlVarMap["mag-cal"] -> value.toInt();
-    if (cal > 0){
-
-        float heading = HtmlVarMap["imu-heading"]->value.toFloat();
-        float headingRad = deg2rad(heading);
-        int freq = int(1024*(sin(headingRad)));
-        ledcWriteTone(BUZZER_CHANNEL,  2700+freq);
-        ledcWrite(BUZZER_CHANNEL, 35);
-
-        /*
-        int dutyCycle = int(256*(sin(headingRad)+1));
-        ledcWrite(BUZZER_CHANNEL, dutyCycle);
-        Serial.print(headingRad);
-        Serial.print(",");
-        Serial.println(dutyCycle);
-         */
-        /*
-        float error = abs(heading-180);
-        int dutyCycle =  1024 - int(error*2.844);
-        Serial.println(dutyCycle);
-        ledcWrite(BUZZER_CHANNEL, dutyCycle);
-        */
-    }
-}
-FunctionTimer buzzer_handler(&BuzzerTone, 30);
-
-
-void BuddyTX(){
-    local_config.distmax = HtmlVarMap["distmax"]->value.toInt();
-    local_config.downmax = HtmlVarMap["downmax"]->value.toInt();
-    local_config.buddylock = HtmlVarMap["buddylock"]->value.toInt();
-    local_config.ready = ready;
-    strcpy(local_config.id, "zero2spearo");
-
-    LoRa.beginPacket();
-    LoRa.write(local_config_ptr, sizeof(PAIRING_DATA));
-    LoRa.endPacket();
-}
-FunctionTimer buddy_tx_handler(&BuddyTX, 1000);
-
-
-void BuddyRX() {
-    int packetSize = LoRa.parsePacket();
-    if (packetSize) {
-
-        uint8_t packet[packetSize];
-        for (int j = 0; j < packetSize; j++) {
-            packet[j] = LoRa.read();
-        }
-        memcpy(&partner_config, packet, sizeof(PAIRING_DATA));
-        //buddy_found = true;
-        display.clearDisplay();
-        display.setCursor(0, 0);     // Start at top-left corner
-        display.println(partner_config.ready);
-        display.println(partner_config.distmax);
-        display.println(partner_config.downmax);
-        //divedist = getmin(distmax, partner_config.distmax);
-        divedown = partner_config.downmax;
-        divelock = buddylock || partner_config.buddylock;
-        display.display();
-    }
-}
-FunctionTimer buddy_rx_handler(&BuddyRX, 20);
 
 #endif
