@@ -18,6 +18,8 @@ void setup() {
     }
 
     FlashInit();
+    WiFiInit();
+    PostTest();
 
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
     LoRa.setPins(SS, RST, DI0);

@@ -1,25 +1,17 @@
 #ifndef TTBEAM0_WEBSERVER_H
 #define TTBEAM0_WEBSERVER_H
 
+#include "main.h"
 #include "FS.h"
-//#include "SPIFFS.h"
 #include "LITTLEFS.h"
 #define SPIFFS LITTLEFS
-
+#include <HTTPClient.h>
 #include <WiFi.h>
 #include <DNSServer.h>
-#include <ESPAsyncWebServer.h>
-#include <ESPFlash.h>
-#include <ESPFlashString.h>
-#include <ESPmDNS.h>
-#include <HtmlVar.h>
-#include <main.h>
-#include <map>
 #include <ArduinoJson.h>
-#include <AsyncJson.h>
 #include <LogFile.h>
 
-StaticJsonDocument<1024> doc;
+DynamicJsonDocument doc(1024);
 
 volatile const int DEFAULT_DISTANCE = 30; //meters
 #define MAX_DISTANCE 100
@@ -33,27 +25,40 @@ String DEFAULT_ID = "uhuHunter";
 //const char* ssid = "LDN_EXT";
 //const char* password = "blini010702041811";
 
-//const char* ssid = "brettsphone";
-//const char* password = "whiskeytango";
+
 
 const char* ssid = "sunsetvilla";
 const char* password = "deptspecialboys";
 
-//For device as AP
-const char* host_ssid = "zero2spearo";
-const char* host_password = "testpassword";
-const char* dns = "buddytracker";
-
-IPAddress local_ip(192,168,1,1);
-IPAddress gateway(192,168,1,1);
-IPAddress subnet(255,255,255,0);
-// DNS server
-const byte DNS_PORT = 53;
-DNSServer dnsServer;
-
-AsyncWebServer server(80);
-String processor(const String&);
 LogFile gpsFile("/gpslog.txt");
+
+void PostTest(){
+    HTTPClient http;
+
+
+    Serial.println("RestDB POST test...");
+
+    String key = "b525dd66d6a36e9394f23bd1a2d48ec702833";
+    String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
+    String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
+
+    doc["latitude"] = 1.0;
+    doc["longitude"] = 2.0;
+    doc["satellites"] = 3.0;
+    doc["elevation"] = 4.0;
+
+    String jsonData;
+    serializeJson(doc, jsonData);
+
+    http.begin(gpsUrl);
+    http.addHeader("content-type", "application/json");
+    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    http.addHeader("cache-control" , "no-cache");
+
+    int httpResponseCode = http.POST(jsonData);
+    Serial.println(httpResponseCode);
+
+}
 
 void log(const String &line){
     File logfile = SPIFFS.open("/logfile.txt", FILE_APPEND);
@@ -63,18 +68,13 @@ void log(const String &line){
 }
 
 bool WiFiInit(bool host=false){
-    if(!host){
-        WiFi.begin(ssid, password);
-        while (WiFi.status() != WL_CONNECTED) {
-            delay(1000);
-        }
-        Serial.println(WiFi.localIP());
-    }else{
-        WiFi.softAP(host_ssid);
-        dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
-        dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
-        Serial.println("WiFi AP ok.");
+
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
     }
+    Serial.println(WiFi.localIP());
+
     return true;
 }
 
