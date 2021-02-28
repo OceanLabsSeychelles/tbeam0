@@ -51,10 +51,8 @@ typedef struct{
     float batt;
 
 } GPS_DATA;
-
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
-
 
 typedef struct{
     float accelx;
@@ -64,7 +62,6 @@ typedef struct{
     float roll;
     float yaw;
 } IMU_DATA;
-
 IMU_DATA imu_frame;
 uint8_t* imu_frame_ptr = (uint8_t*)&imu_frame;
 
@@ -81,6 +78,27 @@ bool powerInit(){
     return false;
   }
 }
+
+void LoRaScan(){
+  int packetSize = LoRa.parsePacket();
+  if (packetSize) {
+
+      uint8_t packet[packetSize];
+      for (int j = 0; j < packetSize; j++) {
+          packet[j] = LoRa.read();
+      }
+
+      if (packetSize == sizeOf(GPS_DATA)){
+        memcpy( & gps_fix, packet, sizeof(GPS_DATA));
+      }else if(packetSize == sizeOf(IMU_DATA)){
+        memcpy( & imu_fix, packet, sizeof(IMU_DATA));
+      }
+
+      //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
+      //Serial.println(rssi);
+  }
+}
+FunctionTimer rx_handler(& LoRaScan, 20);
 
 void LoRaSend(){
 
