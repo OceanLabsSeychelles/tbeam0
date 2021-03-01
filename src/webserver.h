@@ -78,15 +78,24 @@ int GpsPost(GPS_DATA data){
     String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
     String gpsData;
 
+    String ms, sec, min, hour, day, month, year, datetime;
+    ms = String(data.time.cs);
+    sec = String(data.time.sec);        
+    min = String(data.time.min);    
+    hour = String(data.time.hour);    
+    day = String(data.time.day);    
+    month = String(data.time.month);    
+    year= "20"+String(data.time.year);  
+    datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
+
     gpsDoc["latitude"] = data.lat;
     gpsDoc["longitude"] =data.lng;
     gpsDoc["satellites"] = int(data.sats);
     gpsDoc["elevation"] = data.alt;
-    gpsDoc["temperature"] = 5.0;
-    gpsDoc["battery"] = 6.0;
+    gpsDoc["temperature"] = data.temp;
+    gpsDoc["battery"] = data.batt;
     gpsDoc["imucalibration"] = "anastystringhere";
-    String ms, sec, min, hour, day, month, year;
-    gpsDoc["time"] = "how is datetime handled in c?";
+    gpsDoc["time"] = datetime;
     serializeJson(gpsDoc, gpsData);
 
     Serial.print("RestDB GPS POST...");
@@ -95,6 +104,43 @@ int GpsPost(GPS_DATA data){
     http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
     http.addHeader("cache-control" , "no-cache");
     int httpResponseCode = http.POST(gpsData);
+    http.end();
+    Serial.println(httpResponseCode);
+    return(httpResponseCode);
+}
+
+int ImuPost(IMU_DATA data){
+    HTTPClient http;
+    DynamicJsonDocument imuDoc(1024);
+    String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
+    String imuData;
+
+    String ms, sec, min, hour, day, month, year, datetime;
+    ms = String(data.start.cs);
+    sec = String(data.start.sec);        
+    min = String(data.start.min);    
+    hour = String(data.start.hour);    
+    day = String(data.start.day);    
+    month = String(data.start.month);    
+    year= "20"+String(data.start.year);  
+    datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
+
+    imuDoc["accelx"] = data.accelx;
+    imuDoc["accely"] = data.accely;
+    imuDoc["accelz"] = data.accelz;
+    imuDoc["pitch"] = data.pitch;
+    imuDoc["roll"] = data.roll;
+    imuDoc["yaw"] = data.yaw;
+    imuDoc["start"] = datetime;
+    imuDoc["dt"] = data.dt;
+    serializeJson(imuDoc, imuData);
+
+    Serial.print("RestDB IMU data POST test...");
+    http.begin(imuUrl);
+    http.addHeader("content-type", "application/json");
+    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    http.addHeader("cache-control" , "no-cache");
+    int httpResponseCode = http.POST(imuData);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);

@@ -7,18 +7,14 @@
 #include <TinyGPS++.h>
 #include <axp20x.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <Tone32.h>
+#include <Adafruit_SSD1306.h> //There's no reason I should have to include this...
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
-#include "webserver.h"
-#include "geometry.h"
-#include "math.h"
 #include <FunctionTimer.h>
 #include <esp_task_wdt.h>
 #include <datatypes.h>
+#include <webserver.h>
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCK     5     // GPIO5  -- SX1278's SCK
@@ -33,8 +29,6 @@
 #define BUZZER_RESOLUTION 10
 #define BUZZER_BITS 1024
 #define BUZZER_FREQ 2700
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define BAND  433E6
 #define GPS_SIG_FIGS 7
 #define WDT_TIMEOUT 5
@@ -43,24 +37,36 @@ TinyGPSPlus gps;
 HardwareSerial GPS(1);
 AXP20X_Class axp;
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
 
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
-
-
 IMU_DATA imu_frame;
 uint8_t* imu_frame_ptr = (uint8_t*)&imu_frame;
+long start_millis;
+DATE_TIME start_time;
 
-bool powerInit(){
+bool axpPowerOn(){
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
     axp.setPowerOutPut(AXP192_LDO2, AXP202_ON); // LORA radio
     axp.setPowerOutPut(AXP192_LDO3, AXP202_ON); // GPS main power
     axp.setPowerOutPut(AXP192_DCDC2, AXP202_ON);
     axp.setPowerOutPut(AXP192_EXTEN, AXP202_ON);
-    axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
+    //axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
     axp.setDCDC1Voltage(3300); // for the OLED power
+    return true;
+  } else {   
+    return false;
+  }
+}
+
+bool axpPowerOff(){
+    if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
+    axp.setPowerOutPut(AXP192_LDO2, AXP202_OFF); // LORA radio
+    axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+    axp.setPowerOutPut(AXP192_DCDC2, AXP202_OFF);
+    axp.setPowerOutPut(AXP192_EXTEN, AXP202_OFF);
+    axp.setPowerOutPut(AXP192_DCDC1, AXP202_OFF); //OLED
+    //axp.setDCDC1Voltage(3300); // for the OLED power
     return true;
   } else {   
     return false;
@@ -81,6 +87,7 @@ void LoRaScan(){
         GpsPost(gps_fix);
       }else if(packetSize == sizeof(IMU_DATA)){
         memcpy( & imu_frame, packet, sizeof(IMU_DATA));
+        ImuPost(imu_frame);
       }
 
       //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
@@ -115,15 +122,48 @@ void IMUCal(){
 FunctionTimer imu_cal_handler(&IMUCal, 500);
 
 
+DATE_TIME getTime(){
+  DATE_TIME time_object;
+  time_object.hour = gps.time.hour();
+  time_object.min = gps.time.second();
+  time_object.cs = gps.time.centisecond();
+  time_object.day = gps.date.day();
+  time_object.month = gps.date.month();
+  time_object.year = 2000 - gps.date.year();
+  return time_object;
+}
+
 void IMUUpdate(){
 
     sensors_event_t event;
     bno.getEvent(&event);
-    imu_frame.pitch=event.orientation.z;
-    imu_frame.roll=event.orientation.y;
-    imu_frame.yaw=event.orientation.x;
+    imu_frame.dt = millis() - start_millis;
+    imu_frame.start = start_time;
+    imu_frame.pitch = event.orientation.z;
+    imu_frame.roll = event.orientation.y;
+    imu_frame.yaw = event.orientation.x;
+    
+    //So this reading actually takes some time, not shown in the database
+    imu::Vector<3> lineacc = bno.getVector(Adafruit_BNO055::VECTOR_LINEARACCEL);
+    imu_frame.accelx = lineacc.x();
+    imu_frame.accely = lineacc.y();
+    imu_frame.accelz = lineacc.z();
 
 }
 FunctionTimer imu_handler(&IMUUpdate, 100);
+
+void GPSUpdate(){
+  gps_fix.lat = gps.location.lat();
+  gps_fix.lng = gps.location.lng();
+  gps_fix.sats = gps.satellites.value();
+  gps_fix.alt = gps.altitude.meters();
+  gps_fix.time = getTime();
+
+  //transmit GPS packet
+  LoRa.beginPacket();
+  LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+  LoRa.endPacket();
+  Serial.println("GPS Packet sent.");
+}
 
 #endif

@@ -1,15 +1,18 @@
 #include "main.h"
 
+void buoyHandler();
+void relayHandler();
+
 long last_scan = millis();
 long last_send = millis();
 long last_screen = millis();
 int interval = random(500);
-bool is_bouy = false;
+const bool is_bouy = false;
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
     Serial.begin(115200);
     Wire.begin(21, 22);
-    if (!powerInit()) {
+    if (!axpPowerOn()) {
         Serial.println("AXP192 Begin FAIL");
         while (1);
     } else {
@@ -38,37 +41,53 @@ void setup() {
     }
 
     //Adds current thread to watchdog timer
-    esp_task_wdt_init(WDT_TIMEOUT, true);
-    esp_task_wdt_add(NULL); 
+    if(!is_bouy){
+        esp_task_wdt_init(WDT_TIMEOUT, true);
+        esp_task_wdt_add(NULL); 
+    }
+    
 }
 
-long lastBeep = 0;
-long duration = 50;
-bool beepOn = false;
+const int measure_time = 300; //300 seconds = 5 minutes
+const int sleep_time = 3300; //3300 seconds = 55 minutes
 
 void loop() {
-    //Kick the dog every (WDT_TIMEOUT - 1) seconds
-    wdt_handler.service();
     if (is_bouy){
-        while (GPS.available()) {
-            gps.encode(GPS.read());
-        }
-        if (gps.location.isUpdated()) {
-            gps_fix.lat = gps.location.lat();
-            gps_fix.lng = gps.location.lng();
-            gps_fix.sats = gps.satellites.value();
-            gps_fix.alt = gps.altitude.meters();
-        }
-        if (millis() - last_send > interval) {
-            tx_handler.service();
-            interval = random(500);
-            Serial.println("Packet sent.");
-            last_send = millis();
-        }
+        while (true){
+            axpPowerOn();
+            /*
+                These variables need to be assigned at the start of 
+                every IMU burst reading
+                long start_millis, DATE_TIME start_time
+                need to wait for valid gps lock...
+            */
+            while(gps.satellites.value() < 5){
+                gps.encode(GPS.read());
+            }
+            start_millis = millis();
+            start_time = getTime();
 
-        imu_handler.service();
-        imu_cal_handler.service();
+            while((millis()-start_millis)<measure_time*1000){
+                while (GPS.available()) {
+                    gps.encode(GPS.read());
+                }
+                /*
+                In addition, this does not transmit battery voltage or temperature...
+                */
+                if (gps.location.isUpdated()) {
+                    GPSUpdate();
+                }
+                
+                imu_handler.service();
+                imu_cal_handler.service();
+            }
+            axpPowerOff();
+        }
     }else{
+        while (true){
+        //Kick the dog every (WDT_TIMEOUT - 1) seconds
+        wdt_handler.service();
         rx_handler.service();
+        }
     }
 }

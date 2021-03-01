@@ -1,10 +1,10 @@
-#ifndef DATA_TYPES_H
-#define DATA_TYPES_H
+#ifndef TBEAM0_DATATYPES_H
+#define TBEAM0_DATATYPES_H
 
 #include <Arduino.h>
 
 typedef struct{
-  uint16_t ms;
+  uint16_t cs; //centisecond
   uint8_t sec;
   uint8_t min;
   uint8_t hour;
@@ -30,6 +30,8 @@ typedef struct{
     float pitch;
     float roll;
     float yaw;
+    DATE_TIME start;
+    uint32_t dt;
 } IMU_DATA;
 
 #endif
