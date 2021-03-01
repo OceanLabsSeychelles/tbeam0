@@ -1,13 +1,9 @@
 #include "main.h"
 
-void buoyHandler();
-void relayHandler();
-
-long last_scan = millis();
-long last_send = millis();
-long last_screen = millis();
-int interval = random(500);
 const bool is_bouy = false;
+const int measure_time = 300; //300 seconds = 5 minutes
+const int sleep_time = 3300; //3300 seconds = 55 minutes
+
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
     Serial.begin(115200);
@@ -48,9 +44,8 @@ void setup() {
     
 }
 
-const int measure_time = 300; //300 seconds = 5 minutes
-const int sleep_time = 3300; //3300 seconds = 55 minutes
-
+//I hate that arduino syntax demands this...
+//Can replace with int main()??
 void loop() {
     if (is_bouy){
         while (true){
@@ -61,7 +56,7 @@ void loop() {
                 long start_millis, DATE_TIME start_time
                 need to wait for valid gps lock...
             */
-            while(gps.satellites.value() < 5){
+            while(gps.satellites.value() < 3){
                 gps.encode(GPS.read());
             }
             start_millis = millis();
@@ -72,7 +67,7 @@ void loop() {
                     gps.encode(GPS.read());
                 }
                 /*
-                In addition, this does not transmit battery voltage or temperature...
+                This does not transmit battery voltage or temperature...
                 */
                 if (gps.location.isUpdated()) {
                     GPSUpdate();
