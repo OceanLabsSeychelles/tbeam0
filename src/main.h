@@ -17,14 +17,16 @@
 #include "geometry.h"
 #include "math.h"
 #include <FunctionTimer.h>
+#include <esp_task_wdt.h>
+#include <datatypes.h>
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCK     5    // GPIO5  -- SX1278's SCK
-#define MISO    19   // GPIO19 -- SX1278's MISnO
-#define MOSI    27   // GPIO27 -- SX1278's MOSI
-#define SS      18   // GPIO18 -- SX1278's CS
-#define RST     14   // GPIO14 -- SX1278's RESET
-#define DI0     26   // GPIO26 -- SX1278's IRQ(Interrupt Request)
+#define SCK     5     // GPIO5  -- SX1278's SCK
+#define MISO    19    // GPIO19 -- SX1278's MISnO
+#define MOSI    27    // GPIO27 -- SX1278's MOSI
+#define SS      18    // GPIO18 -- SX1278's CS
+#define RST     14    // GPIO14 -- SX1278's RESET
+#define DI0     26      // GPIO26 -- SX1278's IRQ(Interrupt Request)
 #define BATTERY_PIN 35 // battery level measurement pin, here is the voltage divider connected
 #define BUZZER_PIN  13
 #define BUZZER_CHANNEL 0
@@ -35,6 +37,7 @@
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define BAND  433E6
 #define GPS_SIG_FIGS 7
+#define WDT_TIMEOUT 5
 
 TinyGPSPlus gps;
 HardwareSerial GPS(1);
@@ -42,26 +45,11 @@ AXP20X_Class axp;
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-typedef struct{
-    float lat;
-    float lng;
-    float sats;
-    float alt;
-    float temp;
-    float batt;
 
-} GPS_DATA;
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 
-typedef struct{
-    float accelx;
-    float accely;
-    float accelz;
-    float pitch;
-    float roll;
-    float yaw;
-} IMU_DATA;
+
 IMU_DATA imu_frame;
 uint8_t* imu_frame_ptr = (uint8_t*)&imu_frame;
 
@@ -82,16 +70,17 @@ bool powerInit(){
 void LoRaScan(){
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
-
+      Serial.printf("LoRa Packet Size: %d\n", packetSize);
       uint8_t packet[packetSize];
       for (int j = 0; j < packetSize; j++) {
           packet[j] = LoRa.read();
       }
-
-      if (packetSize == sizeOf(GPS_DATA)){
+      if (packetSize == sizeof(GPS_DATA)){
         memcpy( & gps_fix, packet, sizeof(GPS_DATA));
-      }else if(packetSize == sizeOf(IMU_DATA)){
-        memcpy( & imu_fix, packet, sizeof(IMU_DATA));
+        Serial.printf("Lat:%f   Lng:%f   Elevation %f  Sats:%f\n",gps_fix.lat, gps_fix.lng, gps_fix.alt, gps_fix.sats);
+        GpsPost(gps_fix);
+      }else if(packetSize == sizeof(IMU_DATA)){
+        memcpy( & imu_frame, packet, sizeof(IMU_DATA));
       }
 
       //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
@@ -102,11 +91,17 @@ FunctionTimer rx_handler(& LoRaScan, 20);
 
 void LoRaSend(){
 
-    LoRa.beginPacket();
-    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-    LoRa.endPacket();
+  LoRa.beginPacket();
+  LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+  LoRa.endPacket();
 }
 FunctionTimer tx_handler(& LoRaSend, 1000);
+
+void WdtKick(){
+  esp_task_wdt_reset();
+}
+
+FunctionTimer wdt_handler(& WdtKick, WDT_TIMEOUT-1);
 
 void IMUCal(){
     uint8_t system, gyro, accel, mag;

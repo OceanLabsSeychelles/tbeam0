@@ -10,42 +10,43 @@
 #include <DNSServer.h>
 #include <ArduinoJson.h>
 #include <LogFile.h>
+#include <datatypes.h>
 
-DynamicJsonDocument doc(1024);
 DynamicJsonDocument imuDoc(1024);
 
-//const char* ssid = "LDN_EXT";
-//const char* password = "blini010702041811";
+const char* ssid = "LDN_EXT";
+const char* password = "blini010702041811";
 
-const char* ssid = "sunsetvilla";
-const char* password = "deptspecialboys";
+//const char* ssid = "sunsetvilla";
+//const char* password = "deptspecialboys";
 
 LogFile gpsFile("/gpslog.txt");
 
 void PostTest(){
     HTTPClient http;
+    DynamicJsonDocument gpsDoc(1024);
 
     Serial.print("RestDB GPS data POST test...");
 
     String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
     String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
 
-    doc["latitude"] = 1.0;
-    doc["longitude"] = 2.0;
-    doc["satellites"] = 3.0;
-    doc["elevation"] = 4.0;
-    doc["temperature"] = 5.0;
-    doc["battery"] = 6.0;
-    doc["imucalibration"] = "anastystringhere";
-    doc["time"] = "how is datetime handled in c?";
-    String jsonData;
-    serializeJson(doc, jsonData);
+    gpsDoc["latitude"] = 1.0;
+    gpsDoc["longitude"] = 2.0;
+    gpsDoc["satellites"] = 3.0;
+    gpsDoc["elevation"] = 4.0;
+    gpsDoc["temperature"] = 5.0;
+    gpsDoc["battery"] = 6.0;
+    gpsDoc["imucalibration"] = "anastystringhere";
+    gpsDoc["time"] = "how is datetime handled in c?";
+    String gpsData;
+    serializeJson(gpsDoc, gpsData);
 
     http.begin(gpsUrl);
     http.addHeader("content-type", "application/json");
     http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
     http.addHeader("cache-control" , "no-cache");
-    int httpResponseCode = http.POST(jsonData);
+    int httpResponseCode = http.POST(gpsData);
     http.end();
     Serial.println(httpResponseCode);
 
@@ -69,6 +70,34 @@ void PostTest(){
     http.end();
     Serial.println(httpResponseCode);
 
+}
+
+int GpsPost(GPS_DATA data){
+    HTTPClient http;
+    DynamicJsonDocument gpsDoc(1024);
+    String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
+    String gpsData;
+
+    gpsDoc["latitude"] = data.lat;
+    gpsDoc["longitude"] =data.lng;
+    gpsDoc["satellites"] = int(data.sats);
+    gpsDoc["elevation"] = data.alt;
+    gpsDoc["temperature"] = 5.0;
+    gpsDoc["battery"] = 6.0;
+    gpsDoc["imucalibration"] = "anastystringhere";
+    String ms, sec, min, hour, day, month, year;
+    gpsDoc["time"] = "how is datetime handled in c?";
+    serializeJson(gpsDoc, gpsData);
+
+    Serial.print("RestDB GPS POST...");
+    http.begin(gpsUrl);
+    http.addHeader("content-type", "application/json");
+    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    http.addHeader("cache-control" , "no-cache");
+    int httpResponseCode = http.POST(gpsData);
+    http.end();
+    Serial.println(httpResponseCode);
+    return(httpResponseCode);
 }
 
 void log(const String &line){
