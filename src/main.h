@@ -84,10 +84,12 @@ void LoRaScan(){
       if (packetSize == sizeof(GPS_DATA)){
         memcpy( & gps_fix, packet, sizeof(GPS_DATA));
         Serial.printf("Lat:%f   Lng:%f   Elevation %f  Sats:%f\n",gps_fix.lat, gps_fix.lng, gps_fix.alt, gps_fix.sats);
-        GpsPost(gps_fix);
+        //GpsPost(gps_fix);
       }else if(packetSize == sizeof(IMU_DATA)){
         memcpy( & imu_frame, packet, sizeof(IMU_DATA));
-        ImuPost(imu_frame);
+        //ImuPost(imu_frame)
+        Serial.printf("%u %u %u\n", imu_frame.start.hour, imu_frame.start.min, imu_frame.start.sec);
+      
       }
 
       //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
@@ -121,7 +123,6 @@ void IMUCal(){
 }
 FunctionTimer imu_cal_handler(&IMUCal, 500);
 
-
 DATE_TIME getTime(){
   DATE_TIME time_object;
   time_object.hour = gps.time.hour();
@@ -148,6 +149,11 @@ void IMUUpdate(){
     imu_frame.accelx = lineacc.x();
     imu_frame.accely = lineacc.y();
     imu_frame.accelz = lineacc.z();
+
+    LoRa.beginPacket();
+    LoRa.write(imu_frame_ptr, sizeof(IMU_DATA));
+    LoRa.endPacket();
+    Serial.println("IMU Packet Sent");
 
 }
 FunctionTimer imu_handler(&IMUUpdate, 100);

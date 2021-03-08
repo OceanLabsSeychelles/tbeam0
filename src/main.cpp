@@ -1,8 +1,8 @@
 #include "main.h"
 
 const bool is_bouy = false;
-const int measure_time = 300; //300 seconds = 5 minutes
-const int sleep_time = 3300; //3300 seconds = 55 minutes
+const int measure_time = 30; //300 seconds = 5 minutes
+const int sleep_time = 30; //3300 seconds = 55 minutes
 
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
@@ -41,7 +41,6 @@ void setup() {
         esp_task_wdt_init(WDT_TIMEOUT, true);
         esp_task_wdt_add(NULL); 
     }
-    
 }
 
 //I hate that arduino syntax demands this...
@@ -77,6 +76,10 @@ void loop() {
                 imu_cal_handler.service();
             }
             axpPowerOff();
+            int sleep_start = millis();
+            while(millis()-sleep_start<sleep_time){
+                ;;
+            }
         }
     }else{
         while (true){
