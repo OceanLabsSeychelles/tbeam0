@@ -1,6 +1,6 @@
 #include "main.h"
 
-const bool is_bouy = false;
+const bool is_bouy = true;
 const int measure_time = 30; //300 seconds = 5 minutes
 const int sleep_time = 30; //3300 seconds = 55 minutes
 
@@ -48,7 +48,7 @@ void setup() {
 void loop() {
     if (is_bouy){
         while (true){
-            //axpPowerOn();
+            axpPowerOn();
             Serial.println("Power on.");
             /*
                 These variables need to be assigned at the start of 
@@ -83,11 +83,11 @@ void loop() {
                 imu_handler.service();
                 imu_cal_handler.service();
             }
-            //axpPowerOff();
+            axpPowerOff();
             Serial.println("Power off.");
             int sleep_start = millis();
-            while(millis()-sleep_start<sleep_time){
-                ;;
+            while(millis()-sleep_start<sleep_time*1000){
+                Serial.println(millis()-sleep_start);
             }
         }
     }else{

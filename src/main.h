@@ -60,17 +60,9 @@ bool axpPowerOn(){
 }
 
 bool axpPowerOff(){
-    if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
     axp.setPowerOutPut(AXP192_LDO2, AXP202_OFF); // LORA radio
     axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
-    axp.setPowerOutPut(AXP192_DCDC2, AXP202_OFF);
-    axp.setPowerOutPut(AXP192_EXTEN, AXP202_OFF);
-    axp.setPowerOutPut(AXP192_DCDC1, AXP202_OFF); //OLED
-    axp.setDCDC1Voltage(3300); // for the OLED power
     return true;
-  } else {   
-    return false;
-  }
 }
 
 void LoRaScan(){
