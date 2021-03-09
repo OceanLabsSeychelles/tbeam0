@@ -48,7 +48,8 @@ void setup() {
 void loop() {
     if (is_bouy){
         while (true){
-            axpPowerOn();
+            //axpPowerOn();
+            Serial.println("Power on.");
             /*
                 These variables need to be assigned at the start of 
                 every IMU burst reading
@@ -57,6 +58,7 @@ void loop() {
             */
             while(gps.satellites.value() < 3){
                 gps.encode(GPS.read());
+                Serial.println(gps.satellites.value());
             }
             start_millis = millis();
             start_time = getTime();
@@ -70,12 +72,19 @@ void loop() {
                 */
                 if (gps.location.isUpdated()) {
                     GPSUpdate();
+
+                    //transmit GPS packet
+                    LoRa.beginPacket();
+                    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+                    LoRa.endPacket();
+                    Serial.println("GPS Packet sent.");
                 }
                 
                 imu_handler.service();
                 imu_cal_handler.service();
             }
-            axpPowerOff();
+            //axpPowerOff();
+            Serial.println("Power off.");
             int sleep_start = millis();
             while(millis()-sleep_start<sleep_time){
                 ;;

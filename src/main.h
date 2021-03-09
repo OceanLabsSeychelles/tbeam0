@@ -51,7 +51,7 @@ bool axpPowerOn(){
     axp.setPowerOutPut(AXP192_LDO3, AXP202_ON); // GPS main power
     axp.setPowerOutPut(AXP192_DCDC2, AXP202_ON);
     axp.setPowerOutPut(AXP192_EXTEN, AXP202_ON);
-    //axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
+    axp.setPowerOutPut(AXP192_DCDC1, AXP202_ON); //OLED
     axp.setDCDC1Voltage(3300); // for the OLED power
     return true;
   } else {   
@@ -66,7 +66,7 @@ bool axpPowerOff(){
     axp.setPowerOutPut(AXP192_DCDC2, AXP202_OFF);
     axp.setPowerOutPut(AXP192_EXTEN, AXP202_OFF);
     axp.setPowerOutPut(AXP192_DCDC1, AXP202_OFF); //OLED
-    //axp.setDCDC1Voltage(3300); // for the OLED power
+    axp.setDCDC1Voltage(3300); // for the OLED power
     return true;
   } else {   
     return false;
@@ -165,11 +165,7 @@ void GPSUpdate(){
   gps_fix.alt = gps.altitude.meters();
   gps_fix.time = getTime();
 
-  //transmit GPS packet
-  LoRa.beginPacket();
-  LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-  LoRa.endPacket();
-  Serial.println("GPS Packet sent.");
+  
 }
 
 #endif
