@@ -1,4 +1,5 @@
 #include "main.h"
+#define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
 const bool is_bouy = true;
 const int measure_time = 30; //300 seconds = 5 minutes
@@ -47,49 +48,38 @@ void setup() {
 //Can replace with int main()??
 void loop() {
     if (is_bouy){
-        while (true){
-            axpPowerOn();
-            Serial.println("Power on.");
-            /*
-                These variables need to be assigned at the start of 
-                every IMU burst reading
-                long start_millis, DATE_TIME start_time
-                need to wait for valid gps lock...
-            */
-            while(gps.satellites.value() < 3){
-                gps.encode(GPS.read());
-                Serial.println(gps.satellites.value());
-            }
-            start_millis = millis();
-            start_time = getTime();
-
-            while((millis()-start_millis)<measure_time*1000){
-                while (GPS.available()) {
-                    gps.encode(GPS.read());
-                }
-                /*
-                This does not transmit battery voltage or temperature...
-                */
-                if (gps.location.isUpdated()) {
-                    GPSUpdate();
-
-                    //transmit GPS packet
-                    LoRa.beginPacket();
-                    LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-                    LoRa.endPacket();
-                    Serial.println("GPS Packet sent.");
-                }
-                
-                imu_handler.service();
-                imu_cal_handler.service();
-            }
-            axpPowerOff();
-            Serial.println("Power off.");
-            int sleep_start = millis();
-            while(millis()-sleep_start<sleep_time*1000){
-                Serial.println(millis()-sleep_start);
-            }
+        while(gps.satellites.value() < 3){
+            gps.encode(GPS.read());
+            Serial.println(gps.satellites.value());
         }
+        start_millis = millis();
+        start_time = getTime();
+
+        while((millis()-start_millis)<measure_time*1000){
+            while (GPS.available()) {
+                gps.encode(GPS.read());
+            }
+            /*
+            This does not transmit battery voltage or temperature...
+            */
+            if (gps.location.isUpdated()) {
+                GPSUpdate();
+
+                //transmit GPS packet
+                LoRa.beginPacket();
+                LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
+                LoRa.endPacket();
+                Serial.println("GPS Packet sent.");
+            }
+            
+            imu_handler.service();
+            imu_cal_handler.service();
+        }
+        Serial.println("Entering deep sleep.");
+        axpPowerOff();
+        Serial.flush();
+        esp_sleep_enable_timer_wakeup(sleep_time * uS_TO_S_FACTOR);
+        esp_deep_sleep_start();
     }else{
         while (true){
         //Kick the dog every (WDT_TIMEOUT - 1) seconds
