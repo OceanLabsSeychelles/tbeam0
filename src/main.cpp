@@ -2,8 +2,9 @@
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
 const bool is_bouy = true;
-const int measure_time = 30; //300 seconds = 5 minutes
-const int sleep_time = 30; //3300 seconds = 55 minutes
+const int sleep_time = 660; //3300 seconds = 10 minutes
+const int post_delay = 10;
+
 
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
@@ -36,45 +37,62 @@ void setup() {
         bno.setMode(bno.OPERATION_MODE_NDOF);
         bno.setExtCrystalUse(true);
     }
-
     //Adds current thread to watchdog timer
     if(!is_bouy){
-        esp_task_wdt_init(WDT_TIMEOUT, true);
-        esp_task_wdt_add(NULL); 
+        //esp_task_wdt_init(WDT_TIMEOUT, true);
+        //esp_task_wdt_add(NULL); 
     }
 }
 
-//I hate that arduino syntax demands this...
-//Can replace with int main()??
 void loop() {
     if (is_bouy){
+        //Add IMU Calibration routine here
         while(gps.satellites.value() < 3){
             gps.encode(GPS.read());
             Serial.println(gps.satellites.value());
         }
-        start_millis = millis();
-        start_time = getTime();
-
-        while((millis()-start_millis)<measure_time*1000){
-            while (GPS.available()) {
-                gps.encode(GPS.read());
+        int count = 0;
+        while(!imu_buffer.isFull()){
+            start_time = getTime();
+            for(int j = 0; j< 10; j++){
+                //This is updating too fast
+                imu_buffer.push(IMUUpdate());
+                Serial.println("Imu captured...");
+                delay(50);
             }
-            /*
-            This does not transmit battery voltage or temperature...
-            */
-            if (gps.location.isUpdated()) {
-                GPSUpdate();
-
-                //transmit GPS packet
-                LoRa.beginPacket();
-                LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-                LoRa.endPacket();
-                Serial.println("GPS Packet sent.");
+            while(!gps.location.isUpdated()){
+                 gps.encode(GPS.read());
             }
-            
-            imu_handler.service();
-            imu_cal_handler.service();
+            gps_buffer.push(GPSUpdate());
+            Serial.println("Gps captured...");
+            Serial.println(count);
+            count ++;
         }
+        axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+        while(!imu_buffer.isEmpty()){
+            IMU_DATA frame;
+            uint8_t* frame_ptr = (uint8_t*)&frame;
+            imu_buffer.lockedPop(frame);
+
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(IMU_DATA));
+            LoRa.endPacket();
+            Serial.println("IMU Packet sent.");
+            delay(post_delay);
+        }
+
+        while(!gps_buffer.isEmpty()){
+            GPS_DATA frame;
+            uint8_t* frame_ptr = (uint8_t*)&frame;
+            gps_buffer.lockedPop(frame);
+
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(GPS_DATA));
+            LoRa.endPacket();
+            Serial.println("GPS Packet sent.");
+            delay(post_delay);
+        }
+
         Serial.println("Entering deep sleep.");
         axpPowerOff();
         Serial.flush();
@@ -82,9 +100,21 @@ void loop() {
         esp_deep_sleep_start();
     }else{
         while (true){
-        //Kick the dog every (WDT_TIMEOUT - 1) seconds
-        wdt_handler.service();
-        rx_handler.service();
+            //Kick the dog every (WDT_TIMEOUT - 1) seconds
+            //wdt_handler.service();
+            rx_handler.service();
+            if(millis() - last_rx > 10000){
+                while(!imu_buffer.isEmpty()){
+                    IMU_DATA frame;
+                    imu_buffer.lockedPop(frame);
+                    ImuPost(frame);
+                }
+                while(!gps_buffer.isEmpty()){
+                    GPS_DATA frame;
+                    gps_buffer.lockedPop(frame);
+                    GpsPost(frame);
+                }
+            }
         }
     }
 }

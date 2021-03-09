@@ -14,63 +14,13 @@
 
 DynamicJsonDocument imuDoc(1024);
 
-//const char* ssid = "LDN_EXT";
-//const char* password = "blini010702041811";
+const char* ssid = "LDN_EXT";
+const char* password = "blini010702041811";
 
-const char* ssid = "sunsetvilla";
-const char* password = "deptspecialboys";
+//const char* ssid = "sunsetvilla";
+//const char* password = "deptspecialboys";
 
 LogFile gpsFile("/gpslog.txt");
-
-void PostTest(){
-    HTTPClient http;
-    DynamicJsonDocument gpsDoc(1024);
-
-    Serial.print("RestDB GPS data POST test...");
-
-    String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
-    String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
-
-    gpsDoc["latitude"] = 1.0;
-    gpsDoc["longitude"] = 2.0;
-    gpsDoc["satellites"] = 3.0;
-    gpsDoc["elevation"] = 4.0;
-    gpsDoc["temperature"] = 5.0;
-    gpsDoc["battery"] = 6.0;
-    gpsDoc["imucalibration"] = "anastystringhere";
-    gpsDoc["time"] = "how is datetime handled in c?";
-    String gpsData;
-    serializeJson(gpsDoc, gpsData);
-
-    http.begin(gpsUrl);
-    http.addHeader("content-type", "application/json");
-    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    http.addHeader("cache-control" , "no-cache");
-    int httpResponseCode = http.POST(gpsData);
-    http.end();
-    Serial.println(httpResponseCode);
-
-    Serial.print("RestDB IMU data POST test...");
-    imuDoc["accelx"] = 1.0;
-    imuDoc["accely"] = 2.0;
-    imuDoc["accelz"] = 3.0;
-    imuDoc["pitch"] = 4.0;
-    imuDoc["roll"] = 5.0;
-    imuDoc["yaw"] = 6.0;
-    imuDoc["start"] = "how is datetime handled in c?";
-    imuDoc["dt"] = 7;
-    String imuData;
-    serializeJson(imuDoc, imuData);
-
-    http.begin(imuUrl);
-    http.addHeader("content-type", "application/json");
-    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    http.addHeader("cache-control" , "no-cache");
-    httpResponseCode = http.POST(imuData);
-    http.end();
-    Serial.println(httpResponseCode);
-
-}
 
 int GpsPost(GPS_DATA data){
     HTTPClient http;
@@ -85,7 +35,7 @@ int GpsPost(GPS_DATA data){
     hour = String(data.time.hour);    
     day = String(data.time.day);    
     month = String(data.time.month);    
-    year= "20"+String(data.time.year);  
+    year= String(data.time.year);  
     datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
 
     gpsDoc["latitude"] = data.lat;
@@ -122,7 +72,7 @@ int ImuPost(IMU_DATA data){
     hour = String(data.start.hour);    
     day = String(data.start.day);    
     month = String(data.start.month);    
-    year= "20"+String(data.start.year);  
+    year= String(data.start.year);  
     datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
 
     imuDoc["accelx"] = data.accelx;
@@ -135,7 +85,7 @@ int ImuPost(IMU_DATA data){
     imuDoc["dt"] = data.dt;
     serializeJson(imuDoc, imuData);
 
-    Serial.print("RestDB IMU data POST test...");
+    Serial.print("RestDB IMU POST...");
     http.begin(imuUrl);
     http.addHeader("content-type", "application/json");
     http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");

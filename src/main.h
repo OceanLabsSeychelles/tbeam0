@@ -15,6 +15,8 @@
 #include <esp_task_wdt.h>
 #include <datatypes.h>
 #include <webserver.h>
+#include <RingBuf.h>
+
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCK     5     // GPIO5  -- SX1278's SCK
@@ -31,12 +33,13 @@
 #define BUZZER_FREQ 2700
 #define BAND  433E6
 #define GPS_SIG_FIGS 7
-#define WDT_TIMEOUT 5
+#define WDT_TIMEOUT 10
 
-TinyGPSPlus gps;
-HardwareSerial GPS(1);
-AXP20X_Class axp;
-Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
+#define IMU_BUFFER_LEN 120 //10hz = 300 sec = 5 minutes
+RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
+
+#define GPS_BUFFER_LEN 12 //1hz = 300 sec = 5 minutes
+RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
@@ -44,6 +47,22 @@ IMU_DATA imu_frame;
 uint8_t* imu_frame_ptr = (uint8_t*)&imu_frame;
 long start_millis;
 DATE_TIME start_time;
+long last_rx = 0;
+
+TinyGPSPlus gps;
+HardwareSerial GPS(1);
+AXP20X_Class axp;
+Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
+
+float getBatteryVoltage() {
+  // we've set 10-bit ADC resolution 2^10=1024 and voltage divider makes it half of maximum readable value (which is 3.3V)
+  float sum = 0;
+  for (int j = 0; j< 10; j++){
+    sum += (float) analogRead(BATTERY_PIN);
+  }
+  sum /= 10;
+  return (sum); 
+}
 
 bool axpPowerOn(){
   if (!axp.begin(Wire, AXP192_SLAVE_ADDRESS)) {
@@ -62,46 +81,29 @@ bool axpPowerOn(){
 bool axpPowerOff(){
     axp.setPowerOutPut(AXP192_LDO2, AXP202_OFF); // LORA radio
     axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
-
-    //axp.setPowerOutPut(AXP192_DCDC2, AXP202_OFF);
-    //axp.setPowerOutPut(AXP192_EXTEN, AXP202_OFF);
-    //axp.setPowerOutPut(AXP192_DCDC1, AXP202_OFF); //OLED
-    //axp.setDCDC1Voltage(0.0); // for the OLED power
     return true;
 }
 
 void LoRaScan(){
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
-      Serial.printf("LoRa Packet Size: %d\n", packetSize);
+      Serial.println("Got packet");
       uint8_t packet[packetSize];
       for (int j = 0; j < packetSize; j++) {
           packet[j] = LoRa.read();
       }
       if (packetSize == sizeof(GPS_DATA)){
         memcpy( & gps_fix, packet, sizeof(GPS_DATA));
-        Serial.printf("Lat:%f   Lng:%f   Elevation %f  Sats:%f\n",gps_fix.lat, gps_fix.lng, gps_fix.alt, gps_fix.sats);
-        //GpsPost(gps_fix);
+        gps_buffer.push(gps_fix);
       }else if(packetSize == sizeof(IMU_DATA)){
         memcpy( & imu_frame, packet, sizeof(IMU_DATA));
-        //ImuPost(imu_frame)
-        Serial.printf("%u %u %u\n", imu_frame.start.hour, imu_frame.start.min, imu_frame.start.sec);
-      
+        imu_buffer.push(imu_frame);
       }
-
-      //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
-      //Serial.println(rssi);
+      last_rx = millis();
   }
 }
 FunctionTimer rx_handler(& LoRaScan, 20);
 
-void LoRaSend(){
-
-  LoRa.beginPacket();
-  LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-  LoRa.endPacket();
-}
-FunctionTimer tx_handler(& LoRaSend, 1000);
 
 void WdtKick(){
   esp_task_wdt_reset();
@@ -113,55 +115,52 @@ void IMUCal(){
     uint8_t system, gyro, accel, mag;
     system = gyro = accel = mag = 0;
     bno.getCalibration(&system, &gyro, &accel, &mag);
-
-    //HtmlVarMap["mag-cal"]->value = String(mag);
-    //HtmlVarMap["accel-cal"]->value = String(accel);
-    //HtmlVarMap["gyro-cal"]->value = String(gyro);
 }
 FunctionTimer imu_cal_handler(&IMUCal, 500);
 
 DATE_TIME getTime(){
   DATE_TIME time_object;
-  time_object.hour = gps.time.hour();
-  time_object.min = gps.time.second();
+  time_object.hour = uint8_t(gps.time.hour());
+  time_object.min = uint8_t(gps.time.minute());
+  time_object.sec = uint8_t(gps.time.second());
   time_object.cs = gps.time.centisecond();
   time_object.day = gps.date.day();
   time_object.month = gps.date.month();
-  time_object.year = 2000 - gps.date.year();
+  time_object.year = gps.date.year();
   return time_object;
 }
 
-void IMUUpdate(){
-
+IMU_DATA IMUUpdate(){
+    IMU_DATA frame;
     sensors_event_t event;
     bno.getEvent(&event);
-    imu_frame.dt = millis() - start_millis;
-    imu_frame.start = start_time;
-    imu_frame.pitch = event.orientation.z;
-    imu_frame.roll = event.orientation.y;
-    imu_frame.yaw = event.orientation.x;
+    frame.start = start_time;
+    frame.pitch = event.orientation.z;
+    frame.roll = event.orientation.y;
+    frame.yaw = event.orientation.x;
     
     //So this reading actually takes some time, not shown in the database
     imu::Vector<3> lineacc = bno.getVector(Adafruit_BNO055::VECTOR_LINEARACCEL);
-    imu_frame.accelx = lineacc.x();
-    imu_frame.accely = lineacc.y();
-    imu_frame.accelz = lineacc.z();
+    frame.accelx = lineacc.x();
+    frame.accely = lineacc.y();
+    frame.accelz = lineacc.z();
+    frame.dt = millis() - start_millis;
 
-    LoRa.beginPacket();
-    LoRa.write(imu_frame_ptr, sizeof(IMU_DATA));
-    LoRa.endPacket();
-    Serial.println("IMU Packet Sent");
+    return frame;
 
 }
-FunctionTimer imu_handler(&IMUUpdate, 100);
+//FunctionTimer imu_handler(&IMUUpdate, 100);
 
-void GPSUpdate(){
-  gps_fix.lat = gps.location.lat();
-  gps_fix.lng = gps.location.lng();
-  gps_fix.sats = gps.satellites.value();
-  gps_fix.alt = gps.altitude.meters();
-  gps_fix.time = getTime();
-
+GPS_DATA GPSUpdate(){
+  GPS_DATA frame;
+  frame.time = getTime();
+  frame.lat = gps.location.lat();
+  frame.lng = gps.location.lng();
+  frame.sats = gps.satellites.value();
+  frame.alt = gps.altitude.meters();
+  frame.batt = getBatteryVoltage();
+  frame.temp = 28.0;
+  return (frame);
 }
 
 #endif

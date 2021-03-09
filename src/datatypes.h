@@ -10,7 +10,7 @@ typedef struct{
   uint8_t hour;
   uint8_t day;
   uint8_t month;
-  uint8_t year;
+  uint16_t year;
 } DATE_TIME;
 
 typedef struct{
@@ -20,7 +20,7 @@ typedef struct{
     float alt;
     float temp;
     float batt;
-    DATE_TIME time;
+    DATE_TIME time; 
 } GPS_DATA;
 
 typedef struct{
