@@ -20,6 +20,7 @@ typedef struct{
     float alt;
     float temp;
     float batt;
+    float humid;
     DATE_TIME time; 
 } GPS_DATA;
 

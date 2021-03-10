@@ -2,7 +2,7 @@
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
 const bool is_bouy = true;
-const int sleep_time = 660; //3300 seconds = 10 minutes
+const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 10;
 
 
@@ -21,9 +21,21 @@ void setup() {
     if(!is_bouy){
         WiFiInit();
     }
-
+    
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
     LoRa.setPins(SS, RST, DI0);
+    if(is_bouy){
+        dhtSensor.setup(DHT_PIN, DHTesp::DHT11);
+        pinMode(BATTERY_PIN, INPUT);
+        Serial.println(getBatteryVoltage());
+
+        dht_frame = dhtSensor.getTempAndHumidity();
+        Serial.println(dht_frame.temperature);
+        Serial.println(dht_frame.humidity);
+        delay(1000);
+    }
+    
+
     if (!LoRa.begin(BAND)) {
         Serial.println("Starting LoRa failed!");
         while (1);
@@ -54,11 +66,17 @@ void loop() {
         int count = 0;
         while(!imu_buffer.isFull()){
             start_time = getTime();
+            start_millis = millis();
             for(int j = 0; j< 10; j++){
                 //This is updating too fast
                 imu_buffer.push(IMUUpdate());
                 Serial.println("Imu captured...");
-                delay(50);
+                long start = millis();
+                //was going to delay here, might as well read gps
+                while(millis()-start<50){
+                    gps.encode(GPS.read());
+                }
+                //delay(50);
             }
             while(!gps.location.isUpdated()){
                  gps.encode(GPS.read());
@@ -68,7 +86,10 @@ void loop() {
             Serial.println(count);
             count ++;
         }
+        Serial.println("Done capturing data");
         axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+        Serial.println("GPS powered off");
+        Serial.println(imu_buffer.isEmpty());
         while(!imu_buffer.isEmpty()){
             IMU_DATA frame;
             uint8_t* frame_ptr = (uint8_t*)&frame;
@@ -107,7 +128,7 @@ void loop() {
                 while(!imu_buffer.isEmpty()){
                     IMU_DATA frame;
                     imu_buffer.lockedPop(frame);
-                    ImuPost(frame);
+                    //ImuPost(frame);
                 }
                 while(!gps_buffer.isEmpty()){
                     GPS_DATA frame;

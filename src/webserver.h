@@ -26,6 +26,7 @@ int GpsPost(GPS_DATA data){
     HTTPClient http;
     DynamicJsonDocument gpsDoc(1024);
     String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
+    String firebaseUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/gpscoordinates.json";
     String gpsData;
 
     String ms, sec, min, hour, day, month, year, datetime;
@@ -43,6 +44,7 @@ int GpsPost(GPS_DATA data){
     gpsDoc["satellites"] = int(data.sats);
     gpsDoc["elevation"] = data.alt;
     gpsDoc["temperature"] = data.temp;
+    gpsDoc["humidity"] = data.humid;
     gpsDoc["battery"] = data.batt;
     gpsDoc["imucalibration"] = "anastystringhere";
     gpsDoc["time"] = datetime;
@@ -50,10 +52,10 @@ int GpsPost(GPS_DATA data){
 
     Serial.print("RestDB GPS POST...");
     http.begin(gpsUrl);
-    http.addHeader("content-type", "application/json");
-    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    http.addHeader("cache-control" , "no-cache");
-    int httpResponseCode = http.POST(gpsData);
+    //http.addHeader("content-type", "application/json");
+    //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    //http.addHeader("cache-control" , "no-cache");
+    int httpResponseCode = http.POST(firebaseUrl);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);

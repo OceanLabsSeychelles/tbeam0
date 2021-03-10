@@ -16,6 +16,7 @@
 #include <datatypes.h>
 #include <webserver.h>
 #include <RingBuf.h>
+#include <DHTesp.h>
 
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
@@ -25,7 +26,7 @@
 #define SS      18    // GPIO18 -- SX1278's CS
 #define RST     14    // GPIO14 -- SX1278's RESET
 #define DI0     26      // GPIO26 -- SX1278's IRQ(Interrupt Request)
-#define BATTERY_PIN 35 // battery level measurement pin, here is the voltage divider connected
+#define BATTERY_PIN 2 // battery level measurement pin, here is the voltage divider connected
 #define BUZZER_PIN  13
 #define BUZZER_CHANNEL 0
 #define BUZZER_RESOLUTION 10
@@ -34,6 +35,7 @@
 #define BAND  433E6
 #define GPS_SIG_FIGS 7
 #define WDT_TIMEOUT 10
+#define DHT_PIN 23
 
 #define IMU_BUFFER_LEN 120 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
@@ -53,6 +55,9 @@ TinyGPSPlus gps;
 HardwareSerial GPS(1);
 AXP20X_Class axp;
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
+DHTesp dhtSensor;
+TempAndHumidity dht_frame;
+
 
 float getBatteryVoltage() {
   // we've set 10-bit ADC resolution 2^10=1024 and voltage divider makes it half of maximum readable value (which is 3.3V)
@@ -61,6 +66,8 @@ float getBatteryVoltage() {
     sum += (float) analogRead(BATTERY_PIN);
   }
   sum /= 10;
+  sum /= 4096;
+  sum *= 6.6;
   return (sum); 
 }
 
@@ -152,14 +159,26 @@ IMU_DATA IMUUpdate(){
 //FunctionTimer imu_handler(&IMUUpdate, 100);
 
 GPS_DATA GPSUpdate(){
+  Serial.print("Buffering GPS data...");
   GPS_DATA frame;
   frame.time = getTime();
   frame.lat = gps.location.lat();
   frame.lng = gps.location.lng();
   frame.sats = gps.satellites.value();
   frame.alt = gps.altitude.meters();
+  Serial.println("done.");
+  
+  Serial.print("Buffering temp and humidity data...");
+  dht_frame = dhtSensor.getTempAndHumidity();
+  frame.temp = dht_frame.temperature;
+  frame.humid = dht_frame.humidity;
+  Serial.println("done.");
+
+  Serial.print("Buffering battery data...");
   frame.batt = getBatteryVoltage();
-  frame.temp = 28.0;
+  Serial.println("done.");
+
+  Serial.println(dht_frame.temperature);
   return (frame);
 }
 

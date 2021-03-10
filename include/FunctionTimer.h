@@ -5,6 +5,8 @@
 #ifndef TBEAM0_FUNCTIONTIMER_H
 #define TBEAM0_FUNCTIONTIMER_H
 
+#include <functional>
+
 
 class FunctionTimer{
 public:
