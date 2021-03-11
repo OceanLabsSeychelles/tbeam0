@@ -4,7 +4,9 @@
 #include "main.h"
 #include "FS.h"
 #include "LITTLEFS.h"
+
 #define SPIFFS LITTLEFS
+
 #include <HTTPClient.h>
 #include <WiFi.h>
 #include <DNSServer.h>
@@ -14,15 +16,15 @@
 
 DynamicJsonDocument imuDoc(1024);
 
-const char* ssid = "LDN_EXT";
-const char* password = "blini010702041811";
+const char *ssid = "LDN_EXT";
+const char *password = "blini010702041811";
 
 //const char* ssid = "sunsetvilla";
 //const char* password = "deptspecialboys";
 
 LogFile gpsFile("/gpslog.txt");
 
-int GpsPost(GPS_DATA data){
+int GpsPost(GPS_DATA data) {
     HTTPClient http;
     DynamicJsonDocument gpsDoc(1024);
     String gpsUrl = "https://demobuoy-9613.restdb.io/rest/gpscoordinates";
@@ -31,16 +33,16 @@ int GpsPost(GPS_DATA data){
 
     String ms, sec, min, hour, day, month, year, datetime;
     ms = String(data.time.cs);
-    sec = String(data.time.sec);        
-    min = String(data.time.min);    
-    hour = String(data.time.hour);    
-    day = String(data.time.day);    
-    month = String(data.time.month);    
-    year= String(data.time.year);  
-    datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
+    sec = String(data.time.sec);
+    min = String(data.time.min);
+    hour = String(data.time.hour);
+    day = String(data.time.day);
+    month = String(data.time.month);
+    year = String(data.time.year);
+    datetime = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec + "." + ms;
 
     gpsDoc["latitude"] = data.lat;
-    gpsDoc["longitude"] =data.lng;
+    gpsDoc["longitude"] = data.lng;
     gpsDoc["satellites"] = int(data.sats);
     gpsDoc["elevation"] = data.alt;
     gpsDoc["temperature"] = data.temp;
@@ -58,10 +60,10 @@ int GpsPost(GPS_DATA data){
     int httpResponseCode = http.POST(firebaseUrl);
     http.end();
     Serial.println(httpResponseCode);
-    return(httpResponseCode);
+    return (httpResponseCode);
 }
 
-int ImuPost(IMU_DATA data){
+int ImuPost(IMU_DATA data) {
     HTTPClient http;
     DynamicJsonDocument imuDoc(1024);
     String imuUrl = "https://demobuoy-9613.restdb.io/rest/imudata";
@@ -69,13 +71,13 @@ int ImuPost(IMU_DATA data){
 
     String ms, sec, min, hour, day, month, year, datetime;
     ms = String(data.start.cs);
-    sec = String(data.start.sec);        
-    min = String(data.start.min);    
-    hour = String(data.start.hour);    
-    day = String(data.start.day);    
-    month = String(data.start.month);    
-    year= String(data.start.year);  
-    datetime = year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"."+ms;
+    sec = String(data.start.sec);
+    min = String(data.start.min);
+    hour = String(data.start.hour);
+    day = String(data.start.day);
+    month = String(data.start.month);
+    year = String(data.start.year);
+    datetime = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec + "." + ms;
 
     imuDoc["accelx"] = data.accelx;
     imuDoc["accely"] = data.accely;
@@ -90,22 +92,22 @@ int ImuPost(IMU_DATA data){
     Serial.print("RestDB IMU POST...");
     http.begin(imuUrl);
     http.addHeader("content-type", "application/json");
-    http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    http.addHeader("cache-control" , "no-cache");
+    http.addHeader("x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+    http.addHeader("cache-control", "no-cache");
     int httpResponseCode = http.POST(imuData);
     http.end();
     Serial.println(httpResponseCode);
-    return(httpResponseCode);
+    return (httpResponseCode);
 }
 
-void log(const String &line){
+void log(const String &line) {
     File logfile = SPIFFS.open("/logfile.txt", FILE_APPEND);
     Serial.println(line);
     logfile.println(line);
     logfile.close();
 }
 
-bool WiFiInit(bool host=false){
+bool WiFiInit(bool host = false) {
 
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
@@ -116,12 +118,12 @@ bool WiFiInit(bool host=false){
     return true;
 }
 
-bool FlashInit(){
+bool FlashInit() {
 
-    if(!SPIFFS.begin()){
+    if (!SPIFFS.begin()) {
         return false;
     }
-    if(SPIFFS.exists("/logfile.txt")){
+    if (SPIFFS.exists("/logfile.txt")) {
         SPIFFS.remove("/logfile.txt");
     }
 
@@ -136,25 +138,26 @@ bool FlashInit(){
     log("__FILE SYSTEM__");
 
 
-    while(file){
+    while (file) {
         const String name = file.name();
         log(file.name());
 
         file = root.openNextFile();
     }
 
-    if(file) {
+    if (file) {
         file.close();
     }
 
     log("_______________");
 
-    String used = String(SPIFFS.usedBytes()/1000);
-    log(String("Used Memory (kB): "+used));
+    String used = String(SPIFFS.usedBytes() / 1000);
+    log(String("Used Memory (kB): " + used));
 
-    String free = String((SPIFFS.totalBytes()-SPIFFS.usedBytes())/1000);
-    log(String("Free Memory (kB): "+free));
+    String free = String((SPIFFS.totalBytes() - SPIFFS.usedBytes()) / 1000);
+    log(String("Free Memory (kB): " + free));
 
     return true;
 }
+
 #endif
