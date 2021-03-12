@@ -8,6 +8,7 @@ const int post_delay = 10;
 
 
 void setup() {
+    pinMode(BATTERY_PIN, INPUT);
     SPI.begin(SCK, MISO, MOSI, SS);
     Serial.begin(115200);
     Wire.begin(21, 22);
@@ -19,7 +20,7 @@ void setup() {
     }
 
     FlashInit();
-    if (is_bouy) {
+    if (!is_bouy) {
         WiFiInit();
     }
 
@@ -60,10 +61,11 @@ void setup() {
 void loop() {
     if (is_bouy) {
         //Add IMU Calibration routine here
+        Serial.print("Waiting for GPS lock...");
         while (gps.satellites.value() < 3) {
             gps.encode(GPS.read());
-            Serial.println(gps.satellites.value());
         }
+        Serial.println("done");
         //First readings always seem a bit off, so lets read in a few longer...
         int k = 0;
         while(k<5){
@@ -98,38 +100,34 @@ void loop() {
         }
         Serial.println("Done capturing data");
         axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
-        Serial.println("GPS powered off");
-        Serial.println(imu_buffer.isEmpty());
+        Serial.println("GPS powered off.");
 
-        DynamicJsonDocument gpsJson(10240);
-        DynamicJsonDocument smallGpsJson(1024);
-        String gpsData;
-
-        int j = 0;
-        while (!gps_buffer.isEmpty()) {
-            GPS_DATA frame;
-            gps_buffer.lockedPop(frame);
-            String key = "measurement"+String(++j);
-            gps2json(smallGpsJson, frame);
-            gpsJson[key] = (smallGpsJson);
-        }
-        serializeJson(gpsJson, gpsData);
-        gpsPutLast(gpsData);
-
-        DynamicJsonDocument imuJson(50000);
-        DynamicJsonDocument smallImuJson(1024);
-        String imuData;
-        j = 0;
         while (!imu_buffer.isEmpty()) {
+            Serial.println("Start IMU data transfer.");
             IMU_DATA frame;
+            uint8_t *frame_ptr = (uint8_t *) &frame;
             imu_buffer.lockedPop(frame);
-            String key = "measurement"+String(++j);
-            imu2json(smallImuJson, frame);
-            imuJson[key] = smallImuJson;
+            Serial.println("Popped data frame.");
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(IMU_DATA));
+            LoRa.endPacket();
+            Serial.println("IMU Packet sent.");
+            //delay(post_delay);
         }
 
-        serializeJson(imuJson, imuData);
-        imuPutLast(imuData);
+        while (!gps_buffer.isEmpty()) {
+            Serial.println("Start IMU data transfer.");
+            GPS_DATA frame;
+            uint8_t *frame_ptr = (uint8_t *) &frame;
+            gps_buffer.lockedPop(frame);
+
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(GPS_DATA));
+            LoRa.endPacket();
+            Serial.println("GPS Packet sent.");
+            //delay(post_delay);
+        }
+        
 
         Serial.println("Entering deep sleep.");
         axpPowerOff();
@@ -141,17 +139,36 @@ void loop() {
             //Kick the dog every (WDT_TIMEOUT - 1) seconds
             //wdt_handler.service();
             rx_handler.service();
-            if (millis() - last_rx > 10000) {
-                while (!imu_buffer.isEmpty()) {
-                    IMU_DATA frame;
-                    imu_buffer.pop(frame);
-                    //ImuPost(frame);
-                }
+            if (millis() - last_rx > 1000) {
+                DynamicJsonDocument gpsJson(10240);
+                DynamicJsonDocument smallGpsJson(1024);
+                String gpsData;
+
+                int j = 0;
                 while (!gps_buffer.isEmpty()) {
                     GPS_DATA frame;
-                    gps_buffer.pop(frame);
-                    GpsPost(frame);
+                    gps_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    gps2json(smallGpsJson, frame);
+                    gpsJson[key] = (smallGpsJson);
                 }
+                serializeJson(gpsJson, gpsData);
+                gpsPutLast(gpsData);
+
+                DynamicJsonDocument imuJson(50000);
+                DynamicJsonDocument smallImuJson(1024);
+                String imuData;
+                j = 0;
+                while (!imu_buffer.isEmpty()) {
+                    IMU_DATA frame;
+                    imu_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    imu2json(smallImuJson, frame);
+                    imuJson[key] = smallImuJson;
+                }
+
+                serializeJson(imuJson, imuData);
+                imuPutLast(imuData);
             }
         }
     }
