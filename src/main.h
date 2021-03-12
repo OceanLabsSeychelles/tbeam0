@@ -124,14 +124,16 @@ void IMUCal() {
 FunctionTimer imu_cal_handler(&IMUCal, 500);
 
 DATE_TIME getTime() {
+
     DATE_TIME time_object;
     time_object.hour = uint8_t(gps.time.hour());
     time_object.min = uint8_t(gps.time.minute());
     time_object.sec = uint8_t(gps.time.second());
-    time_object.cs = gps.time.centisecond();
-    time_object.day = gps.date.day();
-    time_object.month = gps.date.month();
-    time_object.year = gps.date.year();
+    time_object.cs = uint16_t(gps.time.centisecond());
+    time_object.day = uint8_t(gps.date.day());
+    time_object.month = uint8_t(gps.date.month());
+    time_object.year = uint16_t(gps.date.year());
+
     return time_object;
 }
 

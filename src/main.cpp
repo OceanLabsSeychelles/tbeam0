@@ -19,7 +19,7 @@ void setup() {
     }
 
     FlashInit();
-    if (!is_bouy) {
+    if (is_bouy) {
         WiFiInit();
     }
 
@@ -60,24 +60,33 @@ void setup() {
 void loop() {
     if (is_bouy) {
         //Add IMU Calibration routine here
-        while (gps.satellites.value() < 3) {
+        while (gps.satellites.value() < 4) {
             gps.encode(GPS.read());
             Serial.println(gps.satellites.value());
         }
+        //First readings always seem a bit off, so lets read in a few longer...
+        int k = 0;
+        while(k<5){
+            GPSUpdate();
+            while(!gps.location.isUpdated()){
+                 gps.encode(GPS.read());
+            }
+            k++;
+        }
         int count = 0;
+        start_time = getTime();
+        start_millis = millis();
         while (!imu_buffer.isFull()) {
-            start_time = getTime();
-            start_millis = millis();
             for (int j = 0; j < 10; j++) {
                 //This is updating too fast
                 imu_buffer.push(IMUUpdate());
                 Serial.println("Imu captured...");
                 long start = millis();
                 //was going to delay here, might as well read gps
-                while (millis() - start < 50) {
+                while (millis() - start < 100) {
                     gps.encode(GPS.read());
                 }
-                //delay(50);
+                //delay(100);
             }
             while (!gps.location.isUpdated()) {
                 gps.encode(GPS.read());
@@ -91,29 +100,51 @@ void loop() {
         axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
         Serial.println("GPS powered off");
         Serial.println(imu_buffer.isEmpty());
-        while (!imu_buffer.isEmpty()) {
-            IMU_DATA frame;
-            uint8_t *frame_ptr = (uint8_t *) &frame;
-            imu_buffer.lockedPop(frame);
 
-            LoRa.beginPacket();
-            LoRa.write(frame_ptr, sizeof(IMU_DATA));
-            LoRa.endPacket();
-            Serial.println("IMU Packet sent.");
-            delay(post_delay);
-        }
+        DynamicJsonDocument gpsJson(10240);
+        DynamicJsonDocument smallGpsJson(1024);
+        String gpsData;
 
+        int j = 0;
         while (!gps_buffer.isEmpty()) {
             GPS_DATA frame;
-            uint8_t *frame_ptr = (uint8_t *) &frame;
             gps_buffer.lockedPop(frame);
-
-            LoRa.beginPacket();
-            LoRa.write(frame_ptr, sizeof(GPS_DATA));
-            LoRa.endPacket();
-            Serial.println("GPS Packet sent.");
-            delay(post_delay);
+            String key = "measurement"+String(++j);
+            gps2json(smallGpsJson, frame);
+            gpsJson[key] = (smallGpsJson);
         }
+        String gpsUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/gpscoordinates/last.json";
+        Serial.print("Firebase GPS PUT...");
+        serializeJson(gpsJson, gpsData);
+        HTTPClient http;
+        http.begin(gpsUrl);        
+        http.addHeader("content-type", "application/json");
+        //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+        int httpResponseCode = http.PUT(gpsData);
+        http.end();
+        Serial.println(httpResponseCode);
+        Serial.printf("IMU buffer size: %d\n", imu_buffer.size());
+        DynamicJsonDocument imuJson(50000);
+        DynamicJsonDocument smallImuJson(1024);
+        String imuData;
+        j = 0;
+        while (!imu_buffer.isEmpty()) {
+            IMU_DATA frame;
+            imu_buffer.lockedPop(frame);
+            String key = "measurement"+String(++j);
+            imu2json(smallImuJson, frame);
+            imuJson[key] = smallImuJson;
+        }
+
+        String imuUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/imudata/last.json";
+        serializeJson(imuJson, imuData);
+        Serial.print("Firebase IMU PUT...");
+        http.begin(imuUrl);        
+        http.addHeader("content-type", "application/json");
+        //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
+        httpResponseCode = http.PUT(imuData);
+        http.end();
+        Serial.println(httpResponseCode);
 
         Serial.println("Entering deep sleep.");
         axpPowerOff();
