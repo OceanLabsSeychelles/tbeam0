@@ -60,7 +60,7 @@ void setup() {
 void loop() {
     if (is_bouy) {
         //Add IMU Calibration routine here
-        while (gps.satellites.value() < 4) {
+        while (gps.satellites.value() < 3) {
             gps.encode(GPS.read());
             Serial.println(gps.satellites.value());
         }
@@ -113,17 +113,9 @@ void loop() {
             gps2json(smallGpsJson, frame);
             gpsJson[key] = (smallGpsJson);
         }
-        String gpsUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/gpscoordinates/last.json";
-        Serial.print("Firebase GPS PUT...");
         serializeJson(gpsJson, gpsData);
-        HTTPClient http;
-        http.begin(gpsUrl);        
-        http.addHeader("content-type", "application/json");
-        //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-        int httpResponseCode = http.PUT(gpsData);
-        http.end();
-        Serial.println(httpResponseCode);
-        Serial.printf("IMU buffer size: %d\n", imu_buffer.size());
+        gpsPutLast(gpsData);
+
         DynamicJsonDocument imuJson(50000);
         DynamicJsonDocument smallImuJson(1024);
         String imuData;
@@ -136,15 +128,8 @@ void loop() {
             imuJson[key] = smallImuJson;
         }
 
-        String imuUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/imudata/last.json";
         serializeJson(imuJson, imuData);
-        Serial.print("Firebase IMU PUT...");
-        http.begin(imuUrl);        
-        http.addHeader("content-type", "application/json");
-        //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-        httpResponseCode = http.PUT(imuData);
-        http.end();
-        Serial.println(httpResponseCode);
+        imuPutLast(imuData);
 
         Serial.println("Entering deep sleep.");
         axpPowerOff();
@@ -159,12 +144,12 @@ void loop() {
             if (millis() - last_rx > 10000) {
                 while (!imu_buffer.isEmpty()) {
                     IMU_DATA frame;
-                    imu_buffer.lockedPop(frame);
+                    imu_buffer.pop(frame);
                     //ImuPost(frame);
                 }
                 while (!gps_buffer.isEmpty()) {
                     GPS_DATA frame;
-                    gps_buffer.lockedPop(frame);
+                    gps_buffer.pop(frame);
                     GpsPost(frame);
                 }
             }

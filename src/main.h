@@ -33,10 +33,10 @@
 #define WDT_TIMEOUT 10
 #define DHT_PIN 23
 
-#define IMU_BUFFER_LEN 120 //10hz = 300 sec = 5 minutes
+#define IMU_BUFFER_LEN 60 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
 
-#define GPS_BUFFER_LEN 12 //1hz = 300 sec = 5 minutes
+#define GPS_BUFFER_LEN 6 //1hz = 300 sec = 5 minutes
 RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
 GPS_DATA gps_fix;
