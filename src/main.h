@@ -24,8 +24,8 @@
 #define MOSI    27    // GPIO27 -- SX1278's MOSI
 #define SS      18    // GPIO18 -- SX1278's CS
 #define RST     14    // GPIO14 -- SX1278's RESET
-#define DI0     26      // GPIO26 -- SX1278's IRQ(Interrupt Request)
-#define BATTERY_PIN 35 // battery level measurement pin, here is the voltage divider connected
+#define DI0     26    // GPIO26 -- SX1278's IRQ(Interrupt Request)
+#define BATTERY_PIN 2 // battery level measurement pin, here is the voltage divider connected
 #define BUZZER_PIN  13
 #define BUZZER_CHANNEL 0
 #define BUZZER_RESOLUTION 10
