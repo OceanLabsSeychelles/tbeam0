@@ -1,197 +1,180 @@
 #include "main.h"
-#include "webserver.h"
-#include "geometry.h"
 
-long last_scan = millis();
-long last_send = millis();
-long last_screen = millis();
-int interval = random(500);
+#define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
+
+const bool is_bouy = true;
+const int sleep_time = 30; //3300 seconds = 10 minutes
+const int post_delay = 10;
+
 
 void setup() {
-    pinMode(BUZZER_PIN, OUTPUT);
-    tone(BUZZER_PIN, NOTE_A6, 125, BUZZER_CHANNEL);
-
+    pinMode(BATTERY_PIN, INPUT);
+    SPI.begin(SCK, MISO, MOSI, SS);
     Serial.begin(115200);
     Wire.begin(21, 22);
-
-    if (!powerOn()) {
+    if (!axpPowerOn()) {
         Serial.println("AXP192 Begin FAIL");
         while (1);
     } else {
         Serial.println("Power Ok.");
     }
 
-    if (!displayInit()) {
-        Serial.println(F("SSD1306 allocation failed"));
-    } else {
-        Serial.println("OLED Ok.");
+    FlashInit();
+    if (!is_bouy) {
+        WiFiInit();
     }
 
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
-    SPI.begin(SCK, MISO, MOSI, SS);
     LoRa.setPins(SS, RST, DI0);
+    if (is_bouy) {
+        dhtSensor.setup(DHT_PIN, DHTesp::DHT11);
+        pinMode(BATTERY_PIN, INPUT);
+        Serial.println(getBatteryVoltage());
+
+        dht_frame = dhtSensor.getTempAndHumidity();
+        Serial.println(dht_frame.temperature);
+        Serial.println(dht_frame.humidity);
+        delay(1000);
+    }
+
     if (!LoRa.begin(BAND)) {
         Serial.println("Starting LoRa failed!");
         while (1);
+    } else {
+        Serial.println("LoRa Ok.");
     }
+    //LoRa.setTxPower(12);
+
 
     if (!bno.begin()) {
         Serial.println("BNO055 not detected!");
     } else {
         Serial.println("IMU Ok.");
+        bno.setMode(bno.OPERATION_MODE_NDOF);
+        bno.setExtCrystalUse(true);
     }
-
-    if (!serverInit()) {
-        Serial.println("Error starting server, likely SPIFFS");
-    } else {
-        Serial.println("Webserver Ok");
-        tone(BUZZER_PIN, NOTE_C7, 125, BUZZER_CHANNEL);
+    //Adds current thread to watchdog timer
+    if (!is_bouy) {
+        //esp_task_wdt_init(WDT_TIMEOUT, true);
+        //esp_task_wdt_add(NULL); 
     }
-
-    display.clearDisplay();
-    display.setTextSize(2);      // Normal 1:1 pixel scale
-    display.setCursor(0, 0);     // Start at top-left corner
-    display.println("Pairing");
-    display.display();
-    while ((!ready) && (!buddy_ready)) {
-        if (millis() - last_send > (1000 + interval)) {
-            local_config.distmax = HtmlVarMap["distmax"]->value.toInt();
-            local_config.downmax = HtmlVarMap["downmax"]->value.toInt();
-            local_config.buddylock = HtmlVarMap["buddylock"]->value.toInt();
-            local_config.ready = ready;
-            strcpy(local_config.id, "zero2spearo");
-
-            LoRa.beginPacket();
-            LoRa.write(local_config_ptr, sizeof(PAIRING_DATA));
-            LoRa.endPacket();
-
-            last_send = millis();
-            interval = random(500);
-        }
-        if (millis() - last_scan > 20) {
-
-            int packetSize = LoRa.parsePacket();
-            if (packetSize) {
-
-                uint8_t packet[packetSize];
-                for (int j = 0; j < packetSize; j++) {
-                    packet[j] = LoRa.read();
-                }
-                memcpy( & partner_config, packet, sizeof(PAIRING_DATA));
-                //buddy_found = true;
-                display.clearDisplay();
-                display.setCursor(0, 0);     // Start at top-left corner
-                display.println(partner_config.ready);
-                display.println(partner_config.distmax);
-                display.println(partner_config.downmax);
-                divedist = getmin(distmax, partner_config.distmax);
-                divedown = partner_config.downmax;
-                divelock = buddylock || partner_config.buddylock;
-                display.display();
-            }
-            last_scan = millis();
-        }
-    }
-    display.clearDisplay();
-    display.setCursor(0, 0);     // Start at top-left corner
-    display.println("START!");
-    display.display();
-    delay(2000);
-    server.end();
-    btStop();
-
 }
-
 
 void loop() {
-    while (GPS.available()) {
-        gps.encode(GPS.read());
-    }
-    if (gps.location.isUpdated()) {
-        gps_fix.lat = gps.location.lat();
-        gps_fix.lng = gps.location.lng();
-        gps_fix.sats = gps.satellites.value();
-    }
-    if (millis() - last_send > (1000 + interval)) {
-        LoRa.beginPacket();
-        LoRa.write(gps_fix_ptr, sizeof(GPS_DATA));
-        LoRa.endPacket();
-        last_send = millis();
-    }
-
-    if (millis() - last_scan > 20) {
-        int packetSize = LoRa.parsePacket();
-        if (packetSize) {
-
-            uint8_t packet[packetSize];
-            for (int j = 0; j < packetSize; j++) {
-                packet[j] = LoRa.read();
+    if (is_bouy) {
+        
+        //Add IMU Calibration routine here
+        
+        Serial.print("Waiting for GPS lock...");
+        while (gps.satellites.value() < 3) {
+            gps.encode(GPS.read());
+        }
+        Serial.println("done");
+        //First readings always seem a bit off, so lets read in a few longer...
+        int k = 0;
+        while(k<5){
+            GPSUpdate();
+            while(!gps.location.isUpdated()){
+                 gps.encode(GPS.read());
             }
-
-            memcpy( & partner_fix.info, packet, sizeof(GPS_DATA));
-            partner_fix.last_time = millis() / 1000.0;
-            distance = distanceEarth(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
-            bearing = getBearing(gps_fix.lat, gps_fix.lng, partner_fix.info.lat, partner_fix.info.lng);
-            last_scan = millis();
-            //rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
-            //Serial.println(rssi);
+            k++;
         }
-    }
+        
+        int count = 0;
+        start_time = getTime();
+        start_millis = millis();
+        while (!imu_buffer.isFull()) {
+            for (int j = 0; j < 10; j++) {
+                //This is updating too fast
+                imu_buffer.push(IMUUpdate());
+                Serial.println("Imu captured...");
+                long start = millis();
+                //was going to delay here, might as well read gps
+                while (millis() - start < 100) {
+                    gps.encode(GPS.read());
+                }
+                //delay(100);
+            }
+            
+            while (!gps.location.isUpdated()) {
+                gps.encode(GPS.read());
+            }
+            gps_buffer.push(GPSUpdate());
+            Serial.println("Gps captured...");
+            Serial.println(count);
+            count++;
+        }
+        Serial.println("Done capturing data");
+        axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+        Serial.println("GPS powered off.");
 
-    if (millis() - last_screen > 500) {
-        display.setCursor(0, 0); // Start at top-left corner
-        display.clearDisplay();
-
-        display.print("Sats:");
-        display.print(gps_fix.sats);
-        display.print(",");
-        display.println(partner_fix.info.sats);
-
-        display.print("dT(s):");
-        display.println(millis() / 1000.0 - partner_fix.last_time, 1);
-
-        if (partner_fix.info.sats > 2) {
-            display.print("D(m):");
-            display.println(distance, 1);
+        while (!imu_buffer.isEmpty()) {
+            Serial.println("Buffering IMU packet.");
+            IMU_DATA frame;
+            uint8_t* frame_ptr = (uint8_t*)&frame;
+            imu_buffer.lockedPop(frame);
+            Serial.println("Start IMU data transfer.");
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(IMU_DATA));
+            Serial.println("Packet written, not completed yet");
+            LoRa.endPacket();
+            Serial.println("IMU Packet sent.");
+            delay(post_delay);
         }
 
-        display.display();
-        interval = random(500);
-        last_screen = millis();
+        while (!gps_buffer.isEmpty()) {
+            GPS_DATA frame;
+            uint8_t *frame_ptr = (uint8_t *) &frame;
+            gps_buffer.lockedPop(frame);
+
+            LoRa.beginPacket();
+            LoRa.write(frame_ptr, sizeof(GPS_DATA));
+            LoRa.endPacket();
+            Serial.println("GPS Packet sent.");
+            delay(post_delay);
+        }
+        
+        Serial.println("Entering deep sleep.");
+        axpPowerOff();
+        Serial.flush();
+        esp_sleep_enable_timer_wakeup(sleep_time * uS_TO_S_FACTOR);
+        esp_deep_sleep_start();
+    } else {
+        while (true) {
+            //Kick the dog every (WDT_TIMEOUT - 1) seconds
+            //wdt_handler.service();
+            rx_handler.service();
+            if ((!imu_buffer.isEmpty() || !gps_buffer.isEmpty()) && millis() - last_rx > 5000) {
+                DynamicJsonDocument gpsJson(10240);
+                DynamicJsonDocument smallGpsJson(1024);
+                String gpsData;
+
+                int j = 0;
+                while (!gps_buffer.isEmpty()) {
+                    GPS_DATA frame;
+                    gps_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    gps2json(smallGpsJson, frame);
+                    gpsJson[key] = (smallGpsJson);
+                }
+                serializeJson(gpsJson, gpsData);
+                gpsPutLast(gpsData);
+
+                DynamicJsonDocument imuJson(50000);
+                DynamicJsonDocument smallImuJson(1024);
+                String imuData;
+                j = 0;
+                while (!imu_buffer.isEmpty()) {
+                    IMU_DATA frame;
+                    imu_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    imu2json(smallImuJson, frame);
+                    imuJson[key] = smallImuJson;
+                }
+
+                serializeJson(imuJson, imuData);
+                imuPutLast(imuData);
+            }
+        }
     }
 }
-
-/*
-Serial.print("Latitude  : ");
-Serial.println(gps.location.lat(), 5);
-Serial.print("Longitude : ");
-Serial.println(gps.location.lng(), 4);
-Serial.print("Satellites: ");
-Serial.println(gps.satellites.value());
-Serial.print("Altitude  : ");
-Serial.print(gps.altitude.feet() / 3.2808);
-Serial.println("M");
-Serial.print("Time      : ");
-Serial.print(gps.time.hour());
-Serial.print(":");
-Serial.print(gps.time.minute());
-Serial.print(":");
-Serial.println(gps.time.second());// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-Serial.print("Speed     : ");
-Serial.println(gps.speed.kmph());
-Serial.println("**********************");
-*/
-/*
-sensors_event_t event;
-bno.getEvent(&event);
-
-display.setCursor(0, 0);     // Start at top-left corner
-display.clearDisplay();
-display.print("\tX: ");
-display.println(event.orientation.x, 2);
-display.print("\tY: ");
-display.println(event.orientation.y, 2);
-display.print("\tZ: ");
-display.println(event.orientation.z, 2);
-display.display();
-*/

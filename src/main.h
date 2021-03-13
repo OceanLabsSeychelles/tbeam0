@@ -31,7 +31,7 @@
 #define BUZZER_CHANNEL 0
 #define BAND  433E6
 #define WDT_TIMEOUT 10
-#define DHT_PIN 23
+#define DHT_PIN 4
 
 #define IMU_BUFFER_LEN 60 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
