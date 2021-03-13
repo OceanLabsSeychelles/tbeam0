@@ -1,10 +1,9 @@
 #include "main.h"
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
-const bool is_bouy = true;
-const int sleep_time = 660; //3300 seconds = 10 minutes
+const bool is_bouy = false;
+const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 10;
-
 
 void setup() {
     SPI.begin(SCK, MISO, MOSI, SS);
@@ -32,12 +31,14 @@ void setup() {
             bno.setMode(bno.OPERATION_MODE_NDOF);
             bno.setExtCrystalUse(true);
         }
-        dhtSensor.setup(DHT_PIN, DHTesp::DHT11);
+        //dhtSensor.setup(DHT_PIN, DHTesp::DHT11);
         Serial.println(getBatteryVoltage());
-
+        /*
         dht_frame = dhtSensor.getTempAndHumidity();
-        Serial.printf("Temp:%d Humidity:%d\n",dht_frame.temperature, dht_frame.humidity);
-
+        Serial.println(dht_frame.temperature);
+        Serial.println(dht_frame.humidity);
+        */
+        delay(2000);
     }
 
     LoRa.setPins(SS, RST, DI0);
@@ -62,24 +63,44 @@ void loop() {
             gps.encode(GPS.read());
             Serial.println(gps.satellites.value());
         }
+        //First readings always seem a bit off, so lets read in a few longer...
+        int k = 0;
+        while(k<5){
+            GPSUpdate();
+            while(!gps.location.isUpdated()){
+                 gps.encode(GPS.read());
+            }
+            k++;
+        }
+        
         int count = 0;
         while(!imu_buffer.isFull()){
             start_time = getTime();
             for(int j = 0; j< 10; j++){
-                //This is updating too fast
                 imu_buffer.push(IMUUpdate());
                 Serial.println("Imu captured...");
-                delay(50);
+                int start = millis();
+                while (millis() - start < 100) {
+                    gps.encode(GPS.read());
+                }
+                //delay(100);
             }
-            while(!gps.location.isUpdated()){
+            while(!gps.location.isUpdated()&& gps.satellites.value()<3){
                  gps.encode(GPS.read());
             }
-            gps_buffer.push(GPSUpdate());
+            GPS_DATA pushFrame;
+            pushFrame = GPSUpdate();
+            Serial.printf("Sats: %d  Batt:%f  Year:%d\n", pushFrame.sats, pushFrame.batt, pushFrame.time.year);
+            gps_buffer.push(pushFrame);
             Serial.println("Gps captured...");
             Serial.println(count);
             count ++;
         }
+
+        Serial.println("Done capturing data");
         axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+        Serial.println("GPS powered off.");
+
         while(!imu_buffer.isEmpty()){
             IMU_DATA frame;
             uint8_t* frame_ptr = (uint8_t*)&frame;
@@ -114,17 +135,39 @@ void loop() {
             //Kick the dog every (WDT_TIMEOUT - 1) seconds
             //wdt_handler.service();
             rx_handler.service();
-            if(millis() - last_rx > 10000){
-                while(!imu_buffer.isEmpty()){
-                    IMU_DATA frame;
-                    imu_buffer.lockedPop(frame);
-                    ImuPost(frame);
-                }
-                while(!gps_buffer.isEmpty()){
+            if ((!imu_buffer.isEmpty() || !gps_buffer.isEmpty()) && millis() - last_rx > 5000) {
+                DynamicJsonDocument gpsJson(512*GPS_BUFFER_LEN);
+                DynamicJsonDocument smallGpsJson(512);
+                String gpsData;
+
+                int j = 0;
+                while (!gps_buffer.isEmpty()) {
                     GPS_DATA frame;
                     gps_buffer.lockedPop(frame);
-                    GpsPost(frame);
+                    String key = "measurement"+String(++j);
+                    gps2json(smallGpsJson, frame);
+                    gpsJson[key] = (smallGpsJson);
+                    Serial.println(frame.sats);
+                    Serial.println(frame.batt);
+                    Serial.println(frame.time.year);
                 }
+                serializeJson(gpsJson, gpsData);
+                gpsPutLast(gpsData);
+
+                DynamicJsonDocument imuJson(512*IMU_BUFFER_LEN);
+                DynamicJsonDocument smallImuJson(512);
+                String imuData;
+                j = 0;
+                while (!imu_buffer.isEmpty()) {
+                    IMU_DATA frame;
+                    imu_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    imu2json(smallImuJson, frame);
+                    imuJson[key] = smallImuJson;
+                }
+
+                serializeJson(imuJson, imuData);
+                imuPutLast(imuData);
             }
         }
     }

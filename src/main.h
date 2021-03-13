@@ -16,7 +16,7 @@
 #include <datatypes.h>
 #include <webserver.h>
 #include <RingBuf.h>
-#include <DHTesp.h>
+//#include <DHTesp.h>
 
 
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
@@ -31,12 +31,12 @@
 #define BUZZER_CHANNEL 0
 #define BAND  433E6
 #define WDT_TIMEOUT 10
-#define DHT_PIN 4
+#define DHT_PIN 0
 
-#define IMU_BUFFER_LEN 60 //10hz = 300 sec = 5 minutes
+#define IMU_BUFFER_LEN 100 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
 
-#define GPS_BUFFER_LEN 6 //1hz = 300 sec = 5 minutes
+#define GPS_BUFFER_LEN 10 //1hz = 300 sec = 5 minutes
 RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
 GPS_DATA gps_fix;
@@ -51,8 +51,8 @@ TinyGPSPlus gps;
 HardwareSerial GPS(1);
 AXP20X_Class axp;
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
-DHTesp dhtSensor;
-TempAndHumidity dht_frame;
+//DHTesp dhtSensor;
+//TempAndHumidity dht_frame;
 
 
 float getBatteryVoltage() {
@@ -168,17 +168,17 @@ GPS_DATA GPSUpdate() {
     frame.alt = gps.altitude.meters();
     Serial.println("done.");
 
-    Serial.print("Buffering temp and humidity data...");
-    dht_frame = dhtSensor.getTempAndHumidity();
-    frame.temp = dht_frame.temperature;
-    frame.humid = dht_frame.humidity;
+    //Serial.print("Buffering temp and humidity data...");
+    //dht_frame = dhtSensor.getTempAndHumidity();
+    frame.temp = 28;//dht_frame.temperature;
+    frame.humid = 50;//dht_frame.humidity;
     Serial.println("done.");
 
     Serial.print("Buffering battery data...");
     frame.batt = getBatteryVoltage();
     Serial.println("done.");
 
-    Serial.println(dht_frame.temperature);
+    //Serial.println(dht_frame.temperature);
     return (frame);
 }
 
