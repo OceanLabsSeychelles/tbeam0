@@ -30,7 +30,7 @@ int imuPutLast(String data){
     http.begin(imuUrl);        
     http.addHeader("content-type", "application/json");
     //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    httpResponseCode = http.PUT(data);
+    httpResponseCode = http.PATCH(data);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);
@@ -44,7 +44,7 @@ int gpsPutLast(String data){
     http.begin(gpsUrl);        
     http.addHeader("content-type", "application/json");
     //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    httpResponseCode = http.PUT(data);
+    httpResponseCode = http.PATCH(data);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);

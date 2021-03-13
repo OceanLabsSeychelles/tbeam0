@@ -37,13 +37,15 @@ void setup() {
         delay(1000);
     }
 
-
     if (!LoRa.begin(BAND)) {
         Serial.println("Starting LoRa failed!");
         while (1);
     } else {
         Serial.println("LoRa Ok.");
     }
+    //LoRa.setTxPower(12);
+
+
     if (!bno.begin()) {
         Serial.println("BNO055 not detected!");
     } else {
@@ -60,7 +62,9 @@ void setup() {
 
 void loop() {
     if (is_bouy) {
+        
         //Add IMU Calibration routine here
+        
         Serial.print("Waiting for GPS lock...");
         while (gps.satellites.value() < 3) {
             gps.encode(GPS.read());
@@ -75,6 +79,7 @@ void loop() {
             }
             k++;
         }
+        
         int count = 0;
         start_time = getTime();
         start_millis = millis();
@@ -90,6 +95,7 @@ void loop() {
                 }
                 //delay(100);
             }
+            
             while (!gps.location.isUpdated()) {
                 gps.encode(GPS.read());
             }
@@ -103,20 +109,20 @@ void loop() {
         Serial.println("GPS powered off.");
 
         while (!imu_buffer.isEmpty()) {
-            Serial.println("Start IMU data transfer.");
+            Serial.println("Buffering IMU packet.");
             IMU_DATA frame;
-            uint8_t *frame_ptr = (uint8_t *) &frame;
+            uint8_t* frame_ptr = (uint8_t*)&frame;
             imu_buffer.lockedPop(frame);
-            Serial.println("Popped data frame.");
+            Serial.println("Start IMU data transfer.");
             LoRa.beginPacket();
             LoRa.write(frame_ptr, sizeof(IMU_DATA));
+            Serial.println("Packet written, not completed yet");
             LoRa.endPacket();
             Serial.println("IMU Packet sent.");
-            //delay(post_delay);
+            delay(post_delay);
         }
 
         while (!gps_buffer.isEmpty()) {
-            Serial.println("Start IMU data transfer.");
             GPS_DATA frame;
             uint8_t *frame_ptr = (uint8_t *) &frame;
             gps_buffer.lockedPop(frame);
@@ -125,10 +131,9 @@ void loop() {
             LoRa.write(frame_ptr, sizeof(GPS_DATA));
             LoRa.endPacket();
             Serial.println("GPS Packet sent.");
-            //delay(post_delay);
+            delay(post_delay);
         }
         
-
         Serial.println("Entering deep sleep.");
         axpPowerOff();
         Serial.flush();
@@ -139,7 +144,7 @@ void loop() {
             //Kick the dog every (WDT_TIMEOUT - 1) seconds
             //wdt_handler.service();
             rx_handler.service();
-            if (millis() - last_rx > 1000) {
+            if ((!imu_buffer.isEmpty() || !gps_buffer.isEmpty()) && millis() - last_rx > 5000) {
                 DynamicJsonDocument gpsJson(10240);
                 DynamicJsonDocument smallGpsJson(1024);
                 String gpsData;
