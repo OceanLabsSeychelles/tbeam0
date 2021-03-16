@@ -1,7 +1,7 @@
 #include "main.h"
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
-const bool is_bouy = true;
+const bool is_bouy = false;
 const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 50;
 const char* ntpServer = "pool.ntp.org";
@@ -140,36 +140,53 @@ void loop() {
                 String gpsData;
 
                 int j = 0;
+                bool gps_data = false;
                 while (!gps_buffer.isEmpty()) {
                     GPS_DATA frame;
                     gps_buffer.lockedPop(frame);
                     String key = "measurement"+String(++j);
                     gps2json(smallGpsJson, frame);
                     gpsJson[key] = (smallGpsJson);
-                    Serial.println(frame.sats);
-                    Serial.println(frame.batt);
-                    Serial.println(frame.time.year);
-                    Serial.println();
+                    gps_data = true;
                 }
-                serializeJson(gpsJson, gpsData);
-                gpsPutLast(gpsData);
-                gpsPatch(gpsData);
-
-                DynamicJsonDocument imuJson(JSON_DOC_SIZE*IMU_BUFFER_LEN);
-                DynamicJsonDocument smallImuJson(JSON_DOC_SIZE);
-                String imuData;
-                j = 0;
+                if(gps_data){
+                    serializeJson(gpsJson, gpsData);
+                    gpsPutLast(gpsData);
+                    gpsPatch(gpsData);
+                }
+                
+                struct tm timeinfo;
+                if(!getLocalTime(&timeinfo)){
+                    Serial.println("Failed to obtain time. Data PATCH cancelled...");
+                }
+   
+                
+                const int chunk_size = 100;
+                int chunk = 0;
                 while (!imu_buffer.isEmpty()) {
-                    IMU_DATA frame;
-                    imu_buffer.lockedPop(frame);
-                    String key = "measurement"+String(++j);
-                    imu2json(smallImuJson, frame);
-                    imuJson[key] = smallImuJson;
+                    DynamicJsonDocument smallImuJson(JSON_DOC_SIZE);
+                    DynamicJsonDocument imuJson (20000);
+                    String imuData;
+                    j = 0;
+                    while(j<chunk_size){
+                        IMU_DATA frame;
+                        if(!imu_buffer.isEmpty()){
+                            imu_buffer.lockedPop(frame);
+                            String key = "measurement"+String(j);
+                            String smallImuData;
+                            imu2json(smallImuJson, frame);
+                            //serializeJson(smallImuJson, smallImuData);
+                            //imuPatch(smallImuData, key, timeinfo);
+                            imuJson[key]=smallImuJson;
+                            Serial.println(imuJson.size());
+                        }
+                        j++;
+                    }
+                    serializeJson(imuJson, imuData);
+                    imuPutLast(imuData,chunk);
+                    imuPatch(imuData, chunk, timeinfo);
+                    chunk++;
                 }
-
-                serializeJson(imuJson, imuData);
-                imuPutLast(imuData);
-                imuPatch(imuData);
             }
         }
     }

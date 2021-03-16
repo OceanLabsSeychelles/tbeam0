@@ -20,22 +20,18 @@ const char* password = "blini010702041811";
 //const char* ssid = "sunsetvilla";
 //const char* password = "deptspecialboys";
 
-int imuPatch(String data){
-    struct tm timeinfo;
-    if(!getLocalTime(&timeinfo)){
-        Serial.println("Failed to obtain time. Data PATCH cancelled...");
-        return -999;
-    }
+int imuPatch(String data, int chunk, struct tm timeinfo){
+
+    HTTPClient http;
+    int httpResponseCode;
     String sec= String(timeinfo.tm_sec);
     String min= String(timeinfo.tm_min);
     String hour= String(timeinfo.tm_hour);
     String day= String(timeinfo.tm_yday);
     String year = String(timeinfo.tm_year);
 
-    HTTPClient http;
-    int httpResponseCode;
     String imuUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/imudata";
-    imuUrl += ("/"+year+"-"+day+"/"+hour+":"+min+":"+sec+".json");
+    imuUrl += ("/"+year+"-"+day+"/"+hour+":"+min+":"+sec+"/"+String(chunk)+".json");
     Serial.print("Firebase IMU PATCH...");
     http.begin(imuUrl);        
     http.addHeader("content-type", "application/json");
@@ -50,8 +46,9 @@ int gpsPatch(String data){
     struct tm timeinfo;
     if(!getLocalTime(&timeinfo)){
         Serial.println("Failed to obtain time. Data PATCH cancelled...");
-        return -999;
+        return(-999);
     }
+   
     String sec= String(timeinfo.tm_sec);
     String min= String(timeinfo.tm_min);
     String hour= String(timeinfo.tm_hour);
@@ -74,15 +71,15 @@ int gpsPatch(String data){
 }
 
 
-int imuPutLast(String data){
+int imuPutLast(String data, int chunk){
     HTTPClient http;
     int httpResponseCode;
-    String imuUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/imudata/last.json";
+    String imuUrl = "https://demobouy-8aabf-default-rtdb.europe-west1.firebasedatabase.app/imudata/last/"+String(chunk)+".json";
     Serial.print("Firebase IMU PUT...");
     http.begin(imuUrl);        
     http.addHeader("content-type", "application/json");
     //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    httpResponseCode = http.PUT(data);
+    httpResponseCode = http.PATCH(data);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);
@@ -96,7 +93,7 @@ int gpsPutLast(String data){
     http.begin(gpsUrl);        
     http.addHeader("content-type", "application/json");
     //http.addHeader( "x-apikey", "b525dd66d6a36e9394f23bd1a2d48ec702833");
-    httpResponseCode = http.PUT(data);
+    httpResponseCode = http.PATCH(data);
     http.end();
     Serial.println(httpResponseCode);
     return(httpResponseCode);

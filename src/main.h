@@ -92,6 +92,7 @@ void LoRaScan(){
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
       Serial.println("Got packet");
+
       uint8_t packet[packetSize];
       for (int j = 0; j < packetSize; j++) {
           packet[j] = LoRa.read();
@@ -161,7 +162,7 @@ GPS_DATA GPSUpdate(){
   frame.sats = gps.satellites.value();
   frame.alt = gps.altitude.meters();
   frame.batt = getBatteryVoltage();
-  frame.temp = 28.0;
+  frame.temp = uint8_t(abs(bno.getTemp()));
   return (frame);
 }
 
