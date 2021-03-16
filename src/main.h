@@ -35,12 +35,13 @@
 #define WDT_TIMEOUT 10
 
 #define JSON_DOC_SIZE 512
-#define IMU_BUFFER_LEN 50 //10hz = 300 sec = 5 minutes
+#define IMU_BUFFER_LEN 300 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
 
-#define GPS_BUFFER_LEN 5 //1hz = 300 sec = 5 minutes
+#define GPS_BUFFER_LEN 30 //1hz = 300 sec = 5 minutes
 RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
+#define NUM_PACKETS 5
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 IMU_DATA imu_frame;

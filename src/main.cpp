@@ -1,7 +1,7 @@
 #include "main.h"
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
-const bool is_bouy = true;
+const bool is_bouy = false;
 const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 50;
 
@@ -64,55 +64,59 @@ void loop() {
         }
         
         int count = 0;
-        while(!imu_buffer.isFull()){
-            start_time = getTime();
-            for(int j = 0; j< 10; j++){
-                imu_buffer.lockedPush(IMUUpdate());
-                Serial.println("Imu captured...");
-                int start = millis();
-                while (millis() - start < 100) {
+        while(count<NUM_PACKETS){
+            while(!imu_buffer.isFull()){
+                start_time = getTime();
+                for(int j = 0; j< 10; j++){
+                    imu_buffer.lockedPush(IMUUpdate());
+                    Serial.println("Imu captured...");
+                    int start = millis();
+                    while (millis() - start < 100) {
+                        gps.encode(GPS.read());
+                    }
+                    //delay(100);
+                }
+                while(!gps.location.isUpdated()&& gps.satellites.value()<3){
                     gps.encode(GPS.read());
                 }
-                //delay(100);
+                GPS_DATA pushFrame;
+                pushFrame = GPSUpdate();
+                Serial.printf("Sats: %d  Batt:%f  Year:%d\n", pushFrame.sats, pushFrame.batt, pushFrame.time.year);
+                gps_buffer.lockedPush(pushFrame);
+                Serial.println("Gps captured...");
+                Serial.println(count);
+                count ++;
             }
-            while(!gps.location.isUpdated()&& gps.satellites.value()<3){
-                 gps.encode(GPS.read());
+
+            //Serial.println("Done capturing data");
+            //axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
+            //Serial.println("GPS powered off.");
+            long tx_start = millis();
+            while(!imu_buffer.isEmpty()){
+                IMU_DATA frame;
+                uint8_t* frame_ptr = (uint8_t*)&frame;
+                imu_buffer.lockedPop(frame);
+
+                LoRa.beginPacket();
+                LoRa.write(frame_ptr, sizeof(IMU_DATA));
+                LoRa.endPacket();
+                Serial.println("IMU Packet sent.");
+                delay(post_delay);
             }
-            GPS_DATA pushFrame;
-            pushFrame = GPSUpdate();
-            Serial.printf("Sats: %d  Batt:%f  Year:%d\n", pushFrame.sats, pushFrame.batt, pushFrame.time.year);
-            gps_buffer.lockedPush(pushFrame);
-            Serial.println("Gps captured...");
-            Serial.println(count);
-            count ++;
-        }
 
-        Serial.println("Done capturing data");
-        axp.setPowerOutPut(AXP192_LDO3, AXP202_OFF); // GPS main power
-        Serial.println("GPS powered off.");
+            while(!gps_buffer.isEmpty()){
+                GPS_DATA frame;
+                uint8_t* frame_ptr = (uint8_t*)&frame;
+                gps_buffer.lockedPop(frame);
 
-        while(!imu_buffer.isEmpty()){
-            IMU_DATA frame;
-            uint8_t* frame_ptr = (uint8_t*)&frame;
-            imu_buffer.lockedPop(frame);
-
-            LoRa.beginPacket();
-            LoRa.write(frame_ptr, sizeof(IMU_DATA));
-            LoRa.endPacket();
-            Serial.println("IMU Packet sent.");
-            delay(post_delay);
-        }
-
-        while(!gps_buffer.isEmpty()){
-            GPS_DATA frame;
-            uint8_t* frame_ptr = (uint8_t*)&frame;
-            gps_buffer.lockedPop(frame);
-
-            LoRa.beginPacket();
-            LoRa.write(frame_ptr, sizeof(GPS_DATA));
-            LoRa.endPacket();
-            Serial.println("GPS Packet sent.");
-            delay(post_delay);
+                LoRa.beginPacket();
+                LoRa.write(frame_ptr, sizeof(GPS_DATA));
+                LoRa.endPacket();
+                Serial.println("GPS Packet sent.");
+                delay(post_delay);
+            }
+            Serial.printf("Packet %d sent in %d millis.\n",count, int(millis()-tx_start));
+            count++;
         }
 
         Serial.println("Entering deep sleep.");
