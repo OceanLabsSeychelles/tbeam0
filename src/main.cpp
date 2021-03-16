@@ -1,9 +1,12 @@
 #include "main.h"
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
-const bool is_bouy = false;
+const bool is_bouy = true;
 const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 50;
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_sec = 0;
+const int   daylightOffset_sec = 0;
 
 
 void setup() {
@@ -21,6 +24,7 @@ void setup() {
     FlashInit();
     if(!is_bouy){
         WiFiInit();
+        configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
     }
 
     GPS.begin(9600, SERIAL_8N1, 34, 12); //17-TX 18-RX
@@ -62,9 +66,9 @@ void loop() {
             }
             k++;
         }
-        
+        int sample_count = 0;
         int count = 0;
-        while(count<NUM_PACKETS){
+        while(sample_count<NUM_PACKETS){
             while(!imu_buffer.isFull()){
                 start_time = getTime();
                 for(int j = 0; j< 10; j++){
@@ -116,7 +120,7 @@ void loop() {
                 delay(post_delay);
             }
             Serial.printf("Packet %d sent in %d millis.\n",count, int(millis()-tx_start));
-            count++;
+            sample_count++;
         }
 
         Serial.println("Entering deep sleep.");
@@ -149,6 +153,7 @@ void loop() {
                 }
                 serializeJson(gpsJson, gpsData);
                 gpsPutLast(gpsData);
+                gpsPatch(gpsData);
 
                 DynamicJsonDocument imuJson(JSON_DOC_SIZE*IMU_BUFFER_LEN);
                 DynamicJsonDocument smallImuJson(JSON_DOC_SIZE);
@@ -164,6 +169,7 @@ void loop() {
 
                 serializeJson(imuJson, imuData);
                 imuPutLast(imuData);
+                imuPatch(imuData);
             }
         }
     }

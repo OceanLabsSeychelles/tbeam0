@@ -17,6 +17,7 @@
 #include <webserver.h>
 #include <RingBuf.h>
 
+
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCK     5     // GPIO5  -- SX1278's SCK
 #define MISO    19    // GPIO19 -- SX1278's MISnO
@@ -41,7 +42,7 @@ RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
 #define GPS_BUFFER_LEN 30 //1hz = 300 sec = 5 minutes
 RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
-#define NUM_PACKETS 5
+#define NUM_PACKETS 10
 GPS_DATA gps_fix;
 uint8_t* gps_fix_ptr = (uint8_t*)&gps_fix;
 IMU_DATA imu_frame;
