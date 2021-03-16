@@ -77,7 +77,7 @@ void loop() {
         while(!imu_buffer.isFull()){
             start_time = getTime();
             for(int j = 0; j< 10; j++){
-                imu_buffer.push(IMUUpdate());
+                imu_buffer.lockedPush(IMUUpdate());
                 Serial.println("Imu captured...");
                 int start = millis();
                 while (millis() - start < 100) {
@@ -91,7 +91,7 @@ void loop() {
             GPS_DATA pushFrame;
             pushFrame = GPSUpdate();
             Serial.printf("Sats: %d  Batt:%f  Year:%d\n", pushFrame.sats, pushFrame.batt, pushFrame.time.year);
-            gps_buffer.push(pushFrame);
+            gps_buffer.lockedPush(pushFrame);
             Serial.println("Gps captured...");
             Serial.println(count);
             count ++;
@@ -152,7 +152,7 @@ void loop() {
                     Serial.println(frame.time.year);
                 }
                 serializeJson(gpsJson, gpsData);
-                gpsPutLast(gpsData);
+                //gpsPutLast(gpsData);
 
                 DynamicJsonDocument imuJson(512*IMU_BUFFER_LEN);
                 DynamicJsonDocument smallImuJson(512);
@@ -167,7 +167,7 @@ void loop() {
                 }
 
                 serializeJson(imuJson, imuData);
-                imuPutLast(imuData);
+                //imuPutLast(imuData);
             }
         }
     }

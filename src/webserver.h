@@ -14,11 +14,11 @@
 #include <LogFile.h>
 #include <datatypes.h>
 
-//const char *ssid = "LDN_EXT";
-//const char *password = "blini010702041811";
+const char *ssid = "LDN_EXT";
+const char *password = "blini010702041811";
 
-const char* ssid = "sunsetvilla";
-const char* password = "deptspecialboys";
+//const char* ssid = "sunsetvilla";
+//const char* password = "deptspecialboys";
 
 LogFile gpsFile("/gpslog.txt");
 
