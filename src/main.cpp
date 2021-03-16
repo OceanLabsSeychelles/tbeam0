@@ -1,8 +1,8 @@
 #include "main.h"
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
-const bool is_bouy = true;
-const int sleep_time = 660; //3300 seconds = 10 minutes
+const bool is_bouy = false;
+const int sleep_time = 30; //3300 seconds = 10 minutes
 const int post_delay = 10;
 
 
@@ -107,12 +107,15 @@ void loop() {
                 while(!imu_buffer.isEmpty()){
                     IMU_DATA frame;
                     imu_buffer.lockedPop(frame);
-                    ImuPost(frame);
+                    //ImuPost(frame);
                 }
                 while(!gps_buffer.isEmpty()){
                     GPS_DATA frame;
                     gps_buffer.lockedPop(frame);
-                    GpsPost(frame);
+                    Serial.println(frame.sats);
+                    Serial.println(frame.time.year);
+                    Serial.println();
+                    //GpsPost(frame);
                 }
             }
         }

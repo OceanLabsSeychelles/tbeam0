@@ -20,7 +20,7 @@ const char* password = "blini010702041811";
 //const char* ssid = "sunsetvilla";
 //const char* password = "deptspecialboys";
 
-LogFile gpsFile("/gpslog.txt");
+//LogFile gpsFile("/gpslog.txt");
 
 int GpsPost(GPS_DATA data){
     HTTPClient http;
@@ -127,7 +127,7 @@ bool FlashInit(){
     logfile.println("Log file init ok.");
     logfile.close();
 
-    gpsFile.log("Init Ok.");
+    //gpsFile.log("Init Ok.");
 
     File root = SPIFFS.open("/");
     File file = root.openNextFile();
