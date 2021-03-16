@@ -34,10 +34,11 @@
 #define GPS_SIG_FIGS 7
 #define WDT_TIMEOUT 10
 
-#define IMU_BUFFER_LEN 120 //10hz = 300 sec = 5 minutes
+#define JSON_DOC_SIZE 512
+#define IMU_BUFFER_LEN 50 //10hz = 300 sec = 5 minutes
 RingBuf<IMU_DATA, IMU_BUFFER_LEN> imu_buffer;
 
-#define GPS_BUFFER_LEN 12 //1hz = 300 sec = 5 minutes
+#define GPS_BUFFER_LEN 5 //1hz = 300 sec = 5 minutes
 RingBuf<GPS_DATA, GPS_BUFFER_LEN> gps_buffer;
 
 GPS_DATA gps_fix;
@@ -60,6 +61,8 @@ float getBatteryVoltage() {
     sum += (float) analogRead(BATTERY_PIN);
   }
   sum /= 10;
+  sum /= 4095;
+  sum *= 6.6;
   return (sum); 
 }
 
@@ -103,11 +106,9 @@ void LoRaScan(){
 }
 FunctionTimer rx_handler(& LoRaScan, 20);
 
-
 void WdtKick(){
   esp_task_wdt_reset();
 }
-
 FunctionTimer wdt_handler(& WdtKick, WDT_TIMEOUT-1);
 
 void IMUCal(){
