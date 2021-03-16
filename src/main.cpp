@@ -103,20 +103,40 @@ void loop() {
             //Kick the dog every (WDT_TIMEOUT - 1) seconds
             //wdt_handler.service();
             rx_handler.service();
-            if(millis() - last_rx > 10000){
-                while(!imu_buffer.isEmpty()){
-                    IMU_DATA frame;
-                    imu_buffer.lockedPop(frame);
-                    //ImuPost(frame);
-                }
-                while(!gps_buffer.isEmpty()){
+            if ((!imu_buffer.isEmpty() || !gps_buffer.isEmpty()) && millis() - last_rx > 5000) {
+                DynamicJsonDocument gpsJson(512*GPS_BUFFER_LEN);
+                DynamicJsonDocument smallGpsJson(512);
+                String gpsData;
+
+                int j = 0;
+                while (!gps_buffer.isEmpty()) {
                     GPS_DATA frame;
                     gps_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    gps2json(smallGpsJson, frame);
+                    gpsJson[key] = (smallGpsJson);
                     Serial.println(frame.sats);
+                    Serial.println(frame.batt);
                     Serial.println(frame.time.year);
                     Serial.println();
-                    //GpsPost(frame);
                 }
+                serializeJson(gpsJson, gpsData);
+                gpsPutLast(gpsData);
+
+                DynamicJsonDocument imuJson(512*IMU_BUFFER_LEN);
+                DynamicJsonDocument smallImuJson(512);
+                String imuData;
+                j = 0;
+                while (!imu_buffer.isEmpty()) {
+                    IMU_DATA frame;
+                    imu_buffer.lockedPop(frame);
+                    String key = "measurement"+String(++j);
+                    imu2json(smallImuJson, frame);
+                    imuJson[key] = smallImuJson;
+                }
+
+                serializeJson(imuJson, imuData);
+                imuPutLast(imuData);
             }
         }
     }

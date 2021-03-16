@@ -17,7 +17,6 @@
 #include <webserver.h>
 #include <RingBuf.h>
 
-
 #define OLED_RESET     16 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCK     5     // GPIO5  -- SX1278's SCK
 #define MISO    19    // GPIO19 -- SX1278's MISnO
