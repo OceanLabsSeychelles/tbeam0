@@ -2,7 +2,8 @@
 #define uS_TO_S_FACTOR 1000000  /* Conversion factor for micro seconds to seconds */
 
 const bool is_bouy = false;
-const int sleep_time = 30; //3300 seconds = 10 minutes
+
+const int sleep_time = 600; //3300 seconds = 10 minutes
 const int post_delay = 50;
 const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = 0;
@@ -132,7 +133,7 @@ void loop() {
     }else{
         while (true){
             //Kick the dog every (WDT_TIMEOUT - 1) seconds
-            //wdt_handler.service();
+            wdt_handler.service();
             rx_handler.service();
             if ((!imu_buffer.isEmpty() || !gps_buffer.isEmpty()) && millis() - last_rx > 5000) {
                 DynamicJsonDocument gpsJson(JSON_DOC_SIZE*GPS_BUFFER_LEN);
